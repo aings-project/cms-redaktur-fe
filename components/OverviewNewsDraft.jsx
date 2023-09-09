@@ -4,7 +4,7 @@ import OverviewNewsItem from "./OverviewNewsDraftItem";
 
 export default function OverviewNewsDraft() {
   return (
-    <div className="mt-6 mr-6 flex-grow">
+    <div className="mt-6 ml-6 mr-12 flex-grow">
       <p className="text-black text-2xl font-normal mb-6">
         Draft Berita Terbaru
       </p>

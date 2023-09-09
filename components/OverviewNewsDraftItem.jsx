@@ -4,7 +4,6 @@ import { AccountCircle, DateRange } from "@mui/icons-material";
 export default function OverviewNewsItem({ title, author, dateTime }) {
   return (
     <div>
-      <div className="h-[1px] w-full bg-black" />
       <div className="py-4 hover:cursor-pointer">
         <p className="text-black text-base font-semibold mb-2">{title}</p>
         <div className="flex">
@@ -18,6 +17,7 @@ export default function OverviewNewsItem({ title, author, dateTime }) {
           </div>
         </div>
       </div>
+      <div className="h-[1px] w-full bg-black" />
     </div>
   );
 }
