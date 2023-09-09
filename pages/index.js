@@ -1,12 +1,12 @@
 import React from "react";
 import MainSidebar from "../components/MainSidebar";
-import OverviewLayout from "../components/OverviewLayout";
+import NewsDraftLayout from "../components/NewsDraftLayout";
 
 export default function Home() {
   return (
     <div className="flex">
       <MainSidebar />
-      <OverviewLayout />
+      <NewsDraftLayout />
     </div>
   );
 }

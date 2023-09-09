@@ -1,7 +1,7 @@
 import React from "react";
 import { AccountCircle, DateRange } from "@mui/icons-material";
 
-export default function OverviewNewsItem({ title, author, dateTime }) {
+export default function OverviewNewsDraftItem({ title, author, dateTime }) {
   return (
     <div>
       <div className="py-4 hover:cursor-pointer">

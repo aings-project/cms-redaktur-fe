@@ -21,12 +21,12 @@ export default function MainSidebar() {
       <MainSidebarMenu
         icon={<QueryStatsIcon className="w-6 h-6 text-white" />}
         text={"Ikhtisar"}
-        isSelected={true}
+        isSelected={false}
       />
       <MainSidebarMenu
         icon={<DraftsIcon className="w-6 h-6 text-white" />}
         text={"Draf Berita"}
-        isSelected={false}
+        isSelected={true}
       />
       <MainSidebarMenu
         icon={<NewspaperIcon className="w-6 h-6 text-white" />}
