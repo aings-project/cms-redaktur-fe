@@ -6,11 +6,11 @@ import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-import MainSidebarMenu from "./main_sidebar_menu";
+import MainSidebarMenu from "./MainSidebarMenu";
 
 export default function MainSidebar() {
   return (
-    <div className="w-[280px] h-screen bg-zinc-800 py-6 flex flex-col">
+    <div className="w-[280px] h-screen bg-zinc-800 py-6 flex flex-col relative overflow-hidden">
       <div className="flex px-4 mb-12">
         <AccountCircleIcon className="w-16 h-16 text-white" />
         <div className="px-4">
