@@ -1,7 +1,7 @@
 import { AccountCircle, ArrowDropDown, ArrowRight } from "@mui/icons-material";
 import React from "react";
 
-export default function NewsDraftEditSidebar() {
+export default function NewsDraftEditSidebar({ markdown }) {
   return (
     <div className="max-w-xs w-full h-screen bg-zinc-800 p-6 overflow-y-auto">
       <div className="flex mb-6">
@@ -11,7 +11,10 @@ export default function NewsDraftEditSidebar() {
           <p className="text-white text-sm font-normal">paidi@aings.com</p>
         </div>
       </div>
-      <button className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full">
+      <button
+        className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full"
+        onClick={() => console.log(markdown)}
+      >
         <p className="text-center text-zinc-800 font-semibold my-auto">
           Simpan Perubahan
         </p>
