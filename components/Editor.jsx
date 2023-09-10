@@ -1,25 +1,21 @@
-import React from "react";
-
-import {
-  MDXEditor,
-  toolbarPlugin,
-  BoldItalicUnderlineToggles,
-  headingsPlugin,
-  thematicBreakPlugin,
-  UndoRedo,
-} from "@mdxeditor/editor";
+import React, { useRef } from "react";
+import { MDXEditor } from "@mdxeditor/editor/MDXEditor";
+import { UndoRedo } from "@mdxeditor/editor/plugins/toolbar/components/UndoRedo";
+import { BoldItalicUnderlineToggles } from "@mdxeditor/editor/plugins/toolbar/components/BoldItalicUnderlineToggles";
+import { toolbarPlugin } from "@mdxeditor/editor/plugins/toolbar";
 import "@mdxeditor/editor/style.css";
 
-const markdown = `
-# Hello world!
-Check the EditorComponent.tsx file for the code .
+const placeholder = `
+**Hello world!**
 `;
 
-const Editor = ({ ref }) => {
+const Editor = ({ onChange, className }) => {
+  const ref = useRef();
+
   return (
     <MDXEditor
-      className="h-screen overflow-y-auto"
-      markdown={markdown}
+      className={className}
+      markdown={placeholder}
       plugins={[
         toolbarPlugin({
           toolbarContents: () => (
@@ -29,11 +25,9 @@ const Editor = ({ ref }) => {
             </div>
           ),
         }),
-        headingsPlugin(),
-        thematicBreakPlugin(),
       ]}
       ref={ref}
-      onChange={() => {}}
+      onChange={onChange}
     />
   );
 };
