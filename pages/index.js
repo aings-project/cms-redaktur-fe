@@ -1,6 +1,5 @@
 import React from "react";
-import MainSidebar from "../components/MainSidebar";
-import NewsDraftEditLayout from "../components/NewsDraftEditLayout";
+import NewsDraftEditLayout from "../components/news_draft_edit/NewsDraftEditLayout";
 
 export default function Home() {
   return <NewsDraftEditLayout />;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NewsDraftEditSidebar from "./NewsDraftEditSidebar";
-import Editor from "./Editor";
+import Editor from "../shared/Editor";
 
 export default function NewsDraftEditLayout() {
   const [text, setText] = useState("");
