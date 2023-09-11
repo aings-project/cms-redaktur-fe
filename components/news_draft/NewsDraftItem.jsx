@@ -1,18 +1,17 @@
 import React from "react";
 import {
   AccountCircle,
-  CheckBox,
   CheckBoxOutlineBlank,
   DateRange,
 } from "@mui/icons-material";
 
-export default function NewsDraftItem({ title, author, dateTime }) {
+export default function NewsDraftItem({ title, author, dateTime, onClick }) {
   return (
     <div className="flex items-center">
       <div className="p-4">
         <CheckBoxOutlineBlank />
       </div>
-      <div className="w-full">
+      <button className="w-full flex flex-col" onClick={onClick}>
         <div className="py-4 hover:cursor-pointer">
           <p className="text-black text-base font-semibold mb-2">{title}</p>
           <div className="flex">
@@ -27,7 +26,7 @@ export default function NewsDraftItem({ title, author, dateTime }) {
           </div>
         </div>
         <div className="h-[1px] w-full bg-black" />
-      </div>
+      </button>
     </div>
   );
 }

@@ -19,8 +19,10 @@ export default function NewsDraftEditSidebar({ markdown }) {
           Simpan Perubahan
         </p>
       </button>
-      <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6">
-        <p className="text-center text-red-400 font-semibold my-auto">Hapus</p>
+      <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-slate-400 w-full mb-6 hover:cursor-default">
+        <p className="text-center text-slate-400 font-semibold my-auto">
+          Publikasikan
+        </p>
       </button>
       <div className="mb-4">
         <p className="text-white text-base font-semibold mb-1">Versi</p>
@@ -51,7 +53,7 @@ export default function NewsDraftEditSidebar({ markdown }) {
         </button>
       </div>
       <div className="w-full h-[0.25px] bg-white mb-4" />
-      <div className="mb-4">
+      <div className="mb-6">
         <button className="flex w-full justify-between">
           <p className="text-white text-base font-semibold mb-1">Validitas</p>
           <p className="text-white text-sm font-semibold">50%</p>
@@ -67,10 +69,13 @@ export default function NewsDraftEditSidebar({ markdown }) {
         </p>
       </div>
 
-      <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-white w-full mb-6">
+      <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-white w-full mb-4">
         <p className="text-center text-white font-semibold my-auto">
           Validasi Ulang
         </p>
+      </button>
+      <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6">
+        <p className="text-center font-semibold my-auto text-red-400">Hapus</p>
       </button>
     </div>
   );

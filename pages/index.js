@@ -1,6 +1,6 @@
 import React from "react";
-import NewsDraftEditLayout from "../components/news_draft_edit/NewsDraftEditLayout";
+import Overview from "../pages/overview/index";
 
 export default function Home() {
-  return <NewsDraftEditLayout />;
+  return <Overview />;
 }

@@ -5,10 +5,12 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
-
+import { useRouter } from "next/router";
 import MainSidebarMenu from "./MainSidebarMenu";
 
-export default function MainSidebar() {
+export default function MainSidebar({ activePage }) {
+  const router = useRouter();
+
   return (
     <div className="w-[280px] h-screen bg-zinc-800 py-6 flex flex-col relative overflow-hidden">
       <div className="flex px-4 mb-12">
@@ -21,22 +23,24 @@ export default function MainSidebar() {
       <MainSidebarMenu
         icon={<QueryStatsIcon className="w-6 h-6 text-white" />}
         text={"Ikhtisar"}
-        isSelected={false}
+        isSelected={activePage === "ikhtisar"}
+        onClick={() => router.push("/overview")}
       />
       <MainSidebarMenu
         icon={<DraftsIcon className="w-6 h-6 text-white" />}
         text={"Draf Berita"}
-        isSelected={true}
+        isSelected={activePage === "draf_berita"}
+        onClick={() => router.push("/news_draft")}
       />
       <MainSidebarMenu
         icon={<NewspaperIcon className="w-6 h-6 text-white" />}
         text={"Publikasi"}
-        isSelected={false}
+        isSelected={activePage === "publikasi"}
       />
       <MainSidebarMenu
         icon={<CommentIcon className="w-6 h-6 text-white" />}
         text={"Komentar"}
-        isSelected={false}
+        isSelected={activePage === "komentar"}
       />
       <div className="mt-auto">
         <MainSidebarMenu
