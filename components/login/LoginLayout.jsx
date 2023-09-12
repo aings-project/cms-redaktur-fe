@@ -1,10 +1,11 @@
 import React from "react";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
 
 export default function LoginLayout({ onLogin }) {
   return (
     <div className="flex">
-      <div className="w-2/3 bg-zinc-800 h-screen"></div>
-      <div className="w-1/3 min-w-[512px] bg-slate-50 px-6 flex items-center justify-center">
+      <div className="w-1/2 bg-zinc-800 h-screen" />
+      <div className="w-1/2 min-w-[512px] bg-slate-50 px-6 flex items-center justify-center">
         <div>
           <p className="text-black text-5xl font-extrabold text-center">
             AINGS
