@@ -1,6 +1,9 @@
 import React from "react";
-import Overview from "../pages/overview/index";
+import LoginLayout from "../components/login/LoginLayout";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  return <Overview />;
+  const router = useRouter();
+
+  return <LoginLayout onLogin={() => router.push("/overview")} />;
 }
