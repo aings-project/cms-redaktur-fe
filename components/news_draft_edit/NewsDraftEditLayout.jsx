@@ -26,6 +26,7 @@ export default function NewsDraftEditLayout() {
             />
             <div className="h-0.5 w-full bg-black" />
             <Editor
+              placeholder="Hello World"
               className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1"
               onChange={(value) => {
                 setText(value);
