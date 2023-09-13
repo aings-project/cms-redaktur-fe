@@ -7,6 +7,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/router";
 import MainSidebarMenu from "./MainSidebarMenu";
+import { Delete } from "@mui/icons-material";
 
 export default function MainSidebar({ activePage }) {
   const router = useRouter();
@@ -41,6 +42,11 @@ export default function MainSidebar({ activePage }) {
         icon={<CommentIcon className="w-6 h-6 text-white" />}
         text={"Komentar"}
         isSelected={activePage === "komentar"}
+      />
+      <MainSidebarMenu
+        icon={<Delete className="w-6 h-6 text-white" />}
+        text={"Ditolak"}
+        isSelected={activePage === "ditolak"}
       />
       <div className="mt-auto">
         <MainSidebarMenu

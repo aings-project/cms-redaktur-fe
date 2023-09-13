@@ -10,7 +10,9 @@ export default function OverviewNewsDraftItem({
   return (
     <div>
       <button className="py-4 hover:cursor-pointer" onClick={onClick}>
-        <p className="text-black text-base font-semibold mb-2">{title}</p>
+        <p className="text-black text-base font-semibold mb-2 text-left">
+          {title}
+        </p>
         <div className="flex">
           <div className="flex mr-4">
             <AccountCircle className="w-4 h-4" />
