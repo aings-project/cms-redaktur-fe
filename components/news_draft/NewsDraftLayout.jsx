@@ -13,15 +13,11 @@ export default function NewsDraftLayout() {
           <p className="text-black text-4xl font-extrabold">
             AINGS - Draf Berita
           </p>
-          <div className="mt-2 bg-white">
-            <div className="flex">
-              <input
-                className="bg-slate-50"
-                placeholder="Cari Judul Berita ..."
-              />
+          <div className="bg-white p-2 border border-zinc-300 rounded-md h-fit">
+            <div className="flex items-center">
+              <input className="p-2" placeholder="Cari Judul Berita ..." />
               <Search />
             </div>
-            <div className="h-0.5 w-full bg-black mt-2" />
           </div>
         </div>
         <div className="bg-white rounded-md border border-zinc-300 pb-6">
