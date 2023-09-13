@@ -5,11 +5,7 @@ import { BoldItalicUnderlineToggles } from "@mdxeditor/editor/plugins/toolbar/co
 import { toolbarPlugin } from "@mdxeditor/editor/plugins/toolbar";
 import "@mdxeditor/editor/style.css";
 
-const placeholder = `
-**Hello world!**
-`;
-
-const Editor = ({ onChange, className }) => {
+const Editor = ({ onChange, className, placeholder }) => {
   const ref = useRef();
 
   return (

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import NewsDraftEditSidebarMenuDropdown from "./NewsDraftEditSidebarMenuDropdown";
 import SecondaryButton from "../shared/SecondaryButton";
 
-export default function NewsDraftEditSidebar({ markdown }) {
+export default function NewsDraftEditSidebar({ markdown, onValidate }) {
   const status = "Menunggu Konfirmasi Wartawan";
   const [validStatus, setValidStatus] = useState(false);
 
@@ -78,9 +78,7 @@ export default function NewsDraftEditSidebar({ markdown }) {
       <SecondaryButton
         text={validStatus ? "Validasi Ulang" : "Validasi"}
         disabled={false}
-        onClick={() => {
-          setValidStatus(!validStatus);
-        }}
+        onClick={() => onValidate()}
       />
       <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6">
         <p className="text-center font-semibold my-auto text-red-400">Hapus</p>
