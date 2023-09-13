@@ -4,7 +4,7 @@ import NewsDraftEditSidebarMenuDropdown from "./NewsDraftEditSidebarMenuDropdown
 import SecondaryButton from "../shared/SecondaryButton";
 
 export default function NewsDraftEditSidebar({ markdown }) {
-  const status = "Konfirmasi Wartawan";
+  const status = "Menunggu Konfirmasi Wartawan";
   const [validStatus, setValidStatus] = useState(false);
 
   return (
@@ -21,15 +21,16 @@ export default function NewsDraftEditSidebar({ markdown }) {
         onClick={() => console.log(markdown)}
       >
         <p className="text-center text-zinc-800 font-semibold my-auto">
-          {status === "Disetujui" || status === "Konfirmasi Wartawan"
+          {status === "Disetujui" || status === "Menunggu Konfirmasi Wartawan"
             ? "Sunting"
             : "Simpan Perubahan"}
         </p>
       </button>
-      {(status === "Konfirmasi Wartawan" || status === "Disetujui") && (
+      {(status === "Menunggu Konfirmasi Wartawan" ||
+        status === "Disetujui") && (
         <SecondaryButton
           text="Publikasikan"
-          disabled={status === "Konfirmasi Wartawan"}
+          disabled={status === "Menunggu Konfirmasi Wartawan"}
         />
       )}
 
@@ -42,10 +43,10 @@ export default function NewsDraftEditSidebar({ markdown }) {
       <NewsDraftEditSidebarMenuDropdown
         title="Status"
         isDisabled={false}
-        initialValue="Konfirmasi Wartawan"
+        initialValue="Menunggu Konfirmasi Wartawan"
         items={[
-          "Sedang disunting",
-          "Konfirmasi Wartawan",
+          "Sedang Disunting",
+          "Menunggu Konfirmasi Wartawan",
           "Ditolak",
           "Disetujui",
         ]}
