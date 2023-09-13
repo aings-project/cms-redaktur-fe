@@ -14,11 +14,11 @@ export default function OverviewNewsDraftItem({
           {title}
         </p>
         <div className="flex">
-          <div className="flex mr-4">
+          <div className="flex mr-4 items-center">
             <AccountCircle className="w-4 h-4" />
             <p className="text-black text-xs font-normal ml-1">{author}</p>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <DateRange className="w-4 h-4" />
             <p className="text-black text-xs font-normal ml-1">{dateTime}</p>
           </div>

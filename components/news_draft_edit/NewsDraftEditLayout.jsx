@@ -8,15 +8,14 @@ export default function NewsDraftEditLayout() {
   const router = useRouter();
 
   return (
-    <div className="bg-slate-50 h-screen overflow-y-auto max-h-screen">
+    <div className="bg-neutral-50 h-screen overflow-y-auto max-h-screen">
       <div className="flex">
         <div className="p-6 w-full flex flex-col max-h-screen">
           <button className="w-full flex" onClick={() => router.push("/")}>
             <p className="text-black text-3xl font-extrabold mb-6">AINGS</p>
           </button>
-
           <input
-            className="w-full bg-slate-50 mb-2 text-2xl font-semibold"
+            className="w-full bg-neutral-50 text-2xl font-normal"
             value={
               "Pencemaran Udara di Daerah Jabodetabek Semakin Parah! Tercatat 1440 balita"
             }
