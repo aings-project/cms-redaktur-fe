@@ -7,13 +7,15 @@ import {
 
 export default function NewsDraftItem({ title, author, dateTime, onClick }) {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center hover:bg-slate-100 px-4">
       <div className="p-4">
         <CheckBoxOutlineBlank />
       </div>
       <button className="w-full flex flex-col" onClick={onClick}>
         <div className="py-4 hover:cursor-pointer">
-          <p className="text-black text-base font-semibold mb-2">{title}</p>
+          <p className="text-black text-base font-semibold mb-2 text-left">
+            {title}
+          </p>
           <div className="flex">
             <div className="flex mr-4">
               <AccountCircle className="w-4 h-4" />

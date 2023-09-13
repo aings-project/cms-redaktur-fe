@@ -8,8 +8,8 @@ export default function OverviewNewsDraftItem({
   onClick,
 }) {
   return (
-    <div>
-      <button className="py-4 hover:cursor-pointer" onClick={onClick}>
+    <div className="hover:bg-slate-100 w-full px-6">
+      <button className="py-4 hover:cursor-pointer " onClick={onClick}>
         <p className="text-black text-base font-semibold mb-2 text-left">
           {title}
         </p>

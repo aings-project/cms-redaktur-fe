@@ -6,8 +6,8 @@ export default function OverviewNewsDraft() {
   const router = useRouter();
 
   return (
-    <div className="mr-6 p-6 flex-grow bg-white rounded-md border border-zinc-300">
-      <p className="text-black text-2xl font-semibold mb-6">
+    <div className="mr-6 pb-6 flex-grow bg-white rounded-md border border-zinc-300">
+      <p className="text-black text-2xl font-semibold p-6">
         Draft Berita Terbaru
       </p>
       <OverviewNewsDraftItem
