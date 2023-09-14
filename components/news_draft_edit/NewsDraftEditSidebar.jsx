@@ -4,8 +4,8 @@ import NewsDraftEditSidebarMenuDropdown from "./NewsDraftEditSidebarMenuDropdown
 import SecondaryButton from "../shared/SecondaryButton";
 
 export default function NewsDraftEditSidebar({ markdown, onValidate }) {
-  const status = "Menunggu Konfirmasi Wartawan";
-  const [validStatus, setValidStatus] = useState(false);
+  const status = "Sedang Disunting";
+  const [validStatus, setValidStatus] = useState(true);
 
   return (
     <div className="max-w-xs w-full h-screen bg-zinc-800 p-6 overflow-y-auto">

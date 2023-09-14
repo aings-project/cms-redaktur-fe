@@ -7,12 +7,10 @@ import { useRouter } from "next/router";
 export default function NewsDraftLayout() {
   const router = useRouter();
   return (
-    <div className="bg-neutral-50 py-16 px-16 flex-grow h-screen overflow-y-auto">
+    <div className="bg-white py-16 px-16 flex-grow h-screen overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
         <div className="flex justify-between mb-6">
-          <p className="text-black text-4xl font-extrabold">
-            AINGS - Draf Berita
-          </p>
+          <p className="text-black text-4xl font-extrabold">Draf Berita</p>
           <div className="bg-white p-2 border border-zinc-300 rounded-md h-fit">
             <div className="flex items-center">
               <input className="p-2" placeholder="Cari Judul Berita ..." />
@@ -22,82 +20,88 @@ export default function NewsDraftLayout() {
         </div>
         <div className="bg-white rounded-md border border-zinc-300 pb-6">
           <NewsDraftTabBar />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={"Jokowi Turun dari Langit Saat Serangan 10 September"}
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={
-              "Dua Pemuda Berkelahi karena Rebutan Gulai Buatan Makaji di Pernikahan Ipar Sultan Brunei"
-            }
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={
-              "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-            }
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={
-              "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-            }
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={
-              "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-            }
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={"Jokowi Turun dari Langit Saat Serangan 10 September"}
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={
-              "Dua Pemuda Berkelahi karena Rebutan Gulai Buatan Makaji di Pernikahan Ipar Sultan Brunei"
-            }
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={
-              "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-            }
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={
-              "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-            }
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
-          <NewsDraftItem
-            onClick={() => router.push("news_draft/edit/1")}
-            title={
-              "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-            }
-            author={"Wahyu T"}
-            dateTime={"Senin, 4 Agustus 2023 11:54"}
-          />
+          <div className="bg-neutral-50">
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Pameran Seniman Disabilitas Digelar di Yogyakarta hingga 22 September"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Cemburu, Suami di Batam Tikam Istri dan Anak hingga Luka Robek"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Hasil Visum Balita yang Dilindas Pajero Sport Keluar, Polisi Sebut Tak Memenuhi Unsur Luka Berat"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Hasil Hong Kong Open 2023: Jonatan Christie ke Perempat Final, Jumpa Penakluk Axelsen"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Putri KW Usai Gugur di Hong Kong Open 2023: Banyak Pelajaran, Mau Lebih Beranig"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Hasil Hong Kong Open 2023: Ahsan/Hendra Lolos Perempat Final, Jumpa Penakluk Pramudya/Yeremia"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Persib Bandung Vs Persikabo, Marc Klok Ingin Lanjutkan Performa Apik"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+            <NewsDraftItem
+              onClick={() => router.push("news_draft/edit/1")}
+              title={
+                "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
+              }
+              author={"Wahyu T"}
+              dateTime={"Senin, 4 Agustus 2023 11:54"}
+            />
+          </div>
         </div>
       </div>
     </div>

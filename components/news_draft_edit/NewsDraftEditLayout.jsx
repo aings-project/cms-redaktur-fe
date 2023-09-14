@@ -13,21 +13,20 @@ export default function NewsDraftEditLayout() {
     <>
       <div className="bg-neutral-50 h-screen overflow-y-auto max-h-screen">
         <div className="flex">
-          <div className="p-6 w-full flex flex-col max-h-screen">
+          <div className="p-6 w-full flex flex-col max-h-screen max-w-screen-lg mx-auto bg-white">
             <button className="w-full flex" onClick={() => router.push("/")}>
               <p className="text-black text-3xl font-extrabold mb-6">AINGS</p>
             </button>
             <input
-              className="w-full bg-neutral-50 text-2xl font-normal"
+              className="w-full bg-white text-2xl font-semibold mb-4"
               value={
-                "Pencemaran Udara di Daerah Jabodetabek Semakin Parah! Tercatat 1440 balita"
+                "Prabowo Subianto resmi bergabung dengan Partai Demokrasi Indonesia Perjuangan (PDIP)"
               }
               onChange={() => {}}
             />
-            <div className="h-0.5 w-full bg-black" />
             <Editor
               placeholder="Hello World"
-              className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1"
+              className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1 border"
               onChange={(value) => {
                 setText(value);
               }}

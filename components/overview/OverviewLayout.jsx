@@ -5,13 +5,11 @@ import OverviewReadyPublish from "./OverviewReadyPublish";
 
 export default function OverviewLayout() {
   return (
-    <div className="bg-neutral-50 py-16 px-16 flex-grow h-screen overflow-y-auto">
+    <div className="py-16 px-16 flex-grow h-screen overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
-        <p className="text-black text-4xl font-extrabold mb-6">
-          AINGS - Ikhtisar
-        </p>
-        <div className="flex">
-          <div>
+        <p className="text-black text-4xl font-extrabold mb-6">Ikhtisar</p>
+        <div className="flex ">
+          <div className="grow">
             <OverviewNewsDraft />
             <div className="h-8" />
             <OverviewReadyPublish />
