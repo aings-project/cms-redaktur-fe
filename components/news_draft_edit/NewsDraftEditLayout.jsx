@@ -20,7 +20,7 @@ export default function NewsDraftEditLayout() {
             <input
               className="w-full bg-white text-2xl font-semibold mb-4"
               value={
-                "Prabowo Subianto resmi bergabung dengan Partai Demokrasi Indonesia Perjuangan (PDIP)"
+                "Gempabumi Tektonik M 6,3 di Laut Jawa (6 Februari 2020), Tidak Berpotensi Tsunami"
               }
               onChange={() => {}}
             />
