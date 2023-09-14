@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function NewsDraftEditSidebarMenuDropdown({
   title,
   items,
-  initialValue,
   isDisabled,
+  value,
+  onChange,
 }) {
   return (
     <div>
@@ -13,7 +14,8 @@ export default function NewsDraftEditSidebarMenuDropdown({
         <select
           disabled={isDisabled}
           className="text-white bg-zinc-800 w-full py-1 hover:cursor-pointer"
-          defaultValue={initialValue}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         >
           {items.map((item, index) => {
             return <option key={index}>{item}</option>;
