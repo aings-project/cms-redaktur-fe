@@ -3,13 +3,13 @@ import NewsDraftEditSidebar from "./NewsDraftEditSidebar";
 import Editor from "../shared/Editor";
 import { useRouter } from "next/router";
 import ValidateModal from "./ValidateModal";
+import ValidationResult from "./ValidationResultModal";
 
-export default function NewsDraftEditLayout({ newsDraft }) {
+export default function NewsDraftEditLayout({ newsDraft, validationData }) {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [isValidated, setIsValidated] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  const [showValidationModal, setShowValidationModal] = useState(false);
+  const [showValidationResult, setShowValidationResult] = useState(false);
   const [status, setStatus] = useState("");
   const router = useRouter();
 
@@ -45,27 +45,38 @@ export default function NewsDraftEditLayout({ newsDraft }) {
           <NewsDraftEditSidebar
             onSetStatus={(value) => setStatus(value)}
             status={status}
-            isValid={isValid}
-            isValidated={isValidated}
             maxVersion={newsDraft.total_version}
             version={newsDraft.draft_berita.version}
+            validationData={validationData}
             onSetVersion={(value) => {
               router.push(
                 `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
               );
             }}
             markdown={text}
-            onValidate={() => setShowModal(true)}
+            onValidate={() => {
+              if (validationData) {
+                setShowValidationResult(true);
+              } else {
+                setShowValidationModal(true);
+              }
+            }}
           />
         </div>
       </div>
-      {showModal ? (
+      {showValidationModal ? (
         <ValidateModal
-          onClose={() => setShowModal(false)}
-          onValidate={() => {
-            setIsValidated(true);
-            setIsValid(false);
-            setShowModal(false);
+          onClose={() => setShowValidationModal(false)}
+          onValidate={() => {}}
+        />
+      ) : null}
+      {showValidationResult ? (
+        <ValidationResult
+          onClose={() => setShowValidationResult(false)}
+          validationData={validationData}
+          onRevalidate={() => {
+            setShowValidationResult(false);
+            setShowValidationModal(true);
           }}
         />
       ) : null}

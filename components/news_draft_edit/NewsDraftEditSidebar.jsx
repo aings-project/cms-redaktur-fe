@@ -6,13 +6,12 @@ import SecondaryButton from "../shared/SecondaryButton";
 export default function NewsDraftEditSidebar({
   markdown,
   onValidate,
-  isValidated,
-  isValid,
   status,
   onSetStatus,
   maxVersion,
   version,
   onSetVersion,
+  validationData,
 }) {
   const [statusTemp, setStatusTemp] = useState("");
   const [versionTemp, setVersionTemp] = useState("1");
@@ -78,23 +77,25 @@ export default function NewsDraftEditSidebar({
       <div className="w-full h-[0.25px] bg-white mb-4" />
       <div className="mb-6">
         <p className="text-white text-base font-semibold mb-1">Validitas</p>
-        {isValidated && (
+        {validationData && (
           <div>
-            <p className="text-white text-sm font-normal">Berita Tidak Valid</p>
+            <p className="text-white text-sm font-normal">
+              {validationData.type}
+            </p>
             <p className="text-white text-sm font-semibold mt-2">Alasan</p>
             <p className="text-white text-sm font-normal mt-2">
-              Lokasi tidak sesuai. Banyak kalimat yang rancu.
+              {validationData.describe}
             </p>
           </div>
         )}
-        {!isValidated && (
+        {!validationData && (
           <p className="text-white text-sm font-normal mt-2">
             Periksa validasi draft berita!
           </p>
         )}
       </div>
       <SecondaryButton
-        text={isValid ? "Validasi Ulang" : "Validasi"}
+        text="Cek Validasi"
         disabled={false}
         onClick={() => onValidate()}
       />

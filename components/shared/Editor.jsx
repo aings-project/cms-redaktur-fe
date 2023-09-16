@@ -12,16 +12,18 @@ const Editor = ({ onChange, className, placeholder }) => {
     <MDXEditor
       className={className}
       markdown={placeholder}
-      plugins={[
-        toolbarPlugin({
-          toolbarContents: () => (
-            <div className="flex">
-              <UndoRedo />
-              <BoldItalicUnderlineToggles />
-            </div>
-          ),
-        }),
-      ]}
+      plugins={
+        onChange && [
+          toolbarPlugin({
+            toolbarContents: () => (
+              <div className="flex">
+                <UndoRedo />
+                <BoldItalicUnderlineToggles />
+              </div>
+            ),
+          }),
+        ]
+      }
       ref={ref}
       onChange={onChange}
     />
