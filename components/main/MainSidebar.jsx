@@ -8,9 +8,17 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/router";
 import MainSidebarMenu from "./MainSidebarMenu";
 import { Delete } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { asyncUnsetAuthUser } from "../../states/auth/action";
 
 export default function MainSidebar({ activePage }) {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const onSignOut = () => {
+    dispatch(asyncUnsetAuthUser());
+    router.push("/");
+  };
 
   return (
     <div className="w-[280px] h-screen bg-slate-800 py-6 flex flex-col relative overflow-hidden">
@@ -50,6 +58,7 @@ export default function MainSidebar({ activePage }) {
       />
       <div className="mt-auto">
         <MainSidebarMenu
+          onClick={onSignOut}
           icon={<LogoutIcon className="w-6 h-6 text-white" />}
           text={"Keluar"}
           isSelected={false}

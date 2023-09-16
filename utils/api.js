@@ -1,5 +1,5 @@
 const api = (() => {
-  const BASE_URL = "";
+  const BASE_URL = "https://redaktur-backend.et.r.appspot.com";
 
   function putAccessToken(token) {
     localStorage.setItem("accessToken", token);
