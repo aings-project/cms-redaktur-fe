@@ -89,7 +89,7 @@ export default function NewsDraftEditSidebar({
         )}
         {!isValidated && (
           <p className="text-white text-sm font-normal mt-2">
-            Berita belum divalidasi otomatis!
+            Periksa validasi draft berita!
           </p>
         )}
       </div>

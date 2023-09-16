@@ -2,19 +2,37 @@ import React, { useState } from "react";
 import Editor from "../shared/Editor";
 
 export default function ValidateModal({ onClose, onValidate }) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-20">
-        <div className="p-4 bg-white w-1/2 h-2/3 flex flex-col rounded-md">
+        <div className="p-4 bg-white w-1/2 flex flex-col rounded-md">
           <div className="flex justify-end">
             <button onClick={onClose} className="font-bold text-xl pb-4">
               Tutup
             </button>
           </div>
-          <Editor
-            placeholder="**(Opsional)** Masukkan data pendukung..."
-            className="border overflow-y-auto bg-white flex-1"
-          />
+          <div className="flex mb-4">
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+              className="mr-4"
+            />
+            <p className="font-semibold">Tambahkan data pendukung</p>
+          </div>
+          {isChecked && (
+            <Editor
+              placeholder="**(Opsional)** Masukkan data pendukung..."
+              className="border overflow-y-auto bg-white flex-1"
+            />
+          )}
+          <p>Hasil</p>
           <div className="mt-6 flex justify-center">
             <button
               onClick={onValidate}
