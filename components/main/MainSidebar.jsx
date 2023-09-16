@@ -21,7 +21,7 @@ export default function MainSidebar({ activePage }) {
   };
 
   return (
-    <div className="w-[280px] h-screen bg-slate-800 py-6 flex flex-col relative overflow-hidden">
+    <div className="w-[280px] min-w-[280px] h-screen bg-slate-800 py-6 flex flex-col relative overflow-hidden">
       <div className="flex px-4 mb-12">
         <AccountCircleIcon className="w-16 h-16 text-white" />
         <div className="px-4">

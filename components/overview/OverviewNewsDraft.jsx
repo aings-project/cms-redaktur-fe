@@ -1,8 +1,9 @@
 import React from "react";
 import OverviewNewsDraftItem from "./OverviewNewsDraftItem";
 import { useRouter } from "next/router";
+import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
-export default function OverviewNewsDraft() {
+export default function OverviewNewsDraft({ newsDraftList }) {
   const router = useRouter();
 
   return (
@@ -10,44 +11,18 @@ export default function OverviewNewsDraft() {
       <p className="text-black text-2xl font-extrabold px-6 pt-6 pb-4">
         Draft Berita Terbaru
       </p>
-      <OverviewNewsDraftItem
-        onClick={() => router.push("news_draft/edit/1")}
-        title={"Kota Surabaya Juara Umum Porprov Jatim 2023 Cabang Esports"}
-        author={"Wahyu T"}
-        dateTime={"Senin, 4 Agustus 2023 11:54"}
-      />
-      <OverviewNewsDraftItem
-        onClick={() => router.push("news_draft/edit/1")}
-        title={
-          "Kronologi 3 Karyawan Pabrik di Karanganyar Terbakar Semburan Uap Panas"
-        }
-        author={"Wahyu T"}
-        dateTime={"Senin, 4 Agustus 2023 11:54"}
-      />
-      <OverviewNewsDraftItem
-        onClick={() => router.push("news_draft/edit/1")}
-        title={
-          "Tradisi King Hoo Ping, Kelenteng Tay Kak Sie Semarang Bagi 5.000 Paket Sembako"
-        }
-        author={"Wahyu T"}
-        dateTime={"Senin, 4 Agustus 2023 11:54"}
-      />
-      <OverviewNewsDraftItem
-        onClick={() => router.push("news_draft/edit/1")}
-        title={
-          "Ini Dia Pengganti Rivan Nurmulki Pilihan Pelatih Timnas Voli Putra Indonesia"
-        }
-        author={"Wahyu T"}
-        dateTime={"Senin, 4 Agustus 2023 11:54"}
-      />
-      <OverviewNewsDraftItem
-        onClick={() => router.push("news_draft/edit/1")}
-        title={
-          "Breaking News! Toko Sepatu dan Sandal di Coyudan Solo Ludes Terbakar"
-        }
-        author={"Wahyu T"}
-        dateTime={"Senin, 4 Agustus 2023 11:54"}
-      />
+      {newsDraftList.length === 0 && <p className="px-6">Tidak ada berita</p>}
+      {newsDraftList.map((item, index) => {
+        return (
+          <OverviewNewsDraftItem
+            key={index}
+            onClick={() => router.push("news_draft/edit/1")}
+            title={item.title}
+            author={item.id_wartawan}
+            dateTime={dateTimeFormatter(item.created_at)}
+          />
+        );
+      })}
     </div>
   );
 }

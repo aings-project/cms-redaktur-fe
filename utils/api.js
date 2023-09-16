@@ -65,7 +65,7 @@ const api = (() => {
   }
 
   async function getAllNewsDraft() {
-    const response = await fetchWithAuth(`${BASE_URL}/news_draft`, {
+    const response = await fetchWithAuth(`${BASE_URL}/v1/draft-berita`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +81,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    return responseJson;
+    const { draft_berita } = responseJson;
+
+    return draft_berita;
   }
 
   async function getDetailNewsDraft({ draft_id, version }) {

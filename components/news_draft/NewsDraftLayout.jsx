@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 export default function NewsDraftLayout() {
   const router = useRouter();
   return (
-    <div className="bg-white py-16 px-16 flex-grow h-screen overflow-y-auto">
+    <div className="py-16 px-16 flex-grow h-screen overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
         <div className="flex justify-between mb-6">
           <p className="text-black text-4xl font-extrabold">Draf Berita</p>

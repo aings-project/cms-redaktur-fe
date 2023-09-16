@@ -20,7 +20,11 @@ function asyncReceiveOverviewNewsDraft() {
     dispatch(showLoading());
     try {
       const listNewsDraft = await api.getAllNewsDraft();
-      dispatch(receiveOverviewNewsDraftActionCreator(listNewsDraft));
+      dispatch(
+        receiveOverviewNewsDraftActionCreator({
+          listNewsDraft,
+        })
+      );
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_CENTER,
