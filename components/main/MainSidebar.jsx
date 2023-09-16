@@ -11,7 +11,7 @@ import { Delete } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { asyncUnsetAuthUser } from "../../states/auth/action";
 
-export default function MainSidebar({ activePage }) {
+export default function MainSidebar({ activePage, auth }) {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -25,8 +25,8 @@ export default function MainSidebar({ activePage }) {
       <div className="flex px-4 mb-12">
         <AccountCircleIcon className="w-16 h-16 text-white" />
         <div className="px-4">
-          <p className="text-white text-base font-bold">Muhammad Paidi</p>
-          <p className="text-white text-sm font-normal">paidi@aings.com</p>
+          <p className="text-white text-base font-bold">{auth.username}</p>
+          <p className="text-white text-sm font-normal">{auth.email}</p>
         </div>
       </div>
       <MainSidebarMenu

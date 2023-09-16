@@ -22,8 +22,12 @@ export default function EditNewsDraft() {
   // };
   const validationData = null;
 
-  const onValidate = () => {
-    console.log("validate");
+  const onValidate = (value) => {
+    console.log(value);
+  };
+
+  const onRevalidate = () => {
+    console.log("revalidate");
   };
 
   useEffect(() => {
@@ -43,7 +47,9 @@ export default function EditNewsDraft() {
     <NewsDraftEditLayout
       newsDraft={newsDraft}
       validationData={validationData}
-      onValidate={onValidate}
+      onValidate={(value) => onValidate(value)}
+      onRevalidate={() => onRevalidate()}
+      auth={auth}
     />
   );
 }

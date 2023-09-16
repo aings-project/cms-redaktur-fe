@@ -5,13 +5,14 @@ import SecondaryButton from "../shared/SecondaryButton";
 
 export default function NewsDraftEditSidebar({
   markdown,
-  onValidate,
+  maxVersion,
   status,
   onSetStatus,
-  maxVersion,
   version,
   onSetVersion,
   validationData,
+  onValidate,
+  auth,
 }) {
   const [statusTemp, setStatusTemp] = useState("");
   const [versionTemp, setVersionTemp] = useState("1");
@@ -29,8 +30,8 @@ export default function NewsDraftEditSidebar({
       <div className="flex mb-6">
         <AccountCircle className="w-16 h-16 text-white" />
         <div className="px-4">
-          <p className="text-white text-base font-bold">Muhammad Paidi</p>
-          <p className="text-white text-sm font-normal">paidi@aings.com</p>
+          <p className="text-white text-base font-bold">{auth.username}</p>
+          <p className="text-white text-sm font-normal">{auth.password}</p>
         </div>
       </div>
       <button

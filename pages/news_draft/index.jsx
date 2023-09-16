@@ -17,7 +17,7 @@ export default function NewsDraft() {
 
   return (
     <div className="flex">
-      <MainSidebar activePage="draf_berita" />
+      <MainSidebar activePage="draf_berita" auth={auth} />
       <NewsDraftLayout listNewsDraft={listNewsDraft} />
     </div>
   );

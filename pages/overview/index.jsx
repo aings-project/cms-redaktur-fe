@@ -18,7 +18,7 @@ export default function Overview() {
 
   return (
     <div className="flex">
-      <MainSidebar activePage="ikhtisar" />
+      <MainSidebar activePage="ikhtisar" auth={auth} />
       <OverviewLayout newsDraftList={newsDraftOverview} />
     </div>
   );

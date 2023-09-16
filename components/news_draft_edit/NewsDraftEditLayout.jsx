@@ -5,7 +5,13 @@ import { useRouter } from "next/router";
 import ValidateModal from "./ValidateModal";
 import ValidationResult from "./ValidationResultModal";
 
-export default function NewsDraftEditLayout({ newsDraft, validationData }) {
+export default function NewsDraftEditLayout({
+  newsDraft,
+  validationData,
+  auth,
+  onValidate,
+  onRevalidate,
+}) {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [showValidationModal, setShowValidationModal] = useState(false);
@@ -43,16 +49,17 @@ export default function NewsDraftEditLayout({ newsDraft, validationData }) {
             />
           </div>
           <NewsDraftEditSidebar
+            auth={auth}
             onSetStatus={(value) => setStatus(value)}
-            status={status}
-            maxVersion={newsDraft.total_version}
+            status={newsDraft.draft_berita.status}
             version={newsDraft.draft_berita.version}
-            validationData={validationData}
             onSetVersion={(value) => {
               router.push(
                 `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
               );
             }}
+            maxVersion={newsDraft.total_version}
+            validationData={validationData}
             markdown={text}
             onValidate={() => {
               if (validationData) {
@@ -67,7 +74,9 @@ export default function NewsDraftEditLayout({ newsDraft, validationData }) {
       {showValidationModal ? (
         <ValidateModal
           onClose={() => setShowValidationModal(false)}
-          onValidate={() => {}}
+          onValidate={(value) => {
+            onValidate(value);
+          }}
         />
       ) : null}
       {showValidationResult ? (
@@ -77,6 +86,7 @@ export default function NewsDraftEditLayout({ newsDraft, validationData }) {
           onRevalidate={() => {
             setShowValidationResult(false);
             setShowValidationModal(true);
+            onRevalidate();
           }}
         />
       ) : null}

@@ -34,14 +34,13 @@ export default function ValidateModal({ onClose, onValidate }) {
                 className="border overflow-y-auto bg-white flex-1"
                 onChange={(value) => {
                   setText(value);
-                  console.log(text);
                 }}
               />
             )}
           </div>
           <div className="mt-6 flex justify-center">
             <button
-              onClick={onValidate}
+              onClick={() => onValidate(text)}
               className="bg-zinc-800 py-4 w-1/4 text-white font-semibold rounded-md hover:bg-zinc-600"
             >
               Validasi
