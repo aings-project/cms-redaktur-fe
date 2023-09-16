@@ -26,7 +26,11 @@ export default function NewsDraftLayout({ listNewsDraft }) {
               return (
                 <NewsDraftItem
                   key={index}
-                  onClick={() => router.push("news_draft/edit/1")}
+                  onClick={() =>
+                    router.push(
+                      `news_draft/edit/${item.draft_id}/${item.version}`
+                    )
+                  }
                   title={item.title}
                   author={item.id_wartawan}
                   dateTime={dateTimeFormatter(item.created_at)}

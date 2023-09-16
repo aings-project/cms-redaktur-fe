@@ -7,7 +7,7 @@ const ActionType = {
   CLEAR_NEWS_DRAFT_DETAIL: "CLEAR_NEWS_DRAFT_DETAIL",
 };
 
-function receiveNewsDraftDetailActionCreator(newsDraft) {
+function receiveNewsDraftDetailActionCreator({ newsDraft }) {
   return {
     type: ActionType.RECEIVE_NEWS_DRAFT_DETAIL,
     payload: {
@@ -28,11 +28,11 @@ function asyncReceiveNewsDraftDetail({ draft_id, version }) {
     dispatch(showLoading());
 
     try {
-      const detailNewsDraft = await api.getDetailNewsDraft({
+      const newsDraft = await api.getDetailNewsDraft({
         draft_id,
         version,
       });
-      dispatch(receiveNewsDraftDetailActionCreator(detailNewsDraft));
+      dispatch(receiveNewsDraftDetailActionCreator({ newsDraft }));
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_CENTER,

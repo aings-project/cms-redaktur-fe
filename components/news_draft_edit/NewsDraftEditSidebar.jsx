@@ -34,7 +34,7 @@ export default function NewsDraftEditSidebar({
             status === "Disetujui" ||
             status === "Menunggu Konfirmasi Wartawan"
           ) {
-            onSetStatus("Sedang Disunting");
+            onSetStatus("Reviewing");
           } else {
             onSetStatus("Menunggu Konfirmasi Wartawan");
           }
@@ -56,25 +56,21 @@ export default function NewsDraftEditSidebar({
 
       <NewsDraftEditSidebarMenuDropdown
         title="Versi"
-        isDisabled={status !== "Sedang Disunting"}
+        isDisabled={status !== "Reviewing"}
         value="0"
         onChange={() => {}}
         items={["0"]}
       />
       <NewsDraftEditSidebarMenuDropdown
         title="Status"
-        isDisabled={status !== "Sedang Disunting"}
+        isDisabled={status !== "Reviewing"}
         value={statusTemp}
         onChange={(value) => setStatusTemp(value)}
-        items={[
-          "Sedang Disunting",
-          "Menunggu Konfirmasi Wartawan",
-          "Disetujui",
-        ]}
+        items={["New", "Reviewing", "Reviewed"]}
       />
       <NewsDraftEditSidebarMenuDropdown
         title="Kategori"
-        isDisabled={status !== "Sedang Disunting"}
+        isDisabled={status !== "Reviewing"}
         value={"Belum Ada Kategori"}
         onChange={() => {}}
         items={["Belum Ada Kategori"]}

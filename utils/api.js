@@ -88,7 +88,7 @@ const api = (() => {
 
   async function getDetailNewsDraft({ draft_id, version }) {
     const response = await fetchWithAuth(
-      `${BASE_URL}/news_draft/${draft_id}/${version}`,
+      `${BASE_URL}/v1/draft-berita/${draft_id}?version=${version}`,
       {
         method: "GET",
         headers: {
