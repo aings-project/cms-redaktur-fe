@@ -56,7 +56,7 @@ function asyncUpdateNewsDraft({ title, content, status, id }) {
         id,
       });
       dispatch(clearNewsDraftDetailActionCreator());
-      dispatch(receiveNewsDraftDetailActionCreator(newsDraft));
+      dispatch(receiveNewsDraftDetailActionCreator({ newsDraft }));
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_CENTER,

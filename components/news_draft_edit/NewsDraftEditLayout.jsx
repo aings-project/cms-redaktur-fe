@@ -11,17 +11,16 @@ export default function NewsDraftEditLayout({
   auth,
   onValidate,
   onRevalidate,
+  onUpdateDraft,
 }) {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [showValidationModal, setShowValidationModal] = useState(false);
   const [showValidationResult, setShowValidationResult] = useState(false);
-  const [status, setStatus] = useState("");
   const router = useRouter();
 
   useEffect(() => {
     setText(newsDraft.draft_berita.content);
-    setStatus(newsDraft.draft_berita.status);
     setTitle(newsDraft.draft_berita.title);
     if (validationData) {
       setShowValidationModal(false);
@@ -53,7 +52,6 @@ export default function NewsDraftEditLayout({
           </div>
           <NewsDraftEditSidebar
             auth={auth}
-            onSetStatus={(value) => setStatus(value)}
             status={newsDraft.draft_berita.status}
             version={newsDraft.draft_berita.version}
             onSetVersion={(value) => {
@@ -64,6 +62,15 @@ export default function NewsDraftEditLayout({
             maxVersion={newsDraft.total_version}
             validationData={validationData}
             markdown={text}
+            onUpdateDraft={(status) => {
+              console.log(status);
+              onUpdateDraft({
+                id: newsDraft.draft_berita.id,
+                content: text,
+                title,
+                status,
+              });
+            }}
             onValidate={() => {
               if (validationData) {
                 setShowValidationResult(true);

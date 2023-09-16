@@ -4,21 +4,22 @@ import NewsDraftEditSidebarMenuDropdown from "./NewsDraftEditSidebarMenuDropdown
 import SecondaryButton from "../shared/SecondaryButton";
 
 export default function NewsDraftEditSidebar({
-  markdown,
   maxVersion,
   status,
-  onSetStatus,
   version,
   onSetVersion,
   validationData,
   onValidate,
   auth,
+  onUpdateDraft,
 }) {
   const [statusTemp, setStatusTemp] = useState("");
   const [versionTemp, setVersionTemp] = useState("1");
   const numbersArray = Array.from({ length: maxVersion }, (_, index) =>
     (index + 1).toString()
   );
+  const isEditable = version === maxVersion;
+  const enableSave = false;
 
   useEffect(() => {
     setStatusTemp(status);
@@ -34,26 +35,38 @@ export default function NewsDraftEditSidebar({
           <p className="text-white text-sm font-normal">{auth.email}</p>
         </div>
       </div>
-      <button
-        className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full"
-        onClick={() => {
-          console.log(markdown);
-          onSetStatus(statusTemp);
-        }}
-      >
-        <p className="text-center text-zinc-800 font-semibold my-auto">
-          {status === "Approved" || status === "Reviewed"
-            ? "Sunting"
-            : "Simpan Perubahan"}
-        </p>
-      </button>
-      {(status === "Reviewed" || status === "Approved") && (
-        <SecondaryButton text="Publikasikan" disabled={status === "Reviewed"} />
+      {isEditable && (
+        <div>
+          <button
+            className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full hover:cursor-not-allowed"
+            disabled={!enableSave}
+            onClick={() => {
+              if (enableSave) {
+                if (status === "Reviewed") {
+                  onUpdateDraft("Reviewing");
+                } else {
+                  onUpdateDraft(statusTemp);
+                }
+              }
+            }}
+          >
+            <p className="text-center text-zinc-800 font-semibold my-auto">
+              {status === "Approved" || status === "Reviewed"
+                ? "Sunting"
+                : "Simpan Perubahan"}
+            </p>
+          </button>
+          {(status === "Reviewed" || status === "Approved") && (
+            <SecondaryButton
+              text="Publikasikan"
+              disabled={status === "Reviewed"}
+            />
+          )}
+        </div>
       )}
-
       <NewsDraftEditSidebarMenuDropdown
         title="Versi"
-        isDisabled={status !== "Reviewing"}
+        isDisabled={false}
         value={versionTemp}
         onChange={(value) => {
           setVersionTemp(value);
@@ -61,20 +74,24 @@ export default function NewsDraftEditSidebar({
         }}
         items={numbersArray}
       />
-      <NewsDraftEditSidebarMenuDropdown
-        title="Status"
-        isDisabled={status !== "Reviewing"}
-        value={statusTemp}
-        onChange={(value) => setStatusTemp(value)}
-        items={["New", "Reviewing", "Reviewed"]}
-      />
-      <NewsDraftEditSidebarMenuDropdown
-        title="Kategori"
-        isDisabled={status !== "Reviewing"}
-        value={"Belum Ada Kategori"}
-        onChange={() => {}}
-        items={["Belum Ada Kategori"]}
-      />
+      {isEditable && (
+        <div>
+          <NewsDraftEditSidebarMenuDropdown
+            title="Status"
+            isDisabled={status !== "Reviewing"}
+            value={statusTemp}
+            onChange={(value) => setStatusTemp(value)}
+            items={["New", "Reviewing", "Reviewed"]}
+          />
+          <NewsDraftEditSidebarMenuDropdown
+            title="Kategori"
+            isDisabled={status !== "Reviewing"}
+            value={"Belum Ada Kategori"}
+            onChange={() => {}}
+            items={["Belum Ada Kategori"]}
+          />
+        </div>
+      )}
       <div className="w-full h-[0.25px] bg-white mb-4" />
       <div className="mb-6">
         <p className="text-white text-base font-semibold mb-1">Validitas</p>
@@ -100,7 +117,7 @@ export default function NewsDraftEditSidebar({
         disabled={false}
         onClick={() => onValidate()}
       />
-      <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6">
+      <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 hover:cursor-not-allowed">
         <p className="text-center font-semibold my-auto text-red-400">Hapus</p>
       </button>
     </div>

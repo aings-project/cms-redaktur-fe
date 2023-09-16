@@ -110,7 +110,7 @@ const api = (() => {
   }
 
   async function updateNewsDraft({ title, content, status, id }) {
-    const response = await fetchWithAuth(`${BASE_URL}/news_draft/${id}`, {
+    const response = await fetchWithAuth(`${BASE_URL}/v1/draft-berita/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -173,8 +173,6 @@ const api = (() => {
     );
 
     const responseJson = await response.json();
-
-    console.log(responseJson);
 
     const { error } = responseJson;
 
