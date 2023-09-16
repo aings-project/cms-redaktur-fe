@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useRequireAuth from "../../../../hooks/useRequireAuth";
 import NewsDraftEditLayout from "../../../../components/news_draft_edit/NewsDraftEditLayout";
 import { useRouter } from "next/router";
@@ -12,17 +12,14 @@ export default function EditNewsDraft() {
   const { draft_id, version } = router.query;
   const newsDraft = useSelector((state) => state.newsDraftDetail);
 
-  useState(
-    () => [
-      dispatch(
-        asyncReceiveNewsDraftDetail({
-          draft_id,
-          version,
-        })
-      ),
-    ],
-    [dispatch]
-  );
+  useEffect(() => {
+    dispatch(
+      asyncReceiveNewsDraftDetail({
+        draft_id,
+        version,
+      })
+    );
+  }, [dispatch, draft_id, version]);
 
   if (!newsDraft) {
     return <div />;

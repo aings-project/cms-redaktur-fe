@@ -10,12 +10,20 @@ export default function NewsDraftEditSidebar({
   isValid,
   status,
   onSetStatus,
+  maxVersion,
+  version,
+  onSetVersion,
 }) {
   const [statusTemp, setStatusTemp] = useState("");
+  const [versionTemp, setVersionTemp] = useState("1");
+  const numbersArray = Array.from({ length: maxVersion }, (_, index) =>
+    (index + 1).toString()
+  );
 
   useEffect(() => {
     setStatusTemp(status);
-  }, [status]);
+    setVersionTemp(version);
+  }, [status, version]);
 
   return (
     <div className="max-w-xs w-full h-screen bg-zinc-800 p-6 overflow-y-auto">
@@ -30,36 +38,28 @@ export default function NewsDraftEditSidebar({
         className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full"
         onClick={() => {
           console.log(markdown);
-          if (
-            status === "Disetujui" ||
-            status === "Menunggu Konfirmasi Wartawan"
-          ) {
-            onSetStatus("Reviewing");
-          } else {
-            onSetStatus("Menunggu Konfirmasi Wartawan");
-          }
+          onSetStatus(statusTemp);
         }}
       >
         <p className="text-center text-zinc-800 font-semibold my-auto">
-          {status === "Disetujui" || status === "Menunggu Konfirmasi Wartawan"
+          {status === "Approved" || status === "Reviewed"
             ? "Sunting"
             : "Simpan Perubahan"}
         </p>
       </button>
-      {(status === "Menunggu Konfirmasi Wartawan" ||
-        status === "Disetujui") && (
-        <SecondaryButton
-          text="Publikasikan"
-          disabled={status === "Menunggu Konfirmasi Wartawan"}
-        />
+      {(status === "Reviewed" || status === "Approved") && (
+        <SecondaryButton text="Publikasikan" disabled={status === "Reviewed"} />
       )}
 
       <NewsDraftEditSidebarMenuDropdown
         title="Versi"
         isDisabled={status !== "Reviewing"}
-        value="0"
-        onChange={() => {}}
-        items={["0"]}
+        value={versionTemp}
+        onChange={(value) => {
+          setVersionTemp(value);
+          onSetVersion(value);
+        }}
+        items={numbersArray}
       />
       <NewsDraftEditSidebarMenuDropdown
         title="Status"

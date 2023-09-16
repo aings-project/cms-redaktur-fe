@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewsDraftEditSidebar from "./NewsDraftEditSidebar";
 import Editor from "../shared/Editor";
 import { useRouter } from "next/router";
@@ -7,18 +7,16 @@ import ValidateModal from "./ValidateModal";
 export default function NewsDraftEditLayout({ newsDraft }) {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
-  const [totalVersion, setTotalVersion] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [isValidated, setIsValidated] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [status, setStatus] = useState("");
   const router = useRouter();
 
-  useState(() => {
+  useEffect(() => {
     setText(newsDraft.draft_berita.content);
     setStatus(newsDraft.draft_berita.status);
     setTitle(newsDraft.draft_berita.title);
-    setTotalVersion(newsDraft.total_version);
   }, [newsDraft]);
 
   return (
@@ -37,7 +35,7 @@ export default function NewsDraftEditLayout({ newsDraft }) {
               }}
             />
             <Editor
-              placeholder={text}
+              placeholder={newsDraft.draft_berita.content}
               className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1 border"
               onChange={(value) => {
                 setText(value);
@@ -49,6 +47,13 @@ export default function NewsDraftEditLayout({ newsDraft }) {
             status={status}
             isValid={isValid}
             isValidated={isValidated}
+            maxVersion={newsDraft.total_version}
+            version={newsDraft.draft_berita.version}
+            onSetVersion={(value) => {
+              router.push(
+                `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
+              );
+            }}
             markdown={text}
             onValidate={() => setShowModal(true)}
           />
