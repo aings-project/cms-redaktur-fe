@@ -3,8 +3,9 @@ import React from "react";
 import NewsDraftTabBar from "./NewsDraftTabBar";
 import NewsDraftItem from "./NewsDraftItem";
 import { useRouter } from "next/router";
+import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
-export default function NewsDraftLayout() {
+export default function NewsDraftLayout({ listNewsDraft }) {
   const router = useRouter();
   return (
     <div className="py-16 px-16 flex-grow h-screen overflow-y-auto">
@@ -18,89 +19,20 @@ export default function NewsDraftLayout() {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-md border border-zinc-300 pb-6">
+        <div className="bg-neutral-50 rounded-md border border-zinc-300 pb-6">
           <NewsDraftTabBar />
           <div className="bg-neutral-50">
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Pameran Seniman Disabilitas Digelar di Yogyakarta hingga 22 September"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Cemburu, Suami di Batam Tikam Istri dan Anak hingga Luka Robek"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Hasil Visum Balita yang Dilindas Pajero Sport Keluar, Polisi Sebut Tak Memenuhi Unsur Luka Berat"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Hasil Hong Kong Open 2023: Jonatan Christie ke Perempat Final, Jumpa Penakluk Axelsen"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Putri KW Usai Gugur di Hong Kong Open 2023: Banyak Pelajaran, Mau Lebih Beranig"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Hasil Hong Kong Open 2023: Ahsan/Hendra Lolos Perempat Final, Jumpa Penakluk Pramudya/Yeremia"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Persib Bandung Vs Persikabo, Marc Klok Ingin Lanjutkan Performa Apik"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
-            <NewsDraftItem
-              onClick={() => router.push("news_draft/edit/1")}
-              title={
-                "Seorang Pemuda Resah Iklan Youtubenya Pinjaman Online Semua Padahal Tidak Kekurangan Uang"
-              }
-              author={"Wahyu T"}
-              dateTime={"Senin, 4 Agustus 2023 11:54"}
-            />
+            {listNewsDraft.map((item, index) => {
+              return (
+                <NewsDraftItem
+                  key={index}
+                  onClick={() => router.push("news_draft/edit/1")}
+                  title={item.title}
+                  author={item.id_wartawan}
+                  dateTime={dateTimeFormatter(item.created_at)}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

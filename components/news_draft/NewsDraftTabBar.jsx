@@ -5,7 +5,7 @@ import NewsTabBarMenuItem from "./NewsTabBarMenuItem";
 export default function NewsDraftTabBar() {
   return (
     <div>
-      <div className="flex items-center justify-between hover:cursor-pointer">
+      <div className="flex items-center justify-between hover:cursor-pointer bg-yellow-500">
         <div className="flex ">
           <NewsTabBarMenuItem title="Baru" isActive={true} />
           <NewsTabBarMenuItem title="Disunting" isActive={false} />
