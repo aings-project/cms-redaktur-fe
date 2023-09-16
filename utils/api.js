@@ -134,19 +134,20 @@ const api = (() => {
     return responseJson;
   }
 
-  async function validateNewsDraft({ id, content }) {
-    if (content) {
-      const response = await fetchWithAuth(`${BASE_URL}/validate/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          content,
-          status,
-        }),
-      });
+  async function validateNewsDraft({ draft_id, version, information }) {
+    if (information) {
+      const response = await fetchWithAuth(
+        `${BASE_URL}/v1/draft-berita/validation-with-data/${draft_id}?version=${version}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            information,
+          }),
+        }
+      );
 
       const responseJson = await response.json();
 
@@ -157,16 +158,23 @@ const api = (() => {
         throw new Error(message);
       }
 
-      return responseJson;
+      const { data } = responseJson;
+
+      return data;
     }
-    const response = await fetchWithAuth(`${BASE_URL}/validate/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetchWithAuth(
+      `${BASE_URL}/v1/draft-berita/validation-automatic/${draft_id}?version=${version}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const responseJson = await response.json();
+
+    console.log(responseJson);
 
     const { error } = responseJson;
 
@@ -175,7 +183,9 @@ const api = (() => {
       throw new Error(message);
     }
 
-    return responseJson;
+    const { data } = responseJson;
+
+    return data;
   }
 
   return {

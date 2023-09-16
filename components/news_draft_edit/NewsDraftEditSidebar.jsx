@@ -31,7 +31,7 @@ export default function NewsDraftEditSidebar({
         <AccountCircle className="w-16 h-16 text-white" />
         <div className="px-4">
           <p className="text-white text-base font-bold">{auth.username}</p>
-          <p className="text-white text-sm font-normal">{auth.password}</p>
+          <p className="text-white text-sm font-normal">{auth.email}</p>
         </div>
       </div>
       <button

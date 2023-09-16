@@ -23,7 +23,10 @@ export default function NewsDraftEditLayout({
     setText(newsDraft.draft_berita.content);
     setStatus(newsDraft.draft_berita.status);
     setTitle(newsDraft.draft_berita.title);
-  }, [newsDraft]);
+    if (validationData) {
+      setShowValidationModal(false);
+    }
+  }, [newsDraft, validationData]);
 
   return (
     <>

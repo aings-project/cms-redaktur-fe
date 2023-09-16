@@ -20,6 +20,10 @@ export default function MainSidebar({ activePage, auth }) {
     router.push("/");
   };
 
+  if (!auth) {
+    return <div />;
+  }
+
   return (
     <div className="w-[280px] min-w-[280px] h-screen bg-slate-800 py-6 flex flex-col relative overflow-hidden">
       <div className="flex px-4 mb-12">

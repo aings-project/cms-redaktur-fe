@@ -3,6 +3,7 @@ import Editor from "../shared/Editor";
 
 export default function ValidateModal({ onClose, onValidate }) {
   const [isChecked, setIsChecked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [text, setText] = useState("");
 
   const handleCheckboxChange = () => {
@@ -39,12 +40,20 @@ export default function ValidateModal({ onClose, onValidate }) {
             )}
           </div>
           <div className="mt-6 flex justify-center">
-            <button
-              onClick={() => onValidate(text)}
-              className="bg-zinc-800 py-4 w-1/4 text-white font-semibold rounded-md hover:bg-zinc-600"
-            >
-              Validasi
-            </button>
+            {isLoading && (
+              <p className="mb-4">Sedang Memproses Data. Harap tunggu...</p>
+            )}
+            {!isLoading && (
+              <button
+                onClick={() => {
+                  onValidate(text);
+                  setIsLoading(true);
+                }}
+                className="bg-zinc-800 py-4 w-1/4 text-white font-semibold rounded-md hover:bg-zinc-600"
+              >
+                Validasi
+              </button>
+            )}
           </div>
         </div>
       </div>

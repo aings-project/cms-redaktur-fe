@@ -1,6 +1,7 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
+import { clearValidationDraftActionCreator } from "../validation/action";
 
 const ActionType = {
   RECEIVE_NEWS_DRAFT_DETAIL: "RECEIVE_NEWS_DRAFT_DETAIL",
@@ -25,6 +26,7 @@ function clearNewsDraftDetailActionCreator() {
 function asyncReceiveNewsDraftDetail({ draft_id, version }) {
   return async (dispatch) => {
     dispatch(clearNewsDraftDetailActionCreator());
+    dispatch(clearValidationDraftActionCreator());
     dispatch(showLoading());
 
     try {

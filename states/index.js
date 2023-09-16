@@ -5,6 +5,7 @@ import newsDraftReducer from "./news_draft/reducer";
 import newsDraftDetailReducer from "./news_draft_detail/reducer";
 import newsDraftOverviewReducer from "./overview/reducer";
 import { loadingBarReducer } from "react-redux-loading-bar";
+import validationReducer from "./validation/reducer";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     newsDraftDetail: newsDraftDetailReducer,
     newsDraftOverview: newsDraftOverviewReducer,
     loadingBar: loadingBarReducer,
+    validationData: validationReducer,
   },
 });
 
