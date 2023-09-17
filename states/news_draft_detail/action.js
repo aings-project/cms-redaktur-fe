@@ -2,7 +2,6 @@ import { hideLoading, showLoading } from "react-redux-loading-bar";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { clearValidationDraftActionCreator } from "../validation/action";
-import { version } from "react";
 
 const ActionType = {
   RECEIVE_NEWS_DRAFT_DETAIL: "RECEIVE_NEWS_DRAFT_DETAIL",
@@ -59,6 +58,10 @@ function asyncUpdateNewsDraft({ title, content, status, id, version }) {
       dispatch(clearNewsDraftDetailActionCreator());
       newsDraft[`total_version`] = parseInt(version) + 1;
       dispatch(receiveNewsDraftDetailActionCreator({ newsDraft }));
+
+      toast.success("Berhasil Memperbarui Berita", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_CENTER,

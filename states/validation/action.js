@@ -34,6 +34,9 @@ function asyncReceiveValidationData({ draft_id, version, information }) {
         information,
       });
       dispatch(setValidateDraftActionCreator({ validationData }));
+      toast.success("Berhasil Validasi Berita", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_CENTER,

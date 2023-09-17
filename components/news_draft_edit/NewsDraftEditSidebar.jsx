@@ -25,7 +25,7 @@ export default function NewsDraftEditSidebar({
   }, [status, version]);
 
   return (
-    <div className="max-w-xs w-full h-screen bg-zinc-800 p-6 overflow-y-auto">
+    <div className="max-w-xs w-full h-screen bg-slate-800 p-6 overflow-y-auto">
       <div className="flex mb-6">
         <AccountCircle className="w-16 h-16 text-white" />
         <div className="px-4">
@@ -109,7 +109,7 @@ export default function NewsDraftEditSidebar({
         )}
       </div>
       <SecondaryButton
-        text="Cek Validasi"
+        text={validationData ? "Lihat Rincian" : "Validasi"}
         disabled={false}
         onClick={() => onValidate()}
       />
