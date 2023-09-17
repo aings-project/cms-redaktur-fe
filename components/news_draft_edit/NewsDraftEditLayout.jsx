@@ -38,8 +38,8 @@ export default function NewsDraftEditLayout({
             <input
               className="w-full bg-white text-2xl font-semibold mb-4"
               value={title}
-              onChange={(target) => {
-                setTitle(target.value);
+              onChange={(event) => {
+                setTitle(event.target.value);
               }}
             />
             <Editor
@@ -63,7 +63,6 @@ export default function NewsDraftEditLayout({
             validationData={validationData}
             markdown={text}
             onUpdateDraft={(status) => {
-              console.log(status);
               onUpdateDraft({
                 id: newsDraft.draft_berita.id,
                 content: text,

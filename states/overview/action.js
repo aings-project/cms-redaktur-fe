@@ -20,9 +20,11 @@ function asyncReceiveOverviewNewsDraft() {
     dispatch(showLoading());
     try {
       const listNewsDraft = await api.getAllNewsDraft();
+      let data =
+        listNewsDraft.length > 5 ? listNewsDraft.slice(0, 5) : listNewsDraft;
       dispatch(
         receiveOverviewNewsDraftActionCreator({
-          listNewsDraft,
+          listNewsDraft: data,
         })
       );
     } catch (error) {

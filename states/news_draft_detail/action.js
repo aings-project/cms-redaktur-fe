@@ -2,6 +2,7 @@ import { hideLoading, showLoading } from "react-redux-loading-bar";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { clearValidationDraftActionCreator } from "../validation/action";
+import { version } from "react";
 
 const ActionType = {
   RECEIVE_NEWS_DRAFT_DETAIL: "RECEIVE_NEWS_DRAFT_DETAIL",
@@ -44,7 +45,7 @@ function asyncReceiveNewsDraftDetail({ draft_id, version }) {
   };
 }
 
-function asyncUpdateNewsDraft({ title, content, status, id }) {
+function asyncUpdateNewsDraft({ title, content, status, id, version }) {
   return async (dispatch) => {
     dispatch(showLoading());
 
@@ -56,6 +57,7 @@ function asyncUpdateNewsDraft({ title, content, status, id }) {
         id,
       });
       dispatch(clearNewsDraftDetailActionCreator());
+      newsDraft[`total_version`] = parseInt(version) + 1;
       dispatch(receiveNewsDraftDetailActionCreator({ newsDraft }));
     } catch (error) {
       toast.error(error.message, {

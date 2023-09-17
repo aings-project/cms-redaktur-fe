@@ -2,6 +2,7 @@ import { AccountCircle } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import NewsDraftEditSidebarMenuDropdown from "./NewsDraftEditSidebarMenuDropdown";
 import SecondaryButton from "../shared/SecondaryButton";
+import { convertStatus } from "../../utils/draftAttributeParser";
 
 export default function NewsDraftEditSidebar({
   maxVersion,
@@ -13,16 +14,13 @@ export default function NewsDraftEditSidebar({
   auth,
   onUpdateDraft,
 }) {
-  const [statusTemp, setStatusTemp] = useState("");
   const [versionTemp, setVersionTemp] = useState("1");
   const numbersArray = Array.from({ length: maxVersion }, (_, index) =>
     (index + 1).toString()
   );
   const isEditable = version === maxVersion;
-  const enableSave = false;
 
   useEffect(() => {
-    setStatusTemp(status);
     setVersionTemp(version);
   }, [status, version]);
 
@@ -38,28 +36,29 @@ export default function NewsDraftEditSidebar({
       {isEditable && (
         <div>
           <button
-            className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full hover:cursor-not-allowed"
-            disabled={!enableSave}
+            className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full"
             onClick={() => {
-              if (enableSave) {
-                if (status === "Reviewed") {
-                  onUpdateDraft("Reviewing");
-                } else {
-                  onUpdateDraft(statusTemp);
-                }
-              }
+              onUpdateDraft("reviewing");
             }}
           >
             <p className="text-center text-zinc-800 font-semibold my-auto">
-              {status === "Approved" || status === "Reviewed"
-                ? "Sunting"
+              {status === "Approved" || status === "reviewed"
+                ? "Sunting Ulang"
                 : "Simpan Perubahan"}
             </p>
           </button>
-          {(status === "Reviewed" || status === "Approved") && (
+          {status === "reviewing" && (
+            <SecondaryButton
+              text="Selesai Menyunting"
+              onClick={() => {
+                onUpdateDraft("reviewed");
+              }}
+            />
+          )}
+          {(status === "reviewed" || status === "Approved") && (
             <SecondaryButton
               text="Publikasikan"
-              disabled={status === "Reviewed"}
+              disabled={status === "reviewed"}
             />
           )}
         </div>
@@ -74,18 +73,15 @@ export default function NewsDraftEditSidebar({
         }}
         items={numbersArray}
       />
+      <div className="mb-4">
+        <p className="text-white text-base font-semibold mb-1">Status</p>
+        <p className="text-white">{convertStatus({ value: status })}</p>
+      </div>
       {isEditable && (
         <div>
           <NewsDraftEditSidebarMenuDropdown
-            title="Status"
-            isDisabled={status !== "Reviewing"}
-            value={statusTemp}
-            onChange={(value) => setStatusTemp(value)}
-            items={["New", "Reviewing", "Reviewed"]}
-          />
-          <NewsDraftEditSidebarMenuDropdown
             title="Kategori"
-            isDisabled={status !== "Reviewing"}
+            isDisabled={status !== "reviewing"}
             value={"Belum Ada Kategori"}
             onChange={() => {}}
             items={["Belum Ada Kategori"]}
@@ -118,7 +114,9 @@ export default function NewsDraftEditSidebar({
         onClick={() => onValidate()}
       />
       <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 hover:cursor-not-allowed">
-        <p className="text-center font-semibold my-auto text-red-400">Hapus</p>
+        <p className="text-center font-semibold my-auto text-red-400">
+          Tolak Berita
+        </p>
       </button>
     </div>
   );

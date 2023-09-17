@@ -31,7 +31,7 @@ export default function EditNewsDraft() {
   };
 
   const onUpdateDraft = ({ id, content, title, status }) => {
-    dispatch(asyncUpdateNewsDraft({ title, content, status, id }));
+    dispatch(asyncUpdateNewsDraft({ title, content, status, id, version }));
   };
 
   useEffect(() => {
