@@ -31,7 +31,17 @@ export default function EditNewsDraft() {
   };
 
   const onUpdateDraft = ({ id, content, title, status }) => {
-    dispatch(asyncUpdateNewsDraft({ title, content, status, id, version }));
+    dispatch(
+      asyncUpdateNewsDraft({
+        title,
+        content,
+        status,
+        id,
+        version,
+        onSuccess: (newVersion) =>
+          router.push(`/news_draft/edit/${draft_id}/${newVersion}`),
+      })
+    );
   };
 
   useEffect(() => {

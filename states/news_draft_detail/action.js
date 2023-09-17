@@ -44,7 +44,14 @@ function asyncReceiveNewsDraftDetail({ draft_id, version }) {
   };
 }
 
-function asyncUpdateNewsDraft({ title, content, status, id, version }) {
+function asyncUpdateNewsDraft({
+  title,
+  content,
+  status,
+  id,
+  version,
+  onSuccess,
+}) {
   return async (dispatch) => {
     dispatch(showLoading());
 
@@ -58,6 +65,7 @@ function asyncUpdateNewsDraft({ title, content, status, id, version }) {
       dispatch(clearNewsDraftDetailActionCreator());
       newsDraft[`total_version`] = parseInt(version) + 1;
       dispatch(receiveNewsDraftDetailActionCreator({ newsDraft }));
+      onSuccess(newsDraft[`total_version`]);
 
       toast.success("Berhasil Memperbarui Berita", {
         position: toast.POSITION.TOP_CENTER,
