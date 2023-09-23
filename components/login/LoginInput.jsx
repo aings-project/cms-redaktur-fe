@@ -29,7 +29,7 @@ export default function LoginInput({ login }) {
       <div className="flex justify-end w-full ">
         <button
           onClick={() => login({ email, password })}
-          className="w-1/2 h-10 mt-6 bg-zinc-800 text-white text-base font-semibold rounded-md"
+          className="w-full md:w-1/2 h-10 mt-6 bg-zinc-800 text-white text-base font-semibold rounded-md"
         >
           Login
         </button>

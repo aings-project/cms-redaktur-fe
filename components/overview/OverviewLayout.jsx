@@ -8,8 +8,8 @@ export default function OverviewLayout({ newsDraftList }) {
     <div className="py-16 px-16 flex-grow h-screen overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
         <p className="text-black text-4xl font-extrabold mb-6">Ikhtisar</p>
-        <div className="flex mt-10">
-          <div className="grow">
+        <div className="flex mt-10 flex-wrap lg:flex-nowrap">
+          <div className="grow md:min-w-fit">
             <OverviewNewsDraft newsDraftList={newsDraftList} />
             <div className="h-8" />
             <OverviewReadyPublish newsDraftList={[]} />
