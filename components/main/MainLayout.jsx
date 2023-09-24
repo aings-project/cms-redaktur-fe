@@ -20,9 +20,13 @@ export default function MainLayout({ content, activePage }) {
   return (
     <div className="relative">
       <div className="sm:hidden fixed top-0 left-0 right-0 z-20 w-full bg-slate-800 px-4 py-3 flex justify-between">
-        <button onClick={handleToggle}>
-          <Menu className="text-white" />
-        </button>
+        <div className="flex">
+          <button onClick={handleToggle}>
+            <Menu className="text-white" />
+          </button>
+          <p className="ml-4 text-white font-extrabold text-xl">AINGS</p>
+        </div>
+
         <div className="flex">
           <AccountCircleIcon className="text-white mr-2" />
           <p className="text-white font-semibold">{auth.username}</p>

@@ -10,9 +10,13 @@ export default function NewsDraftTabBar() {
           <NewsTabBarMenuItem title="Disunting" isActive={false} />
           <NewsTabBarMenuItem title="Menunggu Persetujuan" isActive={false} />
         </div>
-        <div className="flex lg:hidden w-full bg-yellow-500 px-6">
-          <p className="w-1/2 py-2 px-4 font-bold min-w-fit">Status Berita</p>
-          <select className="text-black text-base font-semibold px-4 py-2 flex hover:cursor-pointer w-full bg-yellow-500">
+        <div className="flex lg:hidden w-full bg-yellow-600 px-6 justify-between">
+          <select className="text-white text-base font-semibold px-4 bg-yellow-600  w-full sm:w-fit">
+            {["Semua Kategori"].map((item, index) => {
+              return <option key={index}>{item}</option>;
+            })}
+          </select>
+          <select className="text-white text-base font-semibold px-4 py-2 flex hover:cursor-pointer bg-yellow-600 w-full sm:w-fit">
             {["Baru", "Disunting", "Menunggu Persetujuan"].map(
               (item, index) => {
                 return <option key={index}>{item}</option>;
