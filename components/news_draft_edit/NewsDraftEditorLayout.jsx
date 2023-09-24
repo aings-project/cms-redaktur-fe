@@ -14,6 +14,11 @@ export default function NewsDraftEditorLayout({
   const router = useRouter();
   const [content, setContent] = useState(newsDraft.draft_berita.content);
   const [title, setTitle] = useState(newsDraft.draft_berita.title);
+  const [hideNavbar, setHideNavbar] = useState(true);
+
+  const handleToggle = () => {
+    setHideNavbar((prevState) => !prevState);
+  };
 
   useEffect(() => {
     setContent(newsDraft.draft_berita.content);
@@ -27,7 +32,7 @@ export default function NewsDraftEditorLayout({
           <button className="w-fit flex" onClick={() => router.push("/")}>
             <p className="text-black text-3xl font-extrabold">AINGS</p>
           </button>
-          <button className="md:hidden">
+          <button className="md:hidden" onClick={handleToggle}>
             <Menu />
           </button>
         </div>
@@ -43,35 +48,49 @@ export default function NewsDraftEditorLayout({
           }}
         />
       </div>
-      <div className="flex w-full md:max-w-xs h-screen z-30 fixed top-16 md:static md:top-16">
-        <NewsDraftEditSidebar
-          auth={auth}
-          status={newsDraft.draft_berita.status}
-          version={newsDraft.draft_berita.version}
-          onSetVersion={(value) => {
-            router.push(
-              `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
-            );
-          }}
-          maxVersion={newsDraft.total_version}
-          validationData={validationData}
-          markdown={content}
-          onUpdateDraft={(status) => {
-            onUpdateDraft({
-              id: newsDraft.draft_berita.id,
-              status,
-              content,
-              title,
-            });
-          }}
-          onValidate={() => {
-            if (validationData) {
-              setShowValidationResult(true);
-            } else {
-              setShowValidationModal(true);
-            }
-          }}
-        />
+      <div
+        className={`${
+          hideNavbar ? "hidden" : "flex sm:w-2/3 shadow-lg z-40"
+        } md:flex w-full md:max-w-xs md:z-30 fixed right-0 md:static`}
+      >
+        <div className="h-screen w-full bg-slate-800 overflow-y-auto">
+          <div className="md:hidden flex pt-6 px-6">
+            <p className="text-white text-3xl font-extrabold sm:invisible">
+              AINGS
+            </p>
+            <button className="flex justify-end w-full" onClick={handleToggle}>
+              <Menu className="text-white" />
+            </button>
+          </div>
+          <NewsDraftEditSidebar
+            auth={auth}
+            status={newsDraft.draft_berita.status}
+            version={newsDraft.draft_berita.version}
+            onSetVersion={(value) => {
+              router.push(
+                `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
+              );
+            }}
+            maxVersion={newsDraft.total_version}
+            validationData={validationData}
+            markdown={content}
+            onUpdateDraft={(status) => {
+              onUpdateDraft({
+                id: newsDraft.draft_berita.id,
+                status,
+                content,
+                title,
+              });
+            }}
+            onValidate={() => {
+              if (validationData) {
+                setShowValidationResult(true);
+              } else {
+                setShowValidationModal(true);
+              }
+            }}
+          />
+        </div>
       </div>
     </div>
   );

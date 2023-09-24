@@ -10,12 +10,10 @@ export default function NewsDraftEditSidebarMenuDropdown({
   return (
     <div>
       <div className="mb-4">
-        <p className="md:text-white text-black text-base font-semibold mb-1">
-          {title}
-        </p>
+        <p className="text-white text-base font-semibold mb-1">{title}</p>
         <select
           disabled={isDisabled}
-          className="md:text-white md:bg-slate-800 w-full py-1 hover:cursor-pointer"
+          className="text-white bg-slate-800 w-full py-1 hover:cursor-pointer"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         >
