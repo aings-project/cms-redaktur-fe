@@ -7,7 +7,7 @@ export default function OverviewReadyPublish({ newsDraftList }) {
 
   return (
     <div className="mr-6 pb-6 bg-neutral-50 rounded-md border border-zinc-300">
-      <p className="text-black text-2xl font-extrabold px-6 pt-6 pb-4">
+      <p className="text-white text-xl font-semibold p-4 bg-slate-800 mb-4">
         Siap Publikasi
       </p>
       {newsDraftList.length === 0 && <p className="px-6">Tidak ada berita</p>}

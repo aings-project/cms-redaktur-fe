@@ -3,14 +3,12 @@ import {
   AccountCircle,
   CheckBoxOutlineBlank,
   DateRange,
+  MoreVert,
 } from "@mui/icons-material";
 
 export default function NewsDraftItem({ title, author, dateTime, onClick }) {
   return (
-    <div className="flex items-center hover:bg-slate-100 px-4">
-      <div className="p-4">
-        <CheckBoxOutlineBlank />
-      </div>
+    <div className="flex items-center hover:bg-slate-100 px-4 lg:px-6">
       <button className="w-full flex flex-col" onClick={onClick}>
         <div className="py-4 hover:cursor-pointer">
           <p className="text-black text-base font-semibold mb-2 text-left">
@@ -29,6 +27,9 @@ export default function NewsDraftItem({ title, author, dateTime, onClick }) {
         </div>
         <div className="h-[1px] w-full bg-black" />
       </button>
+      <div>
+        <MoreVert />
+      </div>
     </div>
   );
 }
