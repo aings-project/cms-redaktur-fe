@@ -20,6 +20,10 @@ export default function NewsDraftEditLayout({
   const [showValidationModal, setShowValidationModal] = useState(false);
   const [showValidationResult, setShowValidationResult] = useState(false);
   const router = useRouter();
+  const isEditable =
+    (newsDraft.draft_berita.status === "reviewing" ||
+      newsDraft.draft_berita.status === "new") &&
+    newsDraft.draft_berita.version === newsDraft.total_version;
 
   useEffect(() => {
     setText(newsDraft.draft_berita.content);
@@ -49,14 +53,14 @@ export default function NewsDraftEditLayout({
                 setTitle(event.target.value);
               }}
             />
-            {newsDraft.draft_berita.status !== "reviewing" &&
-              newsDraft.draft_berita.status !== "new" && (
-                <ReactMarkdown className="overflow-y-auto hover:cursor-default">
+            {!isEditable && (
+              <div className="border-2 bg-white p-4 rounded-md mb-4 overflow-y-auto ">
+                <ReactMarkdown className="hover:cursor-default bg-white">
                   {newsDraft.draft_berita.content}
                 </ReactMarkdown>
-              )}
-            {(newsDraft.draft_berita.status === "reviewing" ||
-              newsDraft.draft_berita.status === "new") && (
+              </div>
+            )}
+            {isEditable && (
               <Editor
                 placeholder={newsDraft.draft_berita.content}
                 className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1 border"
