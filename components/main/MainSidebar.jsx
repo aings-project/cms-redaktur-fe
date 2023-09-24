@@ -5,21 +5,12 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useRouter } from "next/router";
 import MainSidebarMenu from "./MainSidebarMenu";
-import { Delete, Menu, MenuRounded, MoreVert } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
-import { asyncUnsetAuthUser } from "../../states/auth/action";
+import { Delete, MenuRounded } from "@mui/icons-material";
+import { useRouter } from "next/router";
 
-export default function MainSidebar({ activePage, auth }) {
+export default function MainSidebar({ activePage, auth, onSignOut }) {
   const router = useRouter();
-  const dispatch = useDispatch();
-
-  const onSignOut = () => {
-    dispatch(asyncUnsetAuthUser());
-    router.push("/");
-  };
-
   if (!auth) {
     return <div />;
   }

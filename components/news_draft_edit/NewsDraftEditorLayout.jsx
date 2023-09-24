@@ -10,6 +10,8 @@ export default function NewsDraftEditorLayout({
   isEditable,
   newsDraft,
   validationData,
+  showValidationModal,
+  showValidationResult,
 }) {
   const router = useRouter();
   const [content, setContent] = useState(newsDraft.draft_berita.content);
@@ -28,7 +30,7 @@ export default function NewsDraftEditorLayout({
   return (
     <div className="flex bg-neutral-50 h-screen overflow-y-auto max-h-screen">
       <div className="p-6 w-full flex flex-col max-h-screen max-w-screen-lg mx-auto bg-white">
-        <div className="flex justify-between fixed md:relative z-20 top-0 left-0 right-0 bg-white px-6 py-4 md:px-0 md:py-0 md:mb-6">
+        <div className="flex justify-between fixed md:relative z-20 top-0 left-0 right-0 px-6 py-4 md:px-0 md:py-0 md:mb-6">
           <button className="w-fit flex" onClick={() => router.push("/")}>
             <p className="text-black text-3xl font-extrabold">AINGS</p>
           </button>
@@ -84,9 +86,9 @@ export default function NewsDraftEditorLayout({
             }}
             onValidate={() => {
               if (validationData) {
-                setShowValidationResult(true);
+                showValidationResult(true);
               } else {
-                setShowValidationModal(true);
+                showValidationModal(true);
               }
             }}
           />

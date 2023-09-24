@@ -11,7 +11,7 @@ export default function NewsDraftLayout({ listNewsDraft }) {
     <div className="py-16 px-6 md:px-16 flex-grow h-screen overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
         <div className="flex justify-between mb-6 flex-wrap">
-          <p className="text-black text-3xl sm:text-4xl font-extrabold min-w-fit mr-6 mb-6 hidden sm:block">
+          <p className="text-black text-3xl sm:text-4xl font-bold min-w-fit mr-6 mb-6 hidden sm:block">
             Draf Berita
           </p>
           <div className="bg-white p-2 border border-zinc-300 rounded-md h-fit w-full md:w-fit">
@@ -24,7 +24,7 @@ export default function NewsDraftLayout({ listNewsDraft }) {
             </div>
           </div>
         </div>
-        <div className="bg-neutral-50 rounded-md border border-zinc-300 pb-6">
+        <div className="bg-neutral-50 rounded-md border border-zinc-300 pb-6 shadow-md">
           <NewsDraftTabBar />
           <div className="bg-neutral-50 flex flex-col justify-end">
             <div className="lg:flex mb-1 hidden lg:bg-slate-50">

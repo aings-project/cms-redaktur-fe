@@ -29,6 +29,12 @@ export default function NewsDraftEditLayout({
         isEditable={isEditable}
         newsDraft={newsDraft}
         validationData={validationData}
+        showValidationModal={(value) => {
+          setShowValidationModal(value);
+        }}
+        showValidationResult={(value) => {
+          setShowValidationResult(value);
+        }}
       />
       {showValidationModal ? (
         <ValidateModal

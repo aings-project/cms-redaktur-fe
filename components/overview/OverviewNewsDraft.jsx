@@ -7,8 +7,8 @@ export default function OverviewNewsDraft({ newsDraftList }) {
   const router = useRouter();
 
   return (
-    <div className="mr-6 pb-6 bg-neutral-50 rounded-md border border-zinc-300">
-      <p className="text-white text-xl font-semibold p-4 bg-slate-800">
+    <div className="mr-6 pb-6 bg-neutral-50 rounded-md border border-zinc-300 shadow-md">
+      <p className="text-white text-xl font-semibold p-4 rounded-t-md bg-slate-800">
         Draft Berita Terbaru
       </p>
       {newsDraftList.length === 0 && <p className="px-6">Tidak ada berita</p>}
