@@ -24,11 +24,15 @@ export default function NewsDraftLayout({ listNewsDraft }) {
         <div className="bg-neutral-50 rounded-md border border-zinc-300 pb-6">
           <NewsDraftTabBar />
           <div className="bg-neutral-50 flex flex-col justify-end">
-            <select className="text-black text-base font-semibold px-4 py-2 mt-1 mb-1 mx-6 bg-slate-50 border-b-2 border-black">
-              {["Semua Kategori", "Politik", "Olahraga"].map((item, index) => {
-                return <option key={index}>{item}</option>;
-              })}
-            </select>
+            <div className="flex mb-1 px-6 bg-yellow-500 lg:bg-slate-50">
+              <p className="w-1/2 lg:w-fit py-2 px-4 font-bold ">Kategori</p>
+              <select className="text-black text-base font-semibold px-4 py-2 bg-yellow-500 lg:bg-slate-50 w-full lg:w-fit">
+                {["Semua Kategori"].map((item, index) => {
+                  return <option key={index}>{item}</option>;
+                })}
+              </select>
+            </div>
+
             {listNewsDraft.map((item, index) => {
               return (
                 <NewsDraftItem
