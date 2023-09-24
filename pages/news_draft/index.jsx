@@ -17,6 +17,7 @@ export default function NewsDraft() {
     <MainLayout
       activePage="draf_berita"
       content={<NewsDraftLayout listNewsDraft={listNewsDraft} />}
+      pageTitle="Draf Berita"
     />
   );
 }

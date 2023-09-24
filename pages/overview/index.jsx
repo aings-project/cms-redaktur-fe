@@ -18,6 +18,7 @@ export default function Overview() {
     <MainLayout
       activePage="ikhtisar"
       content={<OverviewLayout newsDraftList={newsDraftOverview} />}
+      pageTitle="Ikhtisar"
     />
   );
 }

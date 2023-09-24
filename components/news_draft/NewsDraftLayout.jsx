@@ -11,12 +11,15 @@ export default function NewsDraftLayout({ listNewsDraft }) {
     <div className="py-16 px-6 md:px-16 flex-grow h-screen overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
         <div className="flex justify-between mb-6 flex-wrap">
-          <p className="text-black text-3xl sm:text-4xl font-extrabold min-w-fit mr-6 mb-6">
+          <p className="text-black text-3xl sm:text-4xl font-extrabold min-w-fit mr-6 mb-6 hidden sm:block">
             Draf Berita
           </p>
           <div className="bg-white p-2 border border-zinc-300 rounded-md h-fit w-full md:w-fit">
             <div className="flex items-center justify-between">
-              <input className="p-1" placeholder="Cari Judul Berita ..." />
+              <input
+                className="p-1 w-full"
+                placeholder="Cari Judul Berita ..."
+              />
               <Search />
             </div>
           </div>
