@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import MainSidebar from "../../components/main/MainSidebar";
 import OverviewLayout from "../../components/overview/OverviewLayout";
-import useRequireAuth from "../../hooks/useRequireAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncReceiveOverviewNewsDraft } from "../../states/overview/action";
+import MainLayout from "../../components/main/MainLayout";
 
 export default function Overview() {
-  const auth = useRequireAuth();
   const dispatch = useDispatch();
 
   const newsDraftOverview =
@@ -17,9 +15,9 @@ export default function Overview() {
   }, [dispatch]);
 
   return (
-    <div className="flex">
-      <MainSidebar activePage="ikhtisar" auth={auth} />
-      <OverviewLayout newsDraftList={newsDraftOverview} />
-    </div>
+    <MainLayout
+      activePage="ikhtisar"
+      content={<OverviewLayout newsDraftList={newsDraftOverview} />}
+    />
   );
 }
