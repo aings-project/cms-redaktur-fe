@@ -9,7 +9,9 @@ export default function MainSidebarMenu({ text, icon, isSelected, onClick }) {
       onClick={onClick}
     >
       {icon}
-      <p className="text-white text-base font-semibold ml-4">{text}</p>
+      <p className="text-white text-base font-semibold ml-4 hidden md:block">
+        {text}
+      </p>
     </button>
   );
 }
