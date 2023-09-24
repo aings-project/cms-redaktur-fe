@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MainSidebar from "../../components/main/MainSidebar";
 import useRequireAuth from "../../hooks/useRequireAuth";
 import { Menu } from "@mui/icons-material";
@@ -8,6 +8,11 @@ import PhoneSidebar from "../../components/main/PhoneSidebar";
 export default function MainLayout({ content, activePage }) {
   const auth = useRequireAuth();
   const [hideNavbar, setHideNavbar] = useState(true);
+
+  if (!auth) {
+    router.push("/login");
+    return null;
+  }
 
   const handleToggle = () => {
     setHideNavbar((prevState) => !prevState);
