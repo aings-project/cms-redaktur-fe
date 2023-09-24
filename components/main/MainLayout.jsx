@@ -4,15 +4,12 @@ import useRequireAuth from "../../hooks/useRequireAuth";
 import { Menu } from "@mui/icons-material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PhoneSidebar from "../../components/main/PhoneSidebar";
-import { useRouter } from "next/router";
 
 export default function MainLayout({ content, activePage }) {
   const auth = useRequireAuth();
-  const router = useRouter();
   const [hideNavbar, setHideNavbar] = useState(true);
 
   if (!auth) {
-    router.push("/login");
     return null;
   }
 
