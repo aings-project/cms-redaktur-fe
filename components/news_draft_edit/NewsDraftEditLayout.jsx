@@ -4,6 +4,7 @@ import Editor from "../shared/Editor";
 import { useRouter } from "next/router";
 import ValidateModal from "./ValidateModal";
 import ValidationResult from "./ValidationResultModal";
+import { Menu } from "@mui/icons-material";
 
 export default function NewsDraftEditLayout({
   newsDraft,
@@ -30,11 +31,16 @@ export default function NewsDraftEditLayout({
   return (
     <>
       <div className="bg-neutral-50 h-screen overflow-y-auto max-h-screen">
-        <div className="flex">
+        <div className="flex flex-wrap md:flex-nowrap">
           <div className="p-6 w-full flex flex-col max-h-screen max-w-screen-lg mx-auto bg-white">
-            <button className="w-full flex" onClick={() => router.push("/")}>
-              <p className="text-black text-3xl font-extrabold mb-6">AINGS</p>
-            </button>
+            <div className="flex">
+              <button className="w-full flex" onClick={() => router.push("/")}>
+                <p className="text-black text-3xl font-extrabold mb-6">AINGS</p>
+              </button>
+              <a href="#newsDraftEditSidebar" className="md:hidden mb-6">
+                <Menu />
+              </a>
+            </div>
             <input
               className="w-full bg-white text-2xl font-semibold mb-4"
               value={title}

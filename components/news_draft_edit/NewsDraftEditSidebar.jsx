@@ -25,7 +25,10 @@ export default function NewsDraftEditSidebar({
   }, [status, version]);
 
   return (
-    <div className="max-w-xs w-full h-screen bg-slate-800 p-6 overflow-y-auto">
+    <section
+      id="newsDraftEditSidebar"
+      className="w-full md:max-w-xs h-screen bg-slate-800 p-6 overflow-y-auto"
+    >
       <div className="flex mb-6">
         <AccountCircle className="w-16 h-16 text-white" />
         <div className="px-4">
@@ -118,6 +121,6 @@ export default function NewsDraftEditSidebar({
           Tolak Berita
         </p>
       </button>
-    </div>
+    </section>
   );
 }
