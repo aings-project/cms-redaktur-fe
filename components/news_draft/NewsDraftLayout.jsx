@@ -42,7 +42,7 @@ export default function NewsDraftLayout({ listNewsDraft }) {
                     )
                   }
                   title={item.title}
-                  author={item.id_wartawan}
+                  author={item.user_wartawan.username}
                   dateTime={dateTimeFormatter(item.created_at)}
                 />
               );

@@ -12,7 +12,7 @@ export default function ValidateModal({ onClose, onValidate }) {
 
   return (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-20">
+      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-30">
         <div className="bg-white max-w-screen-md w-full flex flex-col rounded-md overflow-y-auto max-h-[75vh]">
           <div className="flex bg-yellow-600 p-4">
             <p className="w-full flex justify-center font-semibold text-xl text-white">

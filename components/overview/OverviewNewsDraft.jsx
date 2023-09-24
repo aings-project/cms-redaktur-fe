@@ -20,7 +20,7 @@ export default function OverviewNewsDraft({ newsDraftList }) {
               router.push(`news_draft/edit/${item.draft_id}/${item.version}`)
             }
             title={item.title}
-            author={item.id_wartawan}
+            author={item.user_wartawan.username}
             dateTime={dateTimeFormatter(item.created_at)}
           />
         );

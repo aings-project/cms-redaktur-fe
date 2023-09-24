@@ -65,6 +65,11 @@ export default function EditNewsDraft() {
       onRevalidate={() => onRevalidate()}
       auth={auth}
       onUpdateDraft={onUpdateDraft}
+      isEditable={
+        (newsDraft.draft_berita.status === "reviewing" ||
+          newsDraft.draft_berita.status === "new") &&
+        newsDraft.draft_berita.version === newsDraft.total_version
+      }
     />
   );
 }

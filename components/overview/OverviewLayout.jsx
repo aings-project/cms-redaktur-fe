@@ -11,7 +11,7 @@ export default function OverviewLayout({ newsDraftList }) {
           Ikhtisar
         </p>
         <div className="flex mt-10 flex-wrap xl:flex-nowrap">
-          <div className="grow md:max-w-fit lg:max-w-7xl lg:min-w-[332px]">
+          <div className="grow lg:max-w-7xl lg:min-w-[332px]">
             <OverviewNewsDraft newsDraftList={newsDraftList} />
             <div className="h-8" />
             <OverviewReadyPublish newsDraftList={[]} />

@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  AccountCircle,
-  CheckBoxOutlineBlank,
-  DateRange,
-  MoreVert,
-} from "@mui/icons-material";
+import { AccountCircle, DateRange, MoreVert } from "@mui/icons-material";
 
 export default function NewsDraftItem({ title, author, dateTime, onClick }) {
   return (
