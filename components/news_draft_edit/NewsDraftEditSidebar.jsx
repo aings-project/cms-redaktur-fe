@@ -116,11 +116,13 @@ export default function NewsDraftEditSidebar({
         disabled={false}
         onClick={() => onValidate()}
       />
-      <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 hover:cursor-not-allowed">
-        <p className="text-center font-semibold my-auto text-red-400">
-          Tolak Berita
-        </p>
-      </button>
+      {isEditable && (
+        <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 hover:cursor-not-allowed">
+          <p className="text-center font-semibold my-auto text-red-400">
+            Tolak Berita
+          </p>
+        </button>
+      )}
     </section>
   );
 }

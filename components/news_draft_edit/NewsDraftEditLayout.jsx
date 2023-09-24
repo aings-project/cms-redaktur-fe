@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import ValidateModal from "./ValidateModal";
 import ValidationResult from "./ValidationResultModal";
 import { Menu } from "@mui/icons-material";
+import ReactMarkdown from "react-markdown";
 
 export default function NewsDraftEditLayout({
   newsDraft,
@@ -48,13 +49,22 @@ export default function NewsDraftEditLayout({
                 setTitle(event.target.value);
               }}
             />
-            <Editor
-              placeholder={newsDraft.draft_berita.content}
-              className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1 border"
-              onChange={(value) => {
-                setText(value);
-              }}
-            />
+            {newsDraft.draft_berita.status !== "reviewing" &&
+              newsDraft.draft_berita.status !== "new" && (
+                <ReactMarkdown className="overflow-y-auto hover:cursor-default">
+                  {newsDraft.draft_berita.content}
+                </ReactMarkdown>
+              )}
+            {(newsDraft.draft_berita.status === "reviewing" ||
+              newsDraft.draft_berita.status === "new") && (
+              <Editor
+                placeholder={newsDraft.draft_berita.content}
+                className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1 border"
+                onChange={(value) => {
+                  setText(value);
+                }}
+              />
+            )}
           </div>
           <NewsDraftEditSidebar
             auth={auth}
