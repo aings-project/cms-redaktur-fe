@@ -5,7 +5,7 @@ import OverviewReadyPublish from "./OverviewReadyPublish";
 
 export default function OverviewLayout({ newsDraftList }) {
   return (
-    <div className="py-16 ml-6 md:ml-0 md:px-16 flex-grow h-screen overflow-y-auto">
+    <div className="py-16 ml-6 md:ml-0 md:px-16 flex-grow h-[calc(100dvh)] overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
         <p className="text-black text-3xl sm:text-4xl font-bold mb-6 hidden sm:block">
           Ikhtisar

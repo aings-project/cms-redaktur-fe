@@ -18,7 +18,7 @@ export default function PhoneSidebar({
 
   return (
     <div
-      className={`h-screen z-20 bg-slate-800 w-2/3 absolute top-0 left-0 sm:hidden shadow-lg transition-transform duration-300 ${
+      className={`h-[calc(100dvh)] z-20 bg-slate-800 w-2/3 absolute top-0 left-0 sm:hidden shadow-lg transition-transform duration-300 ${
         isHidden ? "-translate-x-full" : "translate-x-0"
       }`}
     >
