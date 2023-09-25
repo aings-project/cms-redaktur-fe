@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Menu } from "@mui/icons-material";
+import { Close, Menu } from "@mui/icons-material";
 import NewsDraftEditor from "./NewsDraftEditor";
 import NewsDraftEditSidebar from "./NewsDraftEditSidebar";
 import { useRouter } from "next/router";
@@ -53,9 +53,9 @@ export default function NewsDraftEditorLayout({
       <div
         className={`z-40 transition-transform duration-300 ${
           hideNavbar
-            ? "-translate-x-full md:translate-x-0"
+            ? "translate-x-full md:translate-x-0"
             : "translate-x-0 flex sm:w-2/3 shadow-lg"
-        } md:flex w-full md:max-w-xs md:z-30 fixed right-0 md:static`}
+        } md:flex w-full md:max-w-xs md:z-30 fixed left-0 md:static`}
       >
         <div className="h-screen w-full bg-slate-800 overflow-y-auto">
           <div className="md:hidden flex pt-6 px-6">
@@ -63,7 +63,7 @@ export default function NewsDraftEditorLayout({
               AINGS
             </p>
             <button className="flex justify-end w-full" onClick={handleToggle}>
-              <Menu className="text-white" />
+              <Close className="text-white" />
             </button>
           </div>
           <NewsDraftEditSidebar

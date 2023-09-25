@@ -13,8 +13,8 @@ export default function OverviewNewsDraftItem({
         <p className="text-black text-base font-semibold mb-2 text-left">
           {title}
         </p>
-        <div className="flex">
-          <div className="flex mr-4 items-center">
+        <div className="flex flex-wrap">
+          <div className="flex mr-4 items-center mb-1">
             <AccountCircle className="w-4 h-4" />
             <p className="text-black text-xs font-normal ml-1">{author}</p>
           </div>
