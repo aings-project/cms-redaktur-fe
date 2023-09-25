@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Editor from "../shared/Editor";
+import useInput from "../../hooks/useInput";
 
 export default function ValidateModal({ onClose, onValidate }) {
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [text, setText] = useState("");
+  const [text, onTextChange] = useInput("");
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -27,13 +27,15 @@ export default function ValidateModal({ onClose, onValidate }) {
           </div>
           <div className="p-6">
             {isChecked && (
-              <Editor
-                placeholder="**(Opsional)** Masukkan data pendukung..."
-                className="border overflow-y-auto bg-white flex-1"
-                onChange={(value) => {
-                  setText(value);
-                }}
-              />
+              <div>
+                <p className="font-semibold">Data yang digunakan wartawan: </p>
+                <p className="font-normal mb-4">Lorem ipsum dolor sit amet</p>
+                <input
+                  className="border-neutral-400 border-2 rounded-sm py-2 px-2 w-full"
+                  placeholder="Masukkan data tambahan (jika ada)"
+                  onChange={onTextChange}
+                />
+              </div>
             )}
             {!isChecked && (
               <p className="w-full flex justify-center">
@@ -47,7 +49,7 @@ export default function ValidateModal({ onClose, onValidate }) {
                 onChange={handleCheckboxChange}
                 className="mr-4"
               />
-              <p className="font-semibold">Tambahkan data pendukung</p>
+              <p className="font-semibold">Tambahkan data pendukung validasi</p>
             </div>
             <div className="mt-6 flex justify-center">
               {isLoading && (
@@ -68,7 +70,7 @@ export default function ValidateModal({ onClose, onValidate }) {
           </div>
         </div>
       </div>
-      <div className="inset-0 z-10 opacity-40 fixed bg-zinc-800" />
+      <div className="inset-0 z-20 opacity-40 fixed bg-zinc-800" />
     </>
   );
 }
