@@ -18,8 +18,8 @@ export default function PhoneSidebar({
 
   return (
     <div
-      className={`h-screen z-20 bg-slate-800 w-2/3 absolute top-0 left-0 sm:hidden shadow-lg ${
-        isHidden ? "hidden" : ""
+      className={`h-screen z-20 bg-slate-800 w-2/3 absolute top-0 left-0 sm:hidden shadow-lg transition-transform duration-300 ${
+        isHidden ? "translate-x-0" : "-translate-x-full"
       }`}
     >
       <p className="text-white text-3xl font-extrabold px-4 py-6">AINGS</p>

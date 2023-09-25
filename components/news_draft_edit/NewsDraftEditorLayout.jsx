@@ -30,7 +30,7 @@ export default function NewsDraftEditorLayout({
   return (
     <div className="flex bg-neutral-50 h-screen overflow-y-auto max-h-screen">
       <div className="p-6 w-full flex flex-col max-h-screen max-w-screen-lg mx-auto bg-white">
-        <div className="flex justify-between fixed md:relative z-20 top-0 left-0 right-0 px-6 py-4 md:px-0 md:py-0 md:mb-6">
+        <div className="flex justify-between fixed md:relative z-20 top-0 left-0 right-0 px-6 py-3 md:px-0 md:py-0 md:mb-6 bg-white shadow-md md:shadow-none">
           <button className="w-fit flex" onClick={() => router.push("/")}>
             <p className="text-black text-3xl font-extrabold">AINGS</p>
           </button>
@@ -51,8 +51,10 @@ export default function NewsDraftEditorLayout({
         />
       </div>
       <div
-        className={`${
-          hideNavbar ? "hidden" : "flex sm:w-2/3 shadow-lg z-40"
+        className={`z-40 transition-transform duration-300 ${
+          hideNavbar
+            ? "-translate-x-full md:translate-x-0"
+            : "translate-x-0 flex sm:w-2/3 shadow-lg"
         } md:flex w-full md:max-w-xs md:z-30 fixed right-0 md:static`}
       >
         <div className="h-screen w-full bg-slate-800 overflow-y-auto">

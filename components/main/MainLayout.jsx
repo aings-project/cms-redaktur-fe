@@ -28,7 +28,7 @@ export default function MainLayout({ content, activePage, pageTitle }) {
 
   return (
     <div className="relative">
-      <div className="sm:hidden fixed top-0 left-0 right-0 z-20 w-full px-4 py-3 flex justify-between bg-white">
+      <div className="sm:hidden fixed top-0 left-0 right-0 z-20 w-full px-4 py-3 flex justify-between bg-white shadow-md">
         <p className="px-2 text-slate-800 font-bold text-2xl">{pageTitle}</p>
         <button className="px-2" onClick={handleToggle}>
           <Menu />
