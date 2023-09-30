@@ -10,6 +10,7 @@ export default function NewsDraftBody({
   listNewsDraft,
   activeStatus,
   onSetActiveStatus,
+  status,
 }) {
   const router = useRouter();
   const isLoading = useSelector((state) => state.loading);
@@ -19,6 +20,7 @@ export default function NewsDraftBody({
       <NewsDraftTabBar
         activeStatus={activeStatus}
         onSetActiveStatus={onSetActiveStatus}
+        status={status}
       />
       <div className="bg-neutral-50 flex flex-col justify-end">
         <div className="lg:flex mb-1 hidden lg:bg-slate-50">

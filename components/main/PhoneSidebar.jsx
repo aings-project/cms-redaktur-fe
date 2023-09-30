@@ -42,7 +42,7 @@ export default function PhoneSidebar({
       <PhoneSidebarMenu
         icon={<NewspaperIcon className="w-6 h-6 text-white" />}
         text={"Publikasi"}
-        isSelected={activePage === "publikasi"}
+        isSelected={activePage === "publication"}
       />
       <PhoneSidebarMenu
         icon={<CommentIcon className="w-6 h-6 text-white" />}

@@ -3,19 +3,16 @@ import NewsDraftLayout from "../../components/news_draft/NewsDraftLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncReceiveNewsDraft } from "../../states/news_draft/action";
 import MainLayout from "../../components/main/MainLayout";
-import {
-  convertStatus,
-  reverseConvertStatus,
-} from "../../utils/draftAttributeParser";
+import { convertStatus } from "../../utils/draftAttributeParser";
 
-export default function NewsDraft() {
+export default function Publication() {
   const dispatch = useDispatch();
   const newsDraftData = useSelector((state) => state.newsDraft);
-  const [activeStatus, setActiveStatus] = useState("Baru");
-  const status = ["Baru", "Sedang Disunting", "Menunggu Persetujuan Wartawan"];
+  const [activeStatus, setActiveStatus] = useState("Siap Publikasi");
+  const status = ["Siap Publikasi", "Sudah Publikasi"];
 
   useEffect(() => {
-    dispatch(asyncReceiveNewsDraft());
+    dispatch(asyncReceiveNewsDraft({ status: "approved" }));
   }, [dispatch]);
   const handlePageChange = (page) => {
     dispatch(
@@ -28,7 +25,7 @@ export default function NewsDraft() {
 
   return (
     <MainLayout
-      activePage="draf_berita"
+      activePage="publication"
       content={
         <NewsDraftLayout
           activeStatus={activeStatus}
@@ -40,10 +37,10 @@ export default function NewsDraft() {
           onNextPage={handlePageChange}
           onPrevPage={handlePageChange}
           status={status}
-          title="Draf Berita"
+          title="Publikasi"
         />
       }
-      pageTitle="Draf Berita"
+      pageTitle="Publikasi"
     />
   );
 }

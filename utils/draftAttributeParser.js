@@ -1,22 +1,39 @@
 function convertStatus({ value }) {
-  if (value === "reviewing") {
-    return "Sedang Disunting";
-  } else if (value === "reviewed") {
-    return "Menunggu Persetujuan Wartawan";
+  switch (value) {
+    case "reviewing":
+      return "Sedang Disunting";
+    case "reviewed":
+      return "Menunggu Persetujuan Wartawan";
+    case "new":
+      return "Baru";
+    case "approved":
+      return "Siap Publikasi";
+    case "published":
+      return "Sudah Publikasi";
+    case "rejected":
+      return "Draf Ditolak";
+    default:
+      return value;
   }
-  return value;
 }
 
 function reverseConvertStatus(value) {
-  if (value === "Baru") {
-    return "new";
-  } else if (value === "Sedang Disunting") {
-    return "reviewing";
-  } else if (value === "Menunggu Persetujuan") {
-    return "reviewed";
+  switch (value) {
+    case "Baru":
+      return "new";
+    case "Sedang Disunting":
+      return "reviewing";
+    case "Menunggu Persetujuan Wartawan":
+      return "reviewed";
+    case "Siap Publikasi":
+      return "approved";
+    case "Sudah Publikasi":
+      return "published";
+    case "Draf Ditolak":
+      return "rejected";
+    default:
+      return value;
   }
-
-  return value;
 }
 
 export { convertStatus, reverseConvertStatus };

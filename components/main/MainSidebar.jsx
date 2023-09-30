@@ -47,7 +47,8 @@ export default function MainSidebar({ activePage, auth, onSignOut }) {
       <MainSidebarMenu
         icon={<NewspaperIcon className="w-6 h-6 text-white" />}
         text={"Publikasi"}
-        isSelected={activePage === "publikasi"}
+        isSelected={activePage === "publication"}
+        onClick={() => router.push("/publication")}
       />
       <MainSidebarMenu
         icon={<CommentIcon className="w-6 h-6 text-white" />}
@@ -56,8 +57,9 @@ export default function MainSidebar({ activePage, auth, onSignOut }) {
       />
       <MainSidebarMenu
         icon={<Delete className="w-6 h-6 text-white" />}
-        text={"Ditolak"}
-        isSelected={activePage === "ditolak"}
+        text={"Draf Ditolak"}
+        isSelected={activePage === "rejected"}
+        onClick={() => router.push("/rejected")}
       />
       <div className="mt-auto">
         <MainSidebarMenu

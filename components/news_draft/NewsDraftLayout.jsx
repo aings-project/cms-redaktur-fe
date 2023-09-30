@@ -9,17 +9,20 @@ export default function NewsDraftLayout({
   onSetActiveStatus,
   onNextPage,
   onPrevPage,
+  status,
+  title,
 }) {
   return (
     <div className="py-16 px-6 md:px-16 flex-grow h-[calc(100dvh)] overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
-        <NewsDraftHeader />
+        <NewsDraftHeader title={title} />
         <NewsDraftBody
           listNewsDraft={
             newsDraftData?.draft_berita ? newsDraftData.draft_berita : []
           }
           activeStatus={activeStatus}
           onSetActiveStatus={onSetActiveStatus}
+          status={status}
         />
         <NewsDraftPagination
           currentPages={

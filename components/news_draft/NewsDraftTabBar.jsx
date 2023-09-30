@@ -3,7 +3,11 @@ import NewsTabBarMenuItem from "./NewsTabBarMenuItem";
 import { FilterAltTwoTone } from "@mui/icons-material";
 import { reverseConvertStatus } from "../../utils/draftAttributeParser";
 
-export default function NewsDraftTabBar({ activeStatus, onSetActiveStatus }) {
+export default function NewsDraftTabBar({
+  activeStatus,
+  onSetActiveStatus,
+  status,
+}) {
   const handleSelectChange = (event) => {
     onSetActiveStatus(reverseConvertStatus(event.target.value));
   };
@@ -12,27 +16,18 @@ export default function NewsDraftTabBar({ activeStatus, onSetActiveStatus }) {
     <div>
       <div className="flex items-center justify-between hover:cursor-pointer bg-slate-50 lg:bg-slate-800 flex-wrap rounded-t-md">
         <div className="hidden lg:flex">
-          <NewsTabBarMenuItem
-            title="Baru"
-            isActive={activeStatus === "new"}
-            onClick={() => {
-              onSetActiveStatus("new");
-            }}
-          />
-          <NewsTabBarMenuItem
-            title="Disunting"
-            isActive={activeStatus === "reviewing"}
-            onClick={() => {
-              onSetActiveStatus("reviewing");
-            }}
-          />
-          <NewsTabBarMenuItem
-            title="Menunggu Persetujuan"
-            isActive={activeStatus === "reviewed"}
-            onClick={() => {
-              onSetActiveStatus("reviewed");
-            }}
-          />
+          {status.map((item, index) => {
+            return (
+              <NewsTabBarMenuItem
+                key={index}
+                title={item}
+                isActive={activeStatus === item}
+                onClick={() => {
+                  onSetActiveStatus(reverseConvertStatus(item));
+                }}
+              />
+            );
+          })}
         </div>
         <div className="flex flex-wrap lg:hidden w-full bg-slate-800 px-6 pt-3">
           <div className="flex  mr-6 mb-3">
@@ -44,11 +39,9 @@ export default function NewsDraftTabBar({ activeStatus, onSetActiveStatus }) {
               className="text-white text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer bg-slate-800 border border-white rounded-md w-full"
               onChange={handleSelectChange}
             >
-              {["Baru", "Sedang Disunting", "Menunggu Persetujuan"].map(
-                (item, index) => {
-                  return <option key={index}>{item}</option>;
-                }
-              )}
+              {status.map((item, index) => {
+                return <option key={index}>{item}</option>;
+              })}
             </select>
             <div className="w-4" />
             <select className="text-white text-base font-normal px-4 mb-3 pb-1 bg-slate-800 border border-white rounded-md w-full">
