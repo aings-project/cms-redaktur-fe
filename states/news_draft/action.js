@@ -15,11 +15,11 @@ function receiveNewsDraftActionCreator({ listNewsDraft }) {
   };
 }
 
-function asyncReceiveNewsDraft() {
+function asyncReceiveNewsDraft({ status = "new", page = "1" } = {}) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const listNewsDraft = await api.getAllNewsDraft();
+      const listNewsDraft = await api.getAllNewsDraft({ status, page });
       dispatch(receiveNewsDraftActionCreator({ listNewsDraft }));
     } catch (error) {
       toast.error(error.message, {

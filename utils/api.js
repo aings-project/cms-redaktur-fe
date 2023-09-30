@@ -64,13 +64,20 @@ const api = (() => {
     return user;
   }
 
-  async function getAllNewsDraft() {
-    const response = await fetchWithAuth(`${BASE_URL}/v1/draft-berita`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  async function getAllNewsDraft({
+    status = "new",
+    page = "1",
+    limit = "10",
+  } = {}) {
+    const response = await fetchWithAuth(
+      `${BASE_URL}/v1/draft-berita?status=${status}&page=${page}&limit=${limit}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const responseJson = await response.json();
 
