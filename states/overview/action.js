@@ -20,12 +20,9 @@ function asyncReceiveOverviewNewsDraft() {
     dispatch(setIsLoading(true));
     try {
       const newsDraftData = await api.getAllNewsDraft({ limit: 5 });
-      const listNewsDraft = newsDraftData.draft_berita;
-      const data =
-        listNewsDraft.length > 5 ? listNewsDraft.slice(0, 5) : listNewsDraft;
       dispatch(
         receiveOverviewNewsDraftActionCreator({
-          listNewsDraft: data,
+          listNewsDraft: newsDraftData.draft_berita,
         })
       );
     } catch (error) {

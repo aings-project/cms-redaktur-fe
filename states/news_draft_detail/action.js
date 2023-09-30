@@ -1,4 +1,3 @@
-import { hideLoading, showLoading } from "react-redux-loading-bar";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { clearValidationDraftActionCreator } from "../validation/action";
@@ -27,7 +26,6 @@ function asyncReceiveNewsDraftDetail({ draft_id, version }) {
   return async (dispatch) => {
     dispatch(clearNewsDraftDetailActionCreator());
     dispatch(clearValidationDraftActionCreator());
-    dispatch(showLoading());
 
     try {
       const newsDraft = await api.getDetailNewsDraft({
@@ -40,7 +38,6 @@ function asyncReceiveNewsDraftDetail({ draft_id, version }) {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-    dispatch(hideLoading());
   };
 }
 
@@ -53,8 +50,6 @@ function asyncUpdateNewsDraft({
   onSuccess,
 }) {
   return async (dispatch) => {
-    dispatch(showLoading());
-
     try {
       const newsDraft = await api.updateNewsDraft({
         title,
@@ -75,7 +70,6 @@ function asyncUpdateNewsDraft({
         position: toast.POSITION.TOP_CENTER,
       });
     }
-    dispatch(hideLoading());
   };
 }
 

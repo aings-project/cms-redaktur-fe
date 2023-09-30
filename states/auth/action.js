@@ -1,6 +1,6 @@
-import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { toast } from "react-toastify";
 import api from "../../utils/api";
+import { setIsLoading } from "../loading/action";
 
 const ActionType = {
   SET_AUTH_USER: "SET_AUTH_USER",
@@ -27,8 +27,7 @@ function unsetAuthUserActionCreator() {
 
 function asyncSetAuthUser({ email, password, onSuccess }) {
   return async (dispatch) => {
-    dispatch(showLoading());
-
+    dispatch(setIsLoading(true));
     try {
       const token = await api.login({ email, password });
       api.putAccessToken(token);
@@ -41,8 +40,7 @@ function asyncSetAuthUser({ email, password, onSuccess }) {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-
-    dispatch(hideLoading());
+    dispatch(setIsLoading(false));
   };
 }
 

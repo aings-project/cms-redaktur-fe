@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import useRequireAuth from "../../../../hooks/useRequireAuth";
 import NewsDraftEditLayout from "../../../../components/news_draft_edit/NewsDraftEditLayout";
 import { useRouter } from "next/router";

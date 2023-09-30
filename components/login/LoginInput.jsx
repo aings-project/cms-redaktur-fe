@@ -1,9 +1,12 @@
 import React from "react";
 import useInput from "../../hooks/useInput";
+import { useSelector } from "react-redux";
+import ReactLoading from "react-loading";
 
 export default function LoginInput({ login }) {
   const [email, onEmailChange] = useInput("");
   const [password, onPasswordChange] = useInput("");
+  const isLoading = useSelector((state) => state.loading);
 
   return (
     <div>
@@ -27,12 +30,19 @@ export default function LoginInput({ login }) {
         onChange={onPasswordChange}
       />
       <div className="flex justify-end w-full ">
-        <button
-          onClick={() => login({ email, password })}
-          className="w-full md:w-1/2 h-10 mt-6 bg-zinc-800 text-white text-base font-semibold rounded-md"
-        >
-          Login
-        </button>
+        {isLoading && (
+          <div className="w-full md:w-1/2 flex justify-center mt-6 bg-slate-800 py-2 rounded-md">
+            <ReactLoading type="spin" height={24} width={24} />
+          </div>
+        )}
+        {!isLoading && (
+          <button
+            onClick={() => login({ email, password })}
+            className="w-full md:w-1/2 h-10 mt-6 bg-slate-800 text-white text-base font-semibold rounded-md"
+          >
+            Login
+          </button>
+        )}
       </div>
     </div>
   );
