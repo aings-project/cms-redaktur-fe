@@ -1,56 +1,25 @@
-import { Search } from "@mui/icons-material";
 import React from "react";
-import NewsDraftTabBar from "./NewsDraftTabBar";
-import NewsDraftItem from "./NewsDraftItem";
-import { useRouter } from "next/router";
-import dateTimeFormatter from "../../utils/dateTimeFormatter";
+import NewsDraftBody from "./NewsDraftBody";
+import NewsDraftHeader from "./NewsDraftHeader";
+import {
+  KeyboardArrowLeftRounded,
+  KeyboardArrowRightRounded,
+} from "@mui/icons-material";
 
 export default function NewsDraftLayout({ listNewsDraft }) {
-  const router = useRouter();
   return (
     <div className="py-16 px-6 md:px-16 flex-grow h-[calc(100dvh)] overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
-        <div className="flex justify-between my-6 flex-wrap">
-          <p className="text-black text-3xl sm:text-4xl font-bold min-w-fit mr-6 mb-6 hidden sm:block">
-            Draf Berita
-          </p>
-          <div className="bg-white p-2 border border-zinc-300 rounded-md h-fit w-full md:w-fit">
-            <div className="flex items-center justify-between">
-              <input
-                className="p-1 w-full"
-                placeholder="Cari Judul Berita ..."
-              />
-              <Search />
-            </div>
-          </div>
-        </div>
-        <div className="bg-neutral-50 rounded-md border border-zinc-300 pb-6 shadow-md">
-          <NewsDraftTabBar />
-          <div className="bg-neutral-50 flex flex-col justify-end">
-            <div className="lg:flex mb-1 hidden lg:bg-slate-50">
-              <select className="text-black text-base font-semibold px-4 py-2 bg-slate-50 w-fit">
-                {["Semua Kategori"].map((item, index) => {
-                  return <option key={index}>{item}</option>;
-                })}
-              </select>
-            </div>
-
-            {listNewsDraft.map((item, index) => {
-              return (
-                <NewsDraftItem
-                  key={index}
-                  onClick={() =>
-                    router.push(
-                      `news_draft/edit/${item.draft_id}/${item.version}`
-                    )
-                  }
-                  title={item.title}
-                  author={item.user_wartawan.username}
-                  dateTime={dateTimeFormatter(item.created_at)}
-                />
-              );
-            })}
-          </div>
+        <NewsDraftHeader />
+        <NewsDraftBody listNewsDraft={listNewsDraft} />
+        <div className="flex justify-center mt-10 items-center">
+          <button className="border-2 border-slate-400 px-2 py-1 rounded-md">
+            <KeyboardArrowLeftRounded className="text-slate-400" />
+          </button>
+          <p className="font-normal text-lg mx-4">Halaman 1 dari 3</p>
+          <button className="border-2 border-black px-2 py-1 rounded-md">
+            <KeyboardArrowRightRounded />
+          </button>
         </div>
       </div>
     </div>
