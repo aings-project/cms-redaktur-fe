@@ -1,20 +1,33 @@
 import React from "react";
 import NewsTabBarMenuItem from "./NewsTabBarMenuItem";
-import {
-  Filter,
-  Filter1,
-  FilterAlt,
-  FilterAltTwoTone,
-} from "@mui/icons-material";
+import { FilterAltTwoTone } from "@mui/icons-material";
 
-export default function NewsDraftTabBar() {
+export default function NewsDraftTabBar({ activeStatus, onSetActiveStatus }) {
   return (
     <div>
       <div className="flex items-center justify-between hover:cursor-pointer bg-slate-50 lg:bg-slate-800 flex-wrap rounded-t-md">
         <div className="hidden lg:flex">
-          <NewsTabBarMenuItem title="Baru" isActive={true} />
-          <NewsTabBarMenuItem title="Disunting" isActive={false} />
-          <NewsTabBarMenuItem title="Menunggu Persetujuan" isActive={false} />
+          <NewsTabBarMenuItem
+            title="Baru"
+            isActive={activeStatus === "new"}
+            onClick={() => {
+              onSetActiveStatus("new");
+            }}
+          />
+          <NewsTabBarMenuItem
+            title="Disunting"
+            isActive={activeStatus === "reviewing"}
+            onClick={() => {
+              onSetActiveStatus("reviewing");
+            }}
+          />
+          <NewsTabBarMenuItem
+            title="Menunggu Persetujuan"
+            isActive={activeStatus === "reviewed"}
+            onClick={() => {
+              onSetActiveStatus("reviewed");
+            }}
+          />
         </div>
         <div className="flex flex-wrap lg:hidden w-full bg-slate-800 px-6 pt-3">
           <div className="flex  mr-6 mb-3">

@@ -4,12 +4,19 @@ import NewsDraftItem from "./NewsDraftItem";
 import { useRouter } from "next/router";
 import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
-export default function NewsDraftBody({ listNewsDraft }) {
+export default function NewsDraftBody({
+  listNewsDraft,
+  activeStatus,
+  onSetActiveStatus,
+}) {
   const router = useRouter();
 
   return (
     <div className="bg-neutral-50 rounded-md border border-zinc-300 pb-6 shadow-md">
-      <NewsDraftTabBar />
+      <NewsDraftTabBar
+        activeStatus={activeStatus}
+        onSetActiveStatus={onSetActiveStatus}
+      />
       <div className="bg-neutral-50 flex flex-col justify-end">
         <div className="lg:flex mb-1 hidden lg:bg-slate-50">
           <select className="text-black text-base font-semibold px-4 py-2 bg-slate-50 w-fit">

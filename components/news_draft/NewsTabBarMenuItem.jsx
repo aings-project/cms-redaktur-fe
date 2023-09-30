@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function NewsTabBarMenuItem({ title, isActive }) {
+export default function NewsTabBarMenuItem({ title, isActive, onClick }) {
   return (
-    <div className="hover:bg-yellow-600">
+    <button className="hover:bg-yellow-600" onClick={onClick}>
       <div className="flex p-4">
         <p
           className={`${
@@ -13,6 +13,6 @@ export default function NewsTabBarMenuItem({ title, isActive }) {
         </p>
       </div>
       {isActive && <div className="h-1 w-full bg-yellow-100" />}
-    </div>
+    </button>
   );
 }

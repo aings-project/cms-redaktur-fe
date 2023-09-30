@@ -6,12 +6,20 @@ import {
   KeyboardArrowRightRounded,
 } from "@mui/icons-material";
 
-export default function NewsDraftLayout({ listNewsDraft }) {
+export default function NewsDraftLayout({
+  listNewsDraft,
+  activeStatus,
+  onSetActiveStatus,
+}) {
   return (
     <div className="py-16 px-6 md:px-16 flex-grow h-[calc(100dvh)] overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
         <NewsDraftHeader />
-        <NewsDraftBody listNewsDraft={listNewsDraft} />
+        <NewsDraftBody
+          listNewsDraft={listNewsDraft}
+          activeStatus={activeStatus}
+          onSetActiveStatus={onSetActiveStatus}
+        />
         <div className="flex justify-center mt-10 items-center">
           <button className="border-2 border-slate-400 px-2 py-1 rounded-md">
             <KeyboardArrowLeftRounded className="text-slate-400" />
