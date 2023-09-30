@@ -22,7 +22,7 @@ export default function OverviewNewsDraft({ newsDraftList }) {
       {!isLoading && (
         <div>
           {newsDraftList.length === 0 && (
-            <p className="px-6">Tidak ada berita</p>
+            <p className="px-6 pt-4">Tidak ada berita</p>
           )}
           {newsDraftList.map((item, index) => {
             return (

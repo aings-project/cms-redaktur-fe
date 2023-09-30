@@ -1,11 +1,11 @@
 import { ActionType } from "./action";
 
-function newsDraftReducer(listNewsDraft = [], action = {}) {
+function newsDraftReducer(newsDraftData = null, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_NEWS_DRAFT:
-      return action.payload.listNewsDraft;
+      return action.payload.newsDraftData;
     default:
-      return listNewsDraft;
+      return newsDraftData;
   }
 }
 

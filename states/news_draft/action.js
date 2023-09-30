@@ -6,11 +6,11 @@ const ActionType = {
   RECEIVE_NEWS_DRAFT: "RECEIVE_NEWS_DRAFT",
 };
 
-function receiveNewsDraftActionCreator({ listNewsDraft }) {
+function receiveNewsDraftActionCreator({ newsDraftData }) {
   return {
     type: ActionType.RECEIVE_NEWS_DRAFT,
     payload: {
-      listNewsDraft,
+      newsDraftData,
     },
   };
 }
@@ -19,8 +19,8 @@ function asyncReceiveNewsDraft({ status = "new", page = "1" } = {}) {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {
-      const listNewsDraft = await api.getAllNewsDraft({ status, page });
-      dispatch(receiveNewsDraftActionCreator({ listNewsDraft }));
+      const newsDraftData = await api.getAllNewsDraft({ status, page });
+      dispatch(receiveNewsDraftActionCreator({ newsDraftData }));
     } catch (error) {
       toast.error(error.message, {
         position: toast.POSITION.TOP_CENTER,

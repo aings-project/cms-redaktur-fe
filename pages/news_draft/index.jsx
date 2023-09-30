@@ -6,12 +6,18 @@ import MainLayout from "../../components/main/MainLayout";
 
 export default function NewsDraft() {
   const dispatch = useDispatch();
-  const listNewsDraft = useSelector((state) => state.newsDraft);
+  const newsDraftData = useSelector((state) => state.newsDraft);
   const [activeStatus, setActiveStatus] = useState("new");
 
   useEffect(() => {
     dispatch(asyncReceiveNewsDraft());
   }, [dispatch]);
+  const handleNextPage = (nextPage) => {
+    dispatch(asyncReceiveNewsDraft({ page: nextPage }));
+  };
+  const handlePrevPage = (prevPage) => {
+    dispatch(asyncReceiveNewsDraft({ page: prevPage }));
+  };
 
   return (
     <MainLayout
@@ -23,7 +29,9 @@ export default function NewsDraft() {
             setActiveStatus(value);
             dispatch(asyncReceiveNewsDraft({ status: value }));
           }}
-          listNewsDraft={listNewsDraft}
+          newsDraftData={newsDraftData}
+          onNextPage={handleNextPage}
+          onPrevPage={handlePrevPage}
         />
       }
       pageTitle="Draf Berita"

@@ -35,6 +35,9 @@ export default function NewsDraftBody({
         )}
         {!isLoading && (
           <div>
+            {listNewsDraft.length === 0 && (
+              <p className="pt-4 px-6">Tidak ada berita</p>
+            )}
             {listNewsDraft.map((item, index) => {
               return (
                 <NewsDraftItem

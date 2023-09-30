@@ -88,9 +88,7 @@ const api = (() => {
       throw new Error(message);
     }
 
-    const { draft_berita } = responseJson;
-
-    return draft_berita;
+    return responseJson;
   }
 
   async function getDetailNewsDraft({ draft_id, version }) {
