@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncPreloadProcess } from "../states/preload/action";
+import OnboardingLayout from "../components/main/OnboardingLayout";
 
 export default function Home() {
   const auth = useSelector((state) => state.auth);
@@ -15,7 +16,7 @@ export default function Home() {
   }, [dispatch]);
 
   if (preload) {
-    return null;
+    return <OnboardingLayout />;
   }
   if (auth) {
     router.push("/overview");
@@ -23,5 +24,5 @@ export default function Home() {
     router.push("/login");
   }
 
-  return <div />;
+  return <OnboardingLayout />;
 }
