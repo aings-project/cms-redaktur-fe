@@ -3,6 +3,8 @@ import NewsDraftTabBar from "./NewsDraftTabBar";
 import NewsDraftItem from "./NewsDraftItem";
 import { useRouter } from "next/router";
 import dateTimeFormatter from "../../utils/dateTimeFormatter";
+import { useSelector } from "react-redux";
+import ReactLoading from "react-loading";
 
 export default function NewsDraftBody({
   listNewsDraft,
@@ -10,6 +12,7 @@ export default function NewsDraftBody({
   onSetActiveStatus,
 }) {
   const router = useRouter();
+  const isLoading = useSelector((state) => state.loading);
 
   return (
     <div className="bg-neutral-50 rounded-md border border-zinc-300 pb-6 shadow-md">
@@ -25,20 +28,30 @@ export default function NewsDraftBody({
             })}
           </select>
         </div>
-
-        {listNewsDraft.map((item, index) => {
-          return (
-            <NewsDraftItem
-              key={index}
-              onClick={() =>
-                router.push(`news_draft/edit/${item.draft_id}/${item.version}`)
-              }
-              title={item.title}
-              author={item.user_wartawan.username}
-              dateTime={dateTimeFormatter(item.created_at)}
-            />
-          );
-        })}
+        {isLoading && (
+          <div className="w-full flex justify-center mt-4 lg:mt-0">
+            <ReactLoading type="spin" color="#1e293b" height={24} width={24} />
+          </div>
+        )}
+        {!isLoading && (
+          <div>
+            {listNewsDraft.map((item, index) => {
+              return (
+                <NewsDraftItem
+                  key={index}
+                  onClick={() =>
+                    router.push(
+                      `news_draft/edit/${item.draft_id}/${item.version}`
+                    )
+                  }
+                  title={item.title}
+                  author={item.user_wartawan.username}
+                  dateTime={dateTimeFormatter(item.created_at)}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

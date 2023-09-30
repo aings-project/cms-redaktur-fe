@@ -7,4 +7,16 @@ function convertStatus({ value }) {
   return value;
 }
 
-export { convertStatus };
+function reverseConvertStatus(value) {
+  if (value === "Baru") {
+    return "new";
+  } else if (value === "Sedang Disunting") {
+    return "reviewing";
+  } else if (value === "Menunggu Persetujuan") {
+    return "reviewed";
+  }
+
+  return value;
+}
+
+export { convertStatus, reverseConvertStatus };

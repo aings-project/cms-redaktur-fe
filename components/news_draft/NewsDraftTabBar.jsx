@@ -1,8 +1,13 @@
 import React from "react";
 import NewsTabBarMenuItem from "./NewsTabBarMenuItem";
 import { FilterAltTwoTone } from "@mui/icons-material";
+import { reverseConvertStatus } from "../../utils/draftAttributeParser";
 
 export default function NewsDraftTabBar({ activeStatus, onSetActiveStatus }) {
+  const handleSelectChange = (event) => {
+    onSetActiveStatus(reverseConvertStatus(event.target.value));
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between hover:cursor-pointer bg-slate-50 lg:bg-slate-800 flex-wrap rounded-t-md">
@@ -35,8 +40,11 @@ export default function NewsDraftTabBar({ activeStatus, onSetActiveStatus }) {
             <p className="text-white">Filter</p>
           </div>
           <div className="flex">
-            <select className="text-white text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer bg-slate-800 border border-white rounded-md w-full">
-              {["Baru", "Disunting", "Menunggu Persetujuan"].map(
+            <select
+              className="text-white text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer bg-slate-800 border border-white rounded-md w-full"
+              onChange={handleSelectChange}
+            >
+              {["Baru", "Sedang Disunting", "Menunggu Persetujuan"].map(
                 (item, index) => {
                   return <option key={index}>{item}</option>;
                 }

@@ -1,6 +1,6 @@
-import { hideLoading, showLoading } from "react-redux-loading-bar";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
+import { setIsLoading } from "../loading/action";
 
 const ActionType = {
   RECEIVE_OVERVIEW_NEWS_DRAFT: "RECEIVE_OVERVIEW_NEWS_DRAFT",
@@ -17,7 +17,7 @@ function receiveOverviewNewsDraftActionCreator({ listNewsDraft }) {
 
 function asyncReceiveOverviewNewsDraft() {
   return async (dispatch) => {
-    dispatch(showLoading());
+    dispatch(setIsLoading(true));
     try {
       const listNewsDraft = await api.getAllNewsDraft({ limit: 5 });
       const data =
@@ -32,7 +32,7 @@ function asyncReceiveOverviewNewsDraft() {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-    dispatch(hideLoading());
+    dispatch(setIsLoading(false));
   };
 }
 
