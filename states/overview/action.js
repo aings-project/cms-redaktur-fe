@@ -3,26 +3,35 @@ import { toast } from "react-toastify";
 import { setIsLoading } from "../loading/action";
 
 const ActionType = {
-  RECEIVE_OVERVIEW_NEWS_DRAFT: "RECEIVE_OVERVIEW_NEWS_DRAFT",
+  RECEIVE_OVERVIEW_DATA: "RECEIVE_OVERVIEW_DATA",
 };
 
-function receiveOverviewNewsDraftActionCreator({ listNewsDraft }) {
+function receiveOverviewActionCreator({ overviewData }) {
   return {
-    type: ActionType.RECEIVE_OVERVIEW_NEWS_DRAFT,
+    type: ActionType.RECEIVE_OVERVIEW_DATA,
     payload: {
-      listNewsDraft,
+      overviewData,
     },
   };
 }
 
-function asyncReceiveOverviewNewsDraft() {
+function asyncReceiveOverviewData() {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {
       const newsDraftData = await api.getAllNewsDraft({ limit: 5 });
+      const activitiesData = await api.getAllActivities({ limit: 5 });
+      const readyToPublishData = await api.getAllNewsDraft({
+        limit: 5,
+        status: "approved",
+      });
       dispatch(
-        receiveOverviewNewsDraftActionCreator({
-          listNewsDraft: newsDraftData.draft_berita,
+        receiveOverviewActionCreator({
+          overviewData: {
+            listNewsDraft: newsDraftData.draft_berita,
+            activityLogs: activitiesData.activity_logs,
+            listReadyPublish: readyToPublishData.draft_berita,
+          },
         })
       );
     } catch (error) {
@@ -34,4 +43,4 @@ function asyncReceiveOverviewNewsDraft() {
   };
 }
 
-export { ActionType, asyncReceiveOverviewNewsDraft };
+export { ActionType, asyncReceiveOverviewData };

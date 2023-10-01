@@ -1,23 +1,34 @@
 import React, { useEffect } from "react";
 import OverviewLayout from "../../components/overview/OverviewLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveOverviewNewsDraft } from "../../states/overview/action";
 import MainLayout from "../../components/main/MainLayout";
+import { asyncReceiveOverviewData } from "../../states/overview/action";
 
 export default function Overview() {
   const dispatch = useDispatch();
 
-  const newsDraftOverview =
-    useSelector((state) => state.newsDraftOverview) || [];
+  const overviewData = useSelector((state) => state.overview);
 
   useEffect(() => {
-    dispatch(asyncReceiveOverviewNewsDraft());
+    dispatch(asyncReceiveOverviewData());
   }, [dispatch]);
 
   return (
     <MainLayout
       activePage="ikhtisar"
-      content={<OverviewLayout newsDraftList={newsDraftOverview} />}
+      content={
+        <OverviewLayout
+          newsDraftList={
+            overviewData?.listNewsDraft ? overviewData.listNewsDraft : []
+          }
+          readyToPublishList={
+            overviewData?.listReadyPublish ? overviewData.listReadyPublish : []
+          }
+          activityList={
+            overviewData?.activityLogs ? overviewData.activityLogs : []
+          }
+        />
+      }
       pageTitle="Ikhtisar"
     />
   );

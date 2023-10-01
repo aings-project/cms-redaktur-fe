@@ -14,10 +14,10 @@ export default function LoginInput({ login }) {
       <p className="text-center text-2xl font-semibold mt-6 mb-12">
         Artificial Intelligence News Generator System
       </p>
-      <p className="text-black text-lg font-semibold mb-1">Username</p>
+      <p className="text-black text-lg font-semibold mb-1">Email</p>
       <input
         className="border border-black rounded-md w-full h-10 mb-4 px-2"
-        placeholder="Masukkan username"
+        placeholder="Masukkan email"
         value={email}
         onChange={onEmailChange}
       />

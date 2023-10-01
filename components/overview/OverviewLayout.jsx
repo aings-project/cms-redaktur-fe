@@ -3,7 +3,11 @@ import OverviewActivities from "./OverviewActivities";
 import OverviewNewsDraft from "./OverviewNewsDraft";
 import OverviewReadyPublish from "./OverviewReadyPublish";
 
-export default function OverviewLayout({ newsDraftList }) {
+export default function OverviewLayout({
+  newsDraftList,
+  readyToPublishList,
+  activityList,
+}) {
   return (
     <div className="py-16 ml-6 md:ml-0 md:px-16 flex-grow h-[calc(100dvh)] overflow-y-auto">
       <div className="max-w-screen-2xl mx-auto">
@@ -14,9 +18,9 @@ export default function OverviewLayout({ newsDraftList }) {
           <div className="grow lg:max-w-7xl lg:min-w-[332px]">
             <OverviewNewsDraft newsDraftList={newsDraftList} />
             <div className="h-8" />
-            <OverviewReadyPublish newsDraftList={[]} />
+            <OverviewReadyPublish newsDraftList={readyToPublishList} />
           </div>
-          <OverviewActivities />
+          <OverviewActivities activityList={activityList} />
         </div>
       </div>
     </div>

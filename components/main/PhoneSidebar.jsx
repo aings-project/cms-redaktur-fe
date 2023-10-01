@@ -5,7 +5,7 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Delete } from "@mui/icons-material";
+import { Delete, History } from "@mui/icons-material";
 import { useRouter } from "next/router";
 
 export default function PhoneSidebar({
@@ -43,16 +43,18 @@ export default function PhoneSidebar({
         icon={<NewspaperIcon className="w-6 h-6 text-white" />}
         text={"Publikasi"}
         isSelected={activePage === "publication"}
-      />
-      <PhoneSidebarMenu
-        icon={<CommentIcon className="w-6 h-6 text-white" />}
-        text={"Komentar"}
-        isSelected={activePage === "komentar"}
+        onClick={() => router.push("/publication")}
       />
       <PhoneSidebarMenu
         icon={<Delete className="w-6 h-6 text-white" />}
         text={"Ditolak"}
         isSelected={activePage === "ditolak"}
+        onClick={() => router.push("/rejected")}
+      />
+      <PhoneSidebarMenu
+        icon={<History className="w-6 h-6 text-white" />}
+        text={"Aktivitas"}
+        isSelected={activePage === "activity"}
       />
       <PhoneSidebarMenu
         onClick={onSignOut}

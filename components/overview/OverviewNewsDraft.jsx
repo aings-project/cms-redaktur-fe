@@ -15,7 +15,7 @@ export default function OverviewNewsDraft({ newsDraftList }) {
         Draft Berita Terbaru
       </p>
       {isLoading && (
-        <div className="w-full flex justify-center mt-4 lg:mt-0">
+        <div className="w-full flex justify-center mt-4">
           <ReactLoading type="spin" color="#1e293b" height={24} width={24} />
         </div>
       )}

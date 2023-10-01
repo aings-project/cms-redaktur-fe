@@ -3,7 +3,7 @@ import authUserReducer from "./auth/reducer";
 import preloadReducer from "./preload/reducer";
 import newsDraftReducer from "./news_draft/reducer";
 import newsDraftDetailReducer from "./news_draft_detail/reducer";
-import newsDraftOverviewReducer from "./overview/reducer";
+import overviewReducer from "./overview/reducer";
 import { loadingBarReducer } from "react-redux-loading-bar";
 import validationReducer from "./validation/reducer";
 import loadingReducer from "./loading/reducer";
@@ -14,7 +14,7 @@ const store = configureStore({
     preload: preloadReducer,
     newsDraft: newsDraftReducer,
     newsDraftDetail: newsDraftDetailReducer,
-    newsDraftOverview: newsDraftOverviewReducer,
+    overview: overviewReducer,
     loadingBar: loadingBarReducer,
     validationData: validationReducer,
     loading: loadingReducer,

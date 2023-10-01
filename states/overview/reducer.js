@@ -1,12 +1,12 @@
 import { ActionType } from "./action";
 
-function newsDraftOverviewReducer(listNewsDraft = [], action = {}) {
+function overviewReducer(overviewData = null, action = {}) {
   switch (action.type) {
-    case ActionType.RECEIVE_OVERVIEW_NEWS_DRAFT:
-      return action.payload.listNewsDraft;
+    case ActionType.RECEIVE_OVERVIEW_DATA:
+      return action.payload.overviewData;
     default:
-      return listNewsDraft;
+      return overviewData;
   }
 }
 
-export default newsDraftOverviewReducer;
+export default overviewReducer;

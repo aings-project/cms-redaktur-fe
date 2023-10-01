@@ -191,6 +191,29 @@ const api = (() => {
     return data;
   }
 
+  async function getAllActivities({ page = "1", limit = "5" } = {}) {
+    const response = await fetchWithAuth(
+      `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const responseJson = await response.json();
+
+    const { error } = responseJson;
+
+    if (error) {
+      const { message } = error;
+      throw new Error(message);
+    }
+
+    return responseJson;
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -200,6 +223,7 @@ const api = (() => {
     getDetailNewsDraft,
     updateNewsDraft,
     validateNewsDraft,
+    getAllActivities,
   };
 })();
 

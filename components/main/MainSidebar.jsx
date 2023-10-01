@@ -6,7 +6,12 @@ import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MainSidebarMenu from "./MainSidebarMenu";
-import { Delete, MenuRounded } from "@mui/icons-material";
+import {
+  Delete,
+  History,
+  LocalActivity,
+  MenuRounded,
+} from "@mui/icons-material";
 import { useRouter } from "next/router";
 
 export default function MainSidebar({ activePage, auth, onSignOut }) {
@@ -51,15 +56,15 @@ export default function MainSidebar({ activePage, auth, onSignOut }) {
         onClick={() => router.push("/publication")}
       />
       <MainSidebarMenu
-        icon={<CommentIcon className="w-6 h-6 text-white" />}
-        text={"Komentar"}
-        isSelected={activePage === "komentar"}
-      />
-      <MainSidebarMenu
         icon={<Delete className="w-6 h-6 text-white" />}
         text={"Draf Ditolak"}
         isSelected={activePage === "rejected"}
         onClick={() => router.push("/rejected")}
+      />
+      <MainSidebarMenu
+        icon={<History className="w-6 h-6 text-white" />}
+        text={"Aktivitas"}
+        isSelected={activePage === "activity"}
       />
       <div className="mt-auto">
         <MainSidebarMenu
