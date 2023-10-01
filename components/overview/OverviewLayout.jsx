@@ -1,7 +1,6 @@
 import React from "react";
 import OverviewActivities from "./OverviewActivities";
-import OverviewNewsDraft from "./OverviewNewsDraft";
-import OverviewReadyPublish from "./OverviewReadyPublish";
+import OverviewSection from "./OverviewSection";
 
 export default function OverviewLayout({
   newsDraftList,
@@ -16,9 +15,15 @@ export default function OverviewLayout({
         </p>
         <div className="flex mt-6 sm:mt-10 flex-wrap xl:flex-nowrap">
           <div className="grow lg:max-w-7xl lg:min-w-[332px]">
-            <OverviewNewsDraft newsDraftList={newsDraftList} />
+            <OverviewSection
+              newsDraftList={newsDraftList}
+              title="Draft Berita Terbaru"
+            />
             <div className="h-8" />
-            <OverviewReadyPublish newsDraftList={readyToPublishList} />
+            <OverviewSection
+              newsDraftList={readyToPublishList}
+              title="Siap Dipublikasi"
+            />
           </div>
           <OverviewActivities activityList={activityList} />
         </div>
