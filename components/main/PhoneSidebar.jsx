@@ -48,7 +48,7 @@ export default function PhoneSidebar({
       <PhoneSidebarMenu
         icon={<Delete className="w-6 h-6 text-white" />}
         text={"Ditolak"}
-        isSelected={activePage === "ditolak"}
+        isSelected={activePage === "rejected"}
         onClick={() => router.push("/rejected")}
       />
       <PhoneSidebarMenu
