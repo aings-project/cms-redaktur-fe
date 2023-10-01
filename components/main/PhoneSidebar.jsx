@@ -54,7 +54,8 @@ export default function PhoneSidebar({
       <PhoneSidebarMenu
         icon={<History className="w-6 h-6 text-white" />}
         text={"Aktivitas"}
-        isSelected={activePage === "activity"}
+        isSelected={activePage === "activities"}
+        onClick={() => router.push("/activities")}
       />
       <PhoneSidebarMenu
         onClick={onSignOut}

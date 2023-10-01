@@ -1,9 +1,9 @@
-export default function activityActionParser(value) {
+function activityActionParserShort(value) {
   switch (value) {
     case "reviewing":
       return "disunting";
     case "reviewed":
-      return "diubah statusnya menjadi Menunggu Persetujuan Wartawan";
+      return "sedang diulas oleh wartawan";
     case "new":
       return "ditambahkan oleh wartawan";
     case "approved":
@@ -16,3 +16,24 @@ export default function activityActionParser(value) {
       return value;
   }
 }
+
+function activityActionParserLong(value) {
+  switch (value) {
+    case "reviewing":
+      return "Melakukan Perubahan";
+    case "reviewed":
+      return "Menunggu Persetujuan Wartawan";
+    case "new":
+      return "Baru Ditambahkan oleh Wartawan";
+    case "approved":
+      return "Disetujui oleh Wartawan";
+    case "published":
+      return "Dipublikasikan";
+    case "rejected":
+      return "Ditolak oleh Redaktur";
+    default:
+      return value;
+  }
+}
+
+export { activityActionParserShort, activityActionParserLong };

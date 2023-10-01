@@ -64,7 +64,8 @@ export default function MainSidebar({ activePage, auth, onSignOut }) {
       <MainSidebarMenu
         icon={<History className="w-6 h-6 text-white" />}
         text={"Aktivitas"}
-        isSelected={activePage === "activity"}
+        isSelected={activePage === "activities"}
+        onClick={() => router.push("/activities")}
       />
       <div className="mt-auto">
         <MainSidebarMenu

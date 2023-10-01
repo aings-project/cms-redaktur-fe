@@ -1,6 +1,6 @@
 import React from "react";
 import dateTimeFormatter from "../../utils/dateTimeFormatter";
-import activityActionParser from "../../utils/activityActionParser";
+import { activityActionParserShort } from "../../utils/activityActionParser";
 
 export default function OverviewActivityItem({
   name,
@@ -14,7 +14,7 @@ export default function OverviewActivityItem({
       <p className="font-semibold">{name}</p>
       <p className="mb-2 text-sm">{dateTimeFormatter(time)}</p>
       <p>
-        {title} {activityActionParser(action)}
+        {title} {activityActionParserShort(action)}
       </p>
     </div>
   );
