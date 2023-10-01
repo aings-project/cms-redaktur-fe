@@ -7,6 +7,7 @@ import overviewReducer from "./overview/reducer";
 import { loadingBarReducer } from "react-redux-loading-bar";
 import validationReducer from "./validation/reducer";
 import loadingReducer from "./loading/reducer";
+import activitiesReducer from "./activities/reducer";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     loadingBar: loadingBarReducer,
     validationData: validationReducer,
     loading: loadingReducer,
+    activities: activitiesReducer,
   },
 });
 
