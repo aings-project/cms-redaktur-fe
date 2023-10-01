@@ -3,6 +3,7 @@ import { Close, Menu } from "@mui/icons-material";
 import NewsDraftEditor from "./NewsDraftEditor";
 import NewsDraftEditSidebar from "./NewsDraftEditSidebar";
 import { useRouter } from "next/router";
+import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
 export default function NewsDraftEditorLayout({
   auth,
@@ -68,6 +69,9 @@ export default function NewsDraftEditorLayout({
           </div>
           <NewsDraftEditSidebar
             auth={auth}
+            updatedAt={dateTimeFormatter(newsDraft.draft_berita.created_at)}
+            journalist={newsDraft.draft_berita.user_wartawan.username}
+            editor={newsDraft.draft_berita.user_redaktur.username}
             status={newsDraft.draft_berita.status}
             version={newsDraft.draft_berita.version}
             onSetVersion={(value) => {

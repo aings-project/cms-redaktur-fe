@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import NewsDraftEditSidebarMenuDropdown from "./NewsDraftEditSidebarMenuDropdown";
 import SecondaryButton from "../shared/SecondaryButton";
 import { convertStatus } from "../../utils/draftAttributeParser";
+import NewsDraftEditSidebarInfo from "./NewsDraftEditSidebarInfo";
 
 export default function NewsDraftEditSidebar({
   maxVersion,
@@ -13,6 +14,9 @@ export default function NewsDraftEditSidebar({
   onValidate,
   auth,
   onUpdateDraft,
+  updatedAt,
+  journalist,
+  editor,
 }) {
   const [versionTemp, setVersionTemp] = useState("1");
   const numbersArray = Array.from({ length: maxVersion }, (_, index) =>
@@ -39,7 +43,7 @@ export default function NewsDraftEditSidebar({
       {isEditable && (
         <div>
           <button
-            className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full"
+            className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full text-sm"
             onClick={() => {
               onUpdateDraft("reviewing");
             }}
@@ -66,6 +70,13 @@ export default function NewsDraftEditSidebar({
           )}
         </div>
       )}
+
+      <NewsDraftEditSidebarInfo title="Diperbarui" content={updatedAt} />
+      <NewsDraftEditSidebarInfo title="Wartawan" content={journalist} />
+      {version !== 1 && (
+        <NewsDraftEditSidebarInfo title="Diredaksi Oleh" content={editor} />
+      )}
+
       <NewsDraftEditSidebarMenuDropdown
         title="Versi"
         isDisabled={false}
@@ -76,22 +87,6 @@ export default function NewsDraftEditSidebar({
         }}
         items={numbersArray}
       />
-      <div className="mb-4">
-        <p className="text-white text-base font-semibold mb-1">Status</p>
-        <p className="text-white">{convertStatus({ value: status })}</p>
-      </div>
-      {isEditable && (
-        <div>
-          <NewsDraftEditSidebarMenuDropdown
-            title="Kategori"
-            isDisabled={status !== "reviewing"}
-            value={"Belum Ada Kategori"}
-            onChange={() => {}}
-            items={["Belum Ada Kategori"]}
-          />
-        </div>
-      )}
-      <div className="w-full h-[0.25px] bg-white mb-4" />
       <div className="mb-6">
         <p className="text-white text-base font-semibold mb-1">Validitas</p>
         {validationData && (
@@ -116,6 +111,22 @@ export default function NewsDraftEditSidebar({
         disabled={false}
         onClick={() => onValidate()}
       />
+      <div className="w-full h-[0.25px] bg-white mb-4" />
+      <NewsDraftEditSidebarInfo
+        title="Status"
+        content={convertStatus({ value: status })}
+      />
+      {isEditable && (
+        <div>
+          <NewsDraftEditSidebarMenuDropdown
+            title="Kategori"
+            isDisabled={status !== "reviewing"}
+            value={"Belum Ada Kategori"}
+            onChange={() => {}}
+            items={["Belum Ada Kategori"]}
+          />
+        </div>
+      )}
       {isEditable && (
         <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 hover:cursor-not-allowed bg-slate-800">
           <p className="text-center font-semibold my-auto text-red-400">

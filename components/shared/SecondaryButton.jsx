@@ -4,13 +4,13 @@ export default function SecondaryButton({ text, onClick, disabled }) {
   return (
     <button
       onClick={onClick}
-      className={`h-12 flex items-center justify-center rounded-md border-solid border-2  w-full mb-6 
+      className={`h-12 flex items-center justify-center rounded-md border-solid border-2  w-full mb-6 hover:bg-slate-700 
       ${
         disabled ? "hover:cursor-not-allowed border-zinc-400 " : "border-white "
       }`}
     >
       <p
-        className={`text-center font-semibold my-auto ${
+        className={`text-center font-semibold my-auto text-sm ${
           disabled ? "text-zinc-400 " : "text-white "
         } `}
       >
