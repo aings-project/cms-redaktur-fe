@@ -1,5 +1,5 @@
 import React from "react";
-import OverviewComment from "./OverviewComment";
+import OverviewActivities from "./OverviewActivities";
 import OverviewNewsDraft from "./OverviewNewsDraft";
 import OverviewReadyPublish from "./OverviewReadyPublish";
 
@@ -16,7 +16,7 @@ export default function OverviewLayout({ newsDraftList }) {
             <div className="h-8" />
             <OverviewReadyPublish newsDraftList={[]} />
           </div>
-          <OverviewComment />
+          <OverviewActivities />
         </div>
       </div>
     </div>
