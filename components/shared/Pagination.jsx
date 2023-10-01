@@ -27,7 +27,7 @@ export default function Pagination({
         Halaman {currentPages} dari {totalPages}
       </p>
       <button
-        // disabled={currentPages === totalPages}
+        disabled={currentPages === totalPages}
         className={`border-2 ${
           currentPages === totalPages ? "border-slate-400" : "border-black"
         } px-2 py-1 rounded-md`}

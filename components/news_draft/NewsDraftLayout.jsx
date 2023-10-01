@@ -1,7 +1,7 @@
 import React from "react";
 import NewsDraftBody from "./NewsDraftBody";
 import NewsDraftHeader from "./NewsDraftHeader";
-import NewsDraftPagination from "./NewsDraftPagination";
+import Pagination from "../shared/Pagination";
 
 export default function NewsDraftLayout({
   newsDraftData,
@@ -24,7 +24,7 @@ export default function NewsDraftLayout({
           onSetActiveStatus={onSetActiveStatus}
           status={status}
         />
-        <NewsDraftPagination
+        <Pagination
           currentPages={
             newsDraftData?.current_page ? newsDraftData.current_page : 1
           }
