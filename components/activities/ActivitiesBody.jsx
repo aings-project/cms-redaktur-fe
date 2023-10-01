@@ -5,15 +5,17 @@ import dateTimeFormatter from "../../utils/dateTimeFormatter";
 import ActivityItem from "./ActivityItem";
 import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 export default function ActivitiesBody({ data }) {
   const isLoading = useSelector((state) => state.loading);
+  const router = useRouter();
 
   return (
     <div>
       <div className="flex-col lg:hidden shadow-md">
         <div className="bg-slate-800 h-12 w-full rounded-t-md" />
-        <div className="p-5 rounded-b-md">
+        <div className="rounded-b-md">
           {data.map((item, index) => {
             return (
               <ActivityItem
@@ -22,6 +24,8 @@ export default function ActivitiesBody({ data }) {
                 action={item.action}
                 title={item.title}
                 time={item.timestamp}
+                draftId={item.object.draft_id}
+                version={item.object.version}
               />
             );
           })}
@@ -39,7 +43,7 @@ export default function ActivitiesBody({ data }) {
       </div>
       <div className="w-full rounded-md shadow-md pb-4 lg:block hidden">
         <div className="lg:flex hidden">
-          <table className="min-w-full divide-y divide-gray-200 bg-neutral-50">
+          <table className="min-w-full bg-neutral-50">
             <thead>
               <tr className="bg-slate-800 text-white">
                 <th className="px-4 py-4 text-left">Waktu</th>
@@ -50,7 +54,15 @@ export default function ActivitiesBody({ data }) {
             </thead>
             <tbody>
               {data.map((item, index) => (
-                <tr key={index}>
+                <tr
+                  onClick={() => {
+                    router.push(
+                      `/news_draft/edit/${item.object.draft_id}/${item.object.version}`
+                    );
+                  }}
+                  className="hover:bg-slate-200 hover:cursor-pointer"
+                  key={index}
+                >
                   <td className="px-4 py-3">
                     {dateTimeFormatter(item.timestamp)}
                   </td>

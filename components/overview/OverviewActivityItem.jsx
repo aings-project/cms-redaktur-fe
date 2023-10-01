@@ -1,21 +1,33 @@
 import React from "react";
 import dateTimeFormatter from "../../utils/dateTimeFormatter";
 import { activityActionParserShort } from "../../utils/activityActionParser";
+import { useRouter } from "next/router";
 
 export default function OverviewActivityItem({
   name,
   time,
   title,
   action,
-  onTap,
+  draftId,
+  version,
 }) {
+  const router = useRouter();
+
   return (
-    <div className="border-b-2 border-b-slate-400 pb-4 mb-4">
-      <p className="font-semibold">{name}</p>
-      <p className="mb-2 text-sm">{dateTimeFormatter(time)}</p>
-      <p>
-        {title} {activityActionParserShort(action)}
-      </p>
+    <div>
+      <button
+        className="text-left hover:bg-slate-100 p-5 w-full"
+        onClick={() => {
+          router.push(`/news_draft/edit/${draftId}/${version}`);
+        }}
+      >
+        <p className="font-semibold">{name}</p>
+        <p className="mb-2 text-sm">{dateTimeFormatter(time)}</p>
+        <p>
+          {title} {activityActionParserShort(action)}
+        </p>
+      </button>
+      <div className="h-0.5 bg-slate-400 mx-4" />
     </div>
   );
 }
