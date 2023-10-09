@@ -1,4 +1,4 @@
-import { AccountCircle } from "@mui/icons-material";
+import { AccountCircle, KeyboardArrowRight } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import NewsDraftEditSidebarMenuDropdown from "./NewsDraftEditSidebarMenuDropdown";
 import SecondaryButton from "../shared/SecondaryButton";
@@ -17,6 +17,7 @@ export default function NewsDraftEditSidebar({
   updatedAt,
   journalist,
   editor,
+  onNavigateComment,
 }) {
   const [versionTemp, setVersionTemp] = useState("1");
   const numbersArray = Array.from({ length: maxVersion }, (_, index) =>
@@ -87,6 +88,28 @@ export default function NewsDraftEditSidebar({
         }}
         items={numbersArray}
       />
+      <NewsDraftEditSidebarInfo
+        title="Status"
+        content={convertStatus({ value: status })}
+      />
+      {isEditable && (
+        <div>
+          <NewsDraftEditSidebarMenuDropdown
+            title="Kategori"
+            isDisabled={status !== "reviewing"}
+            value={"Belum Ada Kategori"}
+            onChange={() => {}}
+            items={["Belum Ada Kategori"]}
+          />
+        </div>
+      )}
+      <button
+        className="flex w-full justify-between items-center"
+        onClick={onNavigateComment}
+      >
+        <NewsDraftEditSidebarInfo title="Komentar" content="2 Komentar" />
+        <KeyboardArrowRight className="text-white" />
+      </button>
       <div className="mb-6">
         <p className="text-white text-base font-semibold mb-1">Validitas</p>
         {validationData && (
@@ -112,21 +135,6 @@ export default function NewsDraftEditSidebar({
         onClick={() => onValidate()}
       />
       <div className="w-full h-[0.25px] bg-white mb-4" />
-      <NewsDraftEditSidebarInfo
-        title="Status"
-        content={convertStatus({ value: status })}
-      />
-      {isEditable && (
-        <div>
-          <NewsDraftEditSidebarMenuDropdown
-            title="Kategori"
-            isDisabled={status !== "reviewing"}
-            value={"Belum Ada Kategori"}
-            onChange={() => {}}
-            items={["Belum Ada Kategori"]}
-          />
-        </div>
-      )}
       {isEditable && (
         <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 hover:cursor-not-allowed bg-slate-800">
           <p className="text-center font-semibold my-auto text-red-400">

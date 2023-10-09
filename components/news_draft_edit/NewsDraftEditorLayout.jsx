@@ -79,6 +79,11 @@ export default function NewsDraftEditorLayout({
                 `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
               );
             }}
+            onNavigateComment={() => {
+              router.push(
+                `/comments/${newsDraft.draft_berita.draft_id}/${newsDraft.draft_berita.version}`
+              );
+            }}
             maxVersion={newsDraft.total_version}
             validationData={validationData}
             markdown={content}
