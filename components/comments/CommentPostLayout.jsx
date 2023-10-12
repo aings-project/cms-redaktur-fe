@@ -4,8 +4,8 @@ import ReactMarkdown from "react-markdown";
 
 export default function CommentPostLayout({ title, content }) {
   return (
-    <div className="bg-neutral-100 w-full">
-      <div className="bg-white max-w-screen-lg h-full overflow-y-auto mx-auto p-6">
+    <div className="bg-neutral-100 w-full min-w-min">
+      <div className="bg-white max-w-screen-lg mx-auto p-6 h-full overflow-y-auto">
         <div className="flex items-center">
           <div className="mb-6 mr-6 md:hidden">
             <ArrowBackOutlined />
