@@ -3,8 +3,8 @@ import { Search } from "@mui/icons-material";
 
 export default function NewsDraftHeader({ title }) {
   return (
-    <div className="flex justify-between my-6 flex-wrap">
-      <p className="text-black text-3xl sm:text-4xl font-bold min-w-fit mr-6 mb-6 hidden sm:block">
+    <div className="flex justify-between mb-5 flex-wrap">
+      <p className="text-black text-3xl sm:text-4xl font-bold min-w-fit mr-6 mb-5 hidden sm:block">
         {title}
       </p>
       <div className="bg-white p-2 border border-zinc-300 rounded-md h-fit w-full md:w-fit">

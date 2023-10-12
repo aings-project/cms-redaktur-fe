@@ -5,7 +5,7 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Delete, History } from "@mui/icons-material";
+import { Close, Delete, History } from "@mui/icons-material";
 import { useRouter } from "next/router";
 
 export default function PhoneSidebar({
@@ -13,17 +13,28 @@ export default function PhoneSidebar({
   activePage,
   auth,
   onSignOut,
+  onHide,
 }) {
   const router = useRouter();
 
   return (
     <div
-      className={`h-[calc(100dvh)] z-20 bg-slate-800 w-2/3 absolute top-0 left-0 sm:hidden shadow-lg transition-transform duration-300 ${
+      className={`h-[calc(100dvh)] z-20 bg-slate-800 w-full absolute top-0 left-0 sm:hidden shadow-lg transition-transform duration-300 ${
         isHidden ? "-translate-x-full" : "translate-x-0"
       }`}
     >
-      <p className="text-white text-3xl font-extrabold px-4 py-6">AINGS</p>
-      <div className="px-4 pb-2 bg-slate-800">
+      <div className="flex px-4 py-6 items-center justify-between">
+        <p className="text-white text-3xl font-extrabold">AINGS</p>
+        <button
+          onClick={() => {
+            onHide();
+          }}
+        >
+          <Close className="text-white hover:cursor-pointer" />
+        </button>
+      </div>
+
+      <div className="px-4 pb-2 bg-slate-800 mb-6">
         <p className="text-white text-base font-bold">{auth.username}</p>
         <p className="text-white text-sm font-normal">{auth.email}</p>
       </div>
