@@ -22,7 +22,7 @@ function activityActionParserLong(value) {
     case "reviewing":
       return "Melakukan Perubahan";
     case "reviewed":
-      return "Menunggu Persetujuan Wartawan";
+      return "Meminta Persetujuan Wartawan";
     case "new":
       return "Baru Ditambahkan oleh Wartawan";
     case "approved":
