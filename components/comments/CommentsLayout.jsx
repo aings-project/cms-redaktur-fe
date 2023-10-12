@@ -1,6 +1,7 @@
 import React from "react";
 import CommentContainerLayout from "./CommentContainerLayout";
 import CommentPostLayout from "./CommentPostLayout";
+import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
 export default function CommentsLayout({ newsDraft }) {
   return (
@@ -9,6 +10,7 @@ export default function CommentsLayout({ newsDraft }) {
         <CommentPostLayout
           title={newsDraft.draft_berita.title}
           content={newsDraft.draft_berita.content}
+          dateTime={dateTimeFormatter(newsDraft.draft_berita.created_at)}
         />
         <CommentContainerLayout />
       </div>

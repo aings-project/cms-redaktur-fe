@@ -15,7 +15,7 @@ function receiveNewsDraftActionCreator({ newsDraftData }) {
   };
 }
 
-function asyncReceiveNewsDraft({ status = "new", page = "1" } = {}) {
+function asyncReceiveNewsDraft({ status, page = "1" } = {}) {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {

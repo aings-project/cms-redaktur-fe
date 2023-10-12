@@ -77,7 +77,10 @@ export default function NewsDraftEditSidebar({
       {version !== 1 && (
         <NewsDraftEditSidebarInfo title="Diredaksi Oleh" content={editor} />
       )}
-
+      <NewsDraftEditSidebarInfo
+        title="Status"
+        content={convertStatus({ value: status })}
+      />
       <NewsDraftEditSidebarMenuDropdown
         title="Versi"
         isDisabled={false}
@@ -88,10 +91,7 @@ export default function NewsDraftEditSidebar({
         }}
         items={numbersArray}
       />
-      <NewsDraftEditSidebarInfo
-        title="Status"
-        content={convertStatus({ value: status })}
-      />
+
       {isEditable && (
         <div>
           <NewsDraftEditSidebarMenuDropdown

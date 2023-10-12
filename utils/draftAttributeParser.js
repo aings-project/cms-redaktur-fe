@@ -3,7 +3,7 @@ function convertStatus({ value }) {
     case "reviewing":
       return "Sedang Disunting";
     case "reviewed":
-      return "Menunggu Persetujuan";
+      return "Menunggu Persetujuan Wartawan";
     case "new":
       return "Baru";
     case "approved":
@@ -23,7 +23,7 @@ function reverseConvertStatus(value) {
       return "new";
     case "Sedang Disunting":
       return "reviewing";
-    case "Menunggu Persetujuan":
+    case "Menunggu Persetujuan Wartawan":
       return "reviewed";
     case "Siap Publikasi":
       return "approved";

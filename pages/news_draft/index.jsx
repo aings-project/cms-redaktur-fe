@@ -12,7 +12,12 @@ export default function NewsDraft() {
   const dispatch = useDispatch();
   const newsDraftData = useSelector((state) => state.newsDraft);
   const [activeStatus, setActiveStatus] = useState();
-  const status = ["Semua", "Baru", "Sedang Disunting", "Menunggu Persetujuan"];
+  const status = [
+    "Semua",
+    "Baru",
+    "Sedang Disunting",
+    "Menunggu Persetujuan Wartawan",
+  ];
 
   useEffect(() => {
     dispatch(asyncReceiveNewsDraft());
