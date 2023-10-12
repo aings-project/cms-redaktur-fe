@@ -11,7 +11,11 @@ export default function Pagination({
   onPrev,
 }) {
   return (
-    <div className="flex justify-center mt-10 items-center">
+    <div
+      className={`justify-center mt-10 items-center ${
+        totalPages === 1 ? "hidden" : "flex"
+      }`}
+    >
       <button
         disabled={currentPages === 1}
         className={`border-2 ${
