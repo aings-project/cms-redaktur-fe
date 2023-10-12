@@ -21,7 +21,7 @@ export default function NewsDraftTabBar({
               <NewsTabBarMenuItem
                 key={index}
                 title={item}
-                isActive={activeStatus === item}
+                isActive={activeStatus ? activeStatus === item : index === 0}
                 onClick={() => {
                   onSetActiveStatus(reverseConvertStatus(item));
                 }}

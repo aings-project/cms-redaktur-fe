@@ -21,7 +21,7 @@ export default function Overview() {
           newsDraftList={
             overviewData?.listNewsDraft ? overviewData.listNewsDraft : []
           }
-          readyToPublishList={
+          allNewsDraftList={
             overviewData?.listReadyPublish ? overviewData.listReadyPublish : []
           }
           activityList={

@@ -4,7 +4,7 @@ import OverviewSection from "./OverviewSection";
 
 export default function OverviewLayout({
   newsDraftList,
-  readyToPublishList,
+  allNewsDraftList,
   activityList,
 }) {
   return (
@@ -21,8 +21,8 @@ export default function OverviewLayout({
             />
             <div className="h-8" />
             <OverviewSection
-              newsDraftList={readyToPublishList}
-              title="Siap Dipublikasi"
+              newsDraftList={allNewsDraftList}
+              title="Semua Draft Berita"
             />
           </div>
           <OverviewActivities activityList={activityList} />

@@ -19,11 +19,14 @@ function asyncReceiveOverviewData() {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {
-      const newsDraftData = await api.getAllNewsDraft({ limit: 5 });
+      const newsDraftData = await api.getAllNewsDraft({
+        limit: 5,
+        status: "new",
+      });
       const activitiesData = await api.getAllActivities({ limit: 5 });
       const readyToPublishData = await api.getAllNewsDraft({
         limit: 5,
-        status: "approved",
+        status: "",
       });
       dispatch(
         receiveOverviewActionCreator({
