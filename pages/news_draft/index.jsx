@@ -22,6 +22,7 @@ export default function NewsDraft() {
   useEffect(() => {
     dispatch(asyncReceiveNewsDraft());
   }, [dispatch]);
+
   const handlePageChange = (page) => {
     dispatch(
       asyncReceiveNewsDraft({

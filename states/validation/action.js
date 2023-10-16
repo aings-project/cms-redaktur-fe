@@ -1,31 +1,16 @@
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
+import { setIsLoading } from "../loading/action";
 
-const ActionType = {
-  SET_VALIDATE_DRAFT: "SET_VALIDATE_DRAFT",
-  UNSET_VALIDATE_DRAFT: "UNSET_VALIDATE_DRAFT",
-};
-
-function setValidateDraftActionCreator({ validationData }) {
-  return {
-    type: ActionType.SET_VALIDATE_DRAFT,
-    payload: {
-      validationData,
-    },
-  };
-}
-
-function clearValidationDraftActionCreator() {
-  return {
-    type: ActionType.UNSET_VALIDATE_DRAFT,
-  };
-}
-
-function asyncReceiveValidationData({ draft_id, version, information }) {
+function asyncReceiveValidationData({
+  draft_id,
+  version,
+  information,
+  onSuccess,
+}) {
   return async (dispatch) => {
-    dispatch(clearValidationDraftActionCreator());
-    dispatch(showLoading());
+    dispatch(setIsLoading(true));
 
     try {
       const validationData = await api.validateNewsDraft({
@@ -33,7 +18,7 @@ function asyncReceiveValidationData({ draft_id, version, information }) {
         version,
         information,
       });
-      dispatch(setValidateDraftActionCreator({ validationData }));
+      onSuccess(validationData);
       toast.success("Berhasil Validasi Berita", {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -42,13 +27,8 @@ function asyncReceiveValidationData({ draft_id, version, information }) {
         position: toast.POSITION.TOP_CENTER,
       });
     }
-    dispatch(hideLoading());
+    dispatch(setIsLoading(false));
   };
 }
 
-export {
-  ActionType,
-  setValidateDraftActionCreator,
-  clearValidationDraftActionCreator,
-  asyncReceiveValidationData,
-};
+export { asyncReceiveValidationData };

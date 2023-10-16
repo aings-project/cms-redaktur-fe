@@ -5,7 +5,6 @@ import NewsDraftEditorLayout from "./NewsDraftEditorLayout";
 
 export default function NewsDraftEditLayout({
   newsDraft,
-  validationData,
   auth,
   onValidate,
   onRevalidate,
@@ -15,12 +14,6 @@ export default function NewsDraftEditLayout({
   const [showValidationModal, setShowValidationModal] = useState(false);
   const [showValidationResult, setShowValidationResult] = useState(false);
 
-  useEffect(() => {
-    if (validationData) {
-      setShowValidationModal(false);
-    }
-  }, [validationData]);
-
   return (
     <div className="relative">
       <NewsDraftEditorLayout
@@ -28,7 +21,7 @@ export default function NewsDraftEditLayout({
         onUpdateDraft={onUpdateDraft}
         isEditable={isEditable}
         newsDraft={newsDraft}
-        validationData={validationData}
+        validationData={newsDraft.validation_result}
         showValidationModal={(value) => {
           setShowValidationModal(value);
         }}
@@ -47,7 +40,7 @@ export default function NewsDraftEditLayout({
       {showValidationResult ? (
         <ValidationResult
           onClose={() => setShowValidationResult(false)}
-          validationData={validationData}
+          validationData={newsDraft.validation_result}
           onRevalidate={() => {
             setShowValidationResult(false);
             setShowValidationModal(true);

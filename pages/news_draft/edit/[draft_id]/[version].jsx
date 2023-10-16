@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useRequireAuth from "../../../../hooks/useRequireAuth";
 import NewsDraftEditLayout from "../../../../components/news_draft_edit/NewsDraftEditLayout";
 import { useRouter } from "next/router";
@@ -18,11 +18,14 @@ export default function EditNewsDraft() {
   const dispatch = useDispatch();
   const { draft_id, version } = router.query;
   const newsDraft = useSelector((state) => state.newsDraftDetail);
-  const validationData = useSelector((state) => state.validationData);
 
   const onValidate = (value) => {
     dispatch(
-      asyncReceiveValidationData({ draft_id, version, information: value })
+      asyncReceiveValidationData({
+        draft_id,
+        version,
+        information: value,
+      })
     );
   };
 
@@ -60,7 +63,6 @@ export default function EditNewsDraft() {
   return (
     <NewsDraftEditLayout
       newsDraft={newsDraft}
-      validationData={validationData}
       onValidate={(value) => onValidate(value)}
       onRevalidate={() => onRevalidate()}
       auth={auth}

@@ -96,7 +96,7 @@ export default function NewsDraftEditorLayout({
               });
             }}
             onValidate={() => {
-              if (validationData) {
+              if (validationData.length > 0) {
                 showValidationResult(true);
               } else {
                 showValidationModal(true);

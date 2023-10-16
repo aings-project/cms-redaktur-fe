@@ -112,25 +112,32 @@ export default function NewsDraftEditSidebar({
       </button>
       <div className="mb-6">
         <p className="text-white text-base font-semibold mb-1">Validitas</p>
-        {validationData && (
+        {validationData.length > 0 && (
           <div>
             <p className="text-white text-sm font-normal">
-              {validationData.type}
+              {validationData[0].result.type}
             </p>
             <p className="text-white text-sm font-semibold mt-2">Alasan</p>
-            <p className="text-white text-sm font-normal mt-2">
-              {validationData.describe}
-            </p>
+            {validationData[0].with_data && (
+              <p className="text-white text-sm font-normal mt-2">
+                {validationData[0].result.describe.entailed}
+              </p>
+            )}
+            {!validationData[0].with_data && (
+              <p className="text-white text-sm font-normal mt-2">
+                {validationData[0].result.describe}
+              </p>
+            )}
           </div>
         )}
-        {!validationData && (
+        {validationData.length === 0 && (
           <p className="text-white text-sm font-normal mt-2">
             Periksa validasi draft berita!
           </p>
         )}
       </div>
       <SecondaryButton
-        text={validationData ? "Lihat Rincian" : "Validasi"}
+        text={validationData.length > 0 ? "Lihat Rincian" : "Validasi"}
         disabled={false}
         onClick={() => onValidate()}
       />
