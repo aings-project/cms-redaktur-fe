@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import useInput from "../../hooks/useInput";
+import ReactLoading from "react-loading";
+import { useSelector } from "react-redux";
 
 export default function ValidateModal({ onClose, onValidate }) {
   const [isChecked, setIsChecked] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [text, onTextChange] = useInput("");
+  const isLoading = useSelector((state) => state.loading);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -14,7 +16,7 @@ export default function ValidateModal({ onClose, onValidate }) {
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50">
         <div className="bg-white max-w-screen-md w-full flex flex-col rounded-md overflow-y-auto max-h-[75vh]">
-          <div className="flex bg-yellow-600 p-4">
+          <div className="flex bg-slate-600 p-4">
             <p className="w-full flex justify-center font-semibold text-xl text-white">
               Konfirmasi Validasi Berita
             </p>
@@ -53,13 +55,22 @@ export default function ValidateModal({ onClose, onValidate }) {
             </div>
             <div className="mt-6 flex justify-center">
               {isLoading && (
-                <p className="mb-4">Sedang Memproses Data. Harap tunggu...</p>
+                <div className="flex">
+                  <p className="mb-4">
+                    Sedang Memproses Data. Harap tunggu...{" "}
+                  </p>
+                  <ReactLoading
+                    type="spin"
+                    color="#1e293b"
+                    height={24}
+                    width={24}
+                  />
+                </div>
               )}
               {!isLoading && (
                 <button
                   onClick={() => {
                     onValidate(text);
-                    setIsLoading(true);
                   }}
                   className="bg-zinc-800 py-4 w-1/4 text-white font-semibold rounded-md hover:bg-zinc-600"
                 >

@@ -18,6 +18,8 @@ export default function EditNewsDraft() {
   const dispatch = useDispatch();
   const { draft_id, version } = router.query;
   const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const [showValidationModal, setShowValidationModal] = useState(false);
+  const [showValidationResult, setShowValidationResult] = useState(false);
 
   const onValidate = (value) => {
     dispatch(
@@ -25,12 +27,16 @@ export default function EditNewsDraft() {
         draft_id,
         version,
         information: value,
+        onSuccess: (_) => {
+          asyncReceiveNewsDraftDetail({
+            draft_id,
+            version,
+          });
+          setShowValidationModal(false);
+          setShowValidationResult(true);
+        },
       })
     );
-  };
-
-  const onRevalidate = () => {
-    dispatch(clearValidationDraftActionCreator());
   };
 
   const onUpdateDraft = ({ id, content, title, status }) => {
@@ -41,8 +47,12 @@ export default function EditNewsDraft() {
         status,
         id,
         version,
-        onSuccess: (newVersion) =>
-          router.push(`/news_draft/edit/${draft_id}/${newVersion}`),
+        onSuccess: (newVersion) => {
+          asyncReceiveNewsDraftDetail({
+            draft_id,
+            newVersion,
+          });
+        },
       })
     );
   };
@@ -64,9 +74,12 @@ export default function EditNewsDraft() {
     <EditLayoutWrapper
       newsDraft={newsDraft}
       onValidate={(value) => onValidate(value)}
-      onRevalidate={() => onRevalidate()}
       auth={auth}
       onUpdateDraft={onUpdateDraft}
+      setShowValidationModal={setShowValidationModal}
+      setShowValidationResult={setShowValidationResult}
+      showValidationModal={showValidationModal}
+      showValidationResult={showValidationResult}
       isEditable={
         (newsDraft.draft_berita.status === "reviewing" ||
           newsDraft.draft_berita.status === "new") &&

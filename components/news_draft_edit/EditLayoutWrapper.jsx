@@ -7,13 +7,13 @@ export default function EditLayoutWrapper({
   newsDraft,
   auth,
   onValidate,
-  onRevalidate,
   onUpdateDraft,
   isEditable,
+  showValidationModal,
+  showValidationResult,
+  setShowValidationModal,
+  setShowValidationResult,
 }) {
-  const [showValidationModal, setShowValidationModal] = useState(false);
-  const [showValidationResult, setShowValidationResult] = useState(false);
-
   return (
     <div className="relative">
       <NewsDraftEditorLayout
@@ -44,7 +44,6 @@ export default function EditLayoutWrapper({
           onRevalidate={() => {
             setShowValidationResult(false);
             setShowValidationModal(true);
-            onRevalidate();
           }}
         />
       ) : null}
