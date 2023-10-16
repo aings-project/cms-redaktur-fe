@@ -7,10 +7,7 @@ import {
   asyncReceiveNewsDraftDetail,
   asyncUpdateNewsDraft,
 } from "../../../../states/news_draft_detail/action";
-import {
-  asyncReceiveValidationData,
-  clearValidationDraftActionCreator,
-} from "../../../../states/validation/action";
+import { asyncReceiveValidationData } from "../../../../states/validation/action";
 
 export default function EditNewsDraft() {
   const auth = useRequireAuth();

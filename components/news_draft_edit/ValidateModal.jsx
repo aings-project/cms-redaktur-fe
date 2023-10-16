@@ -3,7 +3,7 @@ import useInput from "../../hooks/useInput";
 import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
 
-export default function ValidateModal({ onClose, onValidate }) {
+export default function ValidateModal({ onClose, onValidate, promptWartawan }) {
   const [isChecked, setIsChecked] = useState(false);
   const [text, onTextChange] = useInput("");
   const isLoading = useSelector((state) => state.loading);
@@ -31,7 +31,12 @@ export default function ValidateModal({ onClose, onValidate }) {
             {isChecked && (
               <div>
                 <p className="font-semibold">Data yang digunakan wartawan: </p>
-                <p className="font-normal mb-4">Lorem ipsum dolor sit amet</p>
+                {promptWartawan && (
+                  <p className="font-normal mb-4">{promptWartawan}</p>
+                )}
+                {!promptWartawan && (
+                  <p className="font-normal mb-4">Tidak ada</p>
+                )}
                 <input
                   className="border-neutral-400 border-2 rounded-sm py-2 px-2 w-full"
                   placeholder="Masukkan data tambahan (jika ada)"
