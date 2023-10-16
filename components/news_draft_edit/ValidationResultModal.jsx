@@ -6,11 +6,15 @@ export default function ValidationResult({
   onRevalidate,
   validationData,
 }) {
+  const withData = validationData.validation_type === "with_data";
+  const isValid = validationData.result.type === "Valid";
+  const description = validationData.result.describe;
+
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50">
-        <div className="bg-white max-w-screen-lg w-full flex flex-col rounded-md overflow-y-auto max-h-[75vh]">
-          <div className="flex bg-yellow-600 p-4">
+        <div className="bg-white max-w-screen-md w-full flex flex-col rounded-md overflow-y-auto max-h-[75vh]">
+          <div className="flex bg-slate-600 p-4">
             <p className="w-full flex justify-center font-semibold text-xl text-white">
               Hasil Validasi Berita
             </p>
@@ -23,19 +27,20 @@ export default function ValidationResult({
           </div>
           <div className="p-6">
             <p className="font-semibold">Hasil Validasi: </p>
-            <p>{validationData.type}</p>
+            <p>{validationData.result.type}</p>
             <p className="font-semibold mt-4">Keterangan: </p>
-            <p>{validationData.describe}</p>
-            <p className="mt-4 font-semibold">Rincian</p>
-            <Editor
-              placeholder={validationData.final}
-              className="bg-neutral-50 rounded-md"
-            />
+            {withData && (
+              <div>
+                {!isValid && <p>{description.contra[0]}</p>}
+                {isValid && <p>{description.entailed[0]}</p>}
+              </div>
+            )}
+            {!withData && <p>{description}</p>}
 
             <div className="mt-6 flex justify-center">
               <button
                 onClick={onRevalidate}
-                className="bg-zinc-800 py-4 w-1/4 text-white font-semibold rounded-md hover:bg-zinc-600"
+                className="bg-slate-800 py-4 w-1/4 text-white font-semibold rounded-md hover:bg-zinc-600"
               >
                 Validasi Ulang
               </button>

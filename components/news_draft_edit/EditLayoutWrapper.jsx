@@ -40,7 +40,7 @@ export default function EditLayoutWrapper({
       {showValidationResult ? (
         <ValidationResult
           onClose={() => setShowValidationResult(false)}
-          validationData={newsDraft.validation_result}
+          validationData={newsDraft.validation_result[0]}
           onRevalidate={() => {
             setShowValidationResult(false);
             setShowValidationModal(true);

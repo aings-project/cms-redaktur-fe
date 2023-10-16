@@ -4,6 +4,7 @@ import EditSidebarDropdown from "./EditSidebarDropdown";
 import SecondaryButton from "../shared/SecondaryButton";
 import { convertStatus } from "../../utils/draftAttributeParser";
 import EditSidebarInfo from "./EditSidebarInfo";
+import EditSidebarValidation from "./EditSidebarValidation";
 
 export default function NewsDraftEditSidebar({
   maxVersion,
@@ -81,6 +82,10 @@ export default function NewsDraftEditSidebar({
         title="Status"
         content={convertStatus({ value: status })}
       />
+      <EditSidebarValidation
+        validationData={validationData}
+        onValidate={onValidate}
+      />
       <EditSidebarDropdown
         title="Versi"
         isDisabled={false}
@@ -110,38 +115,6 @@ export default function NewsDraftEditSidebar({
         <EditSidebarInfo title="Komentar" content="2 Komentar" />
         <KeyboardArrowRight className="text-white" />
       </button>
-      <div className="mb-6">
-        <p className="text-white text-base font-semibold mb-1">Validitas</p>
-        {validationData.length > 0 && (
-          <div>
-            <p className="text-white text-sm font-normal">
-              {validationData[0].result.type}
-            </p>
-            <p className="text-white text-sm font-semibold mt-2">Alasan</p>
-            {validationData[0].with_data && (
-              <p className="text-white text-sm font-normal mt-2">
-                {validationData[0].result.describe.entailed}
-              </p>
-            )}
-            {!validationData[0].with_data && (
-              <p className="text-white text-sm font-normal mt-2">
-                {validationData[0].result.describe}
-              </p>
-            )}
-          </div>
-        )}
-        {validationData.length === 0 && (
-          <p className="text-white text-sm font-normal mt-2">
-            Periksa validasi draft berita!
-          </p>
-        )}
-      </div>
-      <SecondaryButton
-        text={validationData.length > 0 ? "Lihat Rincian" : "Validasi"}
-        disabled={false}
-        onClick={() => onValidate()}
-      />
-      <div className="w-full h-[0.25px] bg-white mb-4" />
       {isEditable && (
         <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 hover:cursor-not-allowed bg-slate-800">
           <p className="text-center font-semibold my-auto text-red-400">
