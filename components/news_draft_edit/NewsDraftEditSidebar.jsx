@@ -1,9 +1,9 @@
 import { AccountCircle, KeyboardArrowRight } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
-import NewsDraftEditSidebarMenuDropdown from "./NewsDraftEditSidebarMenuDropdown";
+import EditSidebarDropdown from "./EditSidebarDropdown";
 import SecondaryButton from "../shared/SecondaryButton";
 import { convertStatus } from "../../utils/draftAttributeParser";
-import NewsDraftEditSidebarInfo from "./NewsDraftEditSidebarInfo";
+import EditSidebarInfo from "./EditSidebarInfo";
 
 export default function NewsDraftEditSidebar({
   maxVersion,
@@ -72,16 +72,16 @@ export default function NewsDraftEditSidebar({
         </div>
       )}
 
-      <NewsDraftEditSidebarInfo title="Diperbarui" content={updatedAt} />
-      <NewsDraftEditSidebarInfo title="Wartawan" content={journalist} />
+      <EditSidebarInfo title="Diperbarui" content={updatedAt} />
+      <EditSidebarInfo title="Wartawan" content={journalist} />
       {version !== 1 && (
-        <NewsDraftEditSidebarInfo title="Diredaksi Oleh" content={editor} />
+        <EditSidebarInfo title="Diredaksi Oleh" content={editor} />
       )}
-      <NewsDraftEditSidebarInfo
+      <EditSidebarInfo
         title="Status"
         content={convertStatus({ value: status })}
       />
-      <NewsDraftEditSidebarMenuDropdown
+      <EditSidebarDropdown
         title="Versi"
         isDisabled={false}
         value={versionTemp}
@@ -94,7 +94,7 @@ export default function NewsDraftEditSidebar({
 
       {isEditable && (
         <div>
-          <NewsDraftEditSidebarMenuDropdown
+          <EditSidebarDropdown
             title="Kategori"
             isDisabled={status !== "reviewing"}
             value={"Belum Ada Kategori"}
@@ -107,7 +107,7 @@ export default function NewsDraftEditSidebar({
         className="flex w-full justify-between items-center"
         onClick={onNavigateComment}
       >
-        <NewsDraftEditSidebarInfo title="Komentar" content="2 Komentar" />
+        <EditSidebarInfo title="Komentar" content="2 Komentar" />
         <KeyboardArrowRight className="text-white" />
       </button>
       <div className="mb-6">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useRequireAuth from "../../../../hooks/useRequireAuth";
-import NewsDraftEditLayout from "../../../../components/news_draft_edit/NewsDraftEditLayout";
+import EditLayoutWrapper from "../../../../components/news_draft_edit/EditLayoutWrapper";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -61,7 +61,7 @@ export default function EditNewsDraft() {
   }
 
   return (
-    <NewsDraftEditLayout
+    <EditLayoutWrapper
       newsDraft={newsDraft}
       onValidate={(value) => onValidate(value)}
       onRevalidate={() => onRevalidate()}

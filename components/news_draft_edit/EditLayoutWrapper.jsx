@@ -3,7 +3,7 @@ import ValidateModal from "./ValidateModal";
 import ValidationResult from "./ValidationResultModal";
 import NewsDraftEditorLayout from "./NewsDraftEditorLayout";
 
-export default function NewsDraftEditLayout({
+export default function EditLayoutWrapper({
   newsDraft,
   auth,
   onValidate,

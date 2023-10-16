@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function NewsDraftEditSidebarMenuDropdown({
+export default function EditSidebarDropdown({
   title,
   items,
   isDisabled,
