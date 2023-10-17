@@ -5,27 +5,31 @@ import SecondaryButton from "../shared/SecondaryButton";
 import { convertStatus } from "../../utils/draftAttributeParser";
 import EditorInfo from "./EditorInfo";
 import EditorValidation from "./EditorValidation";
+import useRequireAuth from "../../hooks/useRequireAuth";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
 export default function EditorSidebar({
-  maxVersion,
-  status,
-  version,
-  onSetVersion,
   validationData,
   onValidate,
-  auth,
   onUpdateDraft,
-  updatedAt,
-  journalist,
-  editor,
-  onNavigateComment,
 }) {
+  const router = useRouter();
+  const auth = useRequireAuth();
+  const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const updatedAt = dateTimeFormatter(newsDraft.draft_berita.created_at);
+  const journalist = newsDraft.draft_berita.user_wartawan.username;
+  const editor = newsDraft.draft_berita.user_redaktur.username;
+  const status = newsDraft.draft_berita.status;
+  const version = newsDraft.draft_berita.version;
+  const maxVersion = newsDraft.total_version;
+  const isEditable = version === maxVersion;
+
   const [versionTemp, setVersionTemp] = useState("1");
   const numbersArray = Array.from({ length: maxVersion }, (_, index) =>
     (index + 1).toString()
   );
-  const isEditable = version === maxVersion;
-
   useEffect(() => {
     setVersionTemp(version);
   }, [status, version]);
@@ -87,7 +91,9 @@ export default function EditorSidebar({
         value={versionTemp}
         onChange={(value) => {
           setVersionTemp(value);
-          onSetVersion(value);
+          router.push(
+            `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
+          );
         }}
         items={numbersArray}
       />
@@ -105,7 +111,11 @@ export default function EditorSidebar({
       )}
       <button
         className="flex w-full justify-between items-center"
-        onClick={onNavigateComment}
+        onClick={() => {
+          router.push(
+            `/comments/${newsDraft.draft_berita.draft_id}/${version}/${newsDraft.draft_berita.id}`
+          );
+        }}
       >
         <EditorInfo title="Komentar" content="Lihat Komentar" />
         <KeyboardArrowRight className="text-white" />

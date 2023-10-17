@@ -68,23 +68,6 @@ export default function EditorLayout({
             </button>
           </div>
           <EditorSidebar
-            auth={auth}
-            updatedAt={dateTimeFormatter(newsDraft.draft_berita.created_at)}
-            journalist={newsDraft.draft_berita.user_wartawan.username}
-            editor={newsDraft.draft_berita.user_redaktur.username}
-            status={newsDraft.draft_berita.status}
-            version={newsDraft.draft_berita.version}
-            onSetVersion={(value) => {
-              router.push(
-                `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
-              );
-            }}
-            onNavigateComment={() => {
-              router.push(
-                `/comments/${newsDraft.draft_berita.draft_id}/${newsDraft.draft_berita.version}/${newsDraft.draft_berita.id}`
-              );
-            }}
-            maxVersion={newsDraft.total_version}
             validationData={validationData}
             markdown={content}
             onUpdateDraft={(status) => {
