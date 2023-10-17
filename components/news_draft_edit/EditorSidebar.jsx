@@ -1,12 +1,12 @@
 import { AccountCircle, KeyboardArrowRight } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
-import EditSidebarDropdown from "./EditSidebarDropdown";
+import EditorDropdown from "./EditorDropdown";
 import SecondaryButton from "../shared/SecondaryButton";
 import { convertStatus } from "../../utils/draftAttributeParser";
-import EditSidebarInfo from "./EditSidebarInfo";
-import EditSidebarValidation from "./EditSidebarValidation";
+import EditorInfo from "./EditorInfo";
+import EditorValidation from "./EditorValidation";
 
-export default function NewsDraftEditSidebar({
+export default function EditorSidebar({
   maxVersion,
   status,
   version,
@@ -73,20 +73,15 @@ export default function NewsDraftEditSidebar({
         </div>
       )}
 
-      <EditSidebarInfo title="Diperbarui" content={updatedAt} />
-      <EditSidebarInfo title="Wartawan" content={journalist} />
-      {version !== 1 && (
-        <EditSidebarInfo title="Diredaksi Oleh" content={editor} />
-      )}
-      <EditSidebarInfo
-        title="Status"
-        content={convertStatus({ value: status })}
-      />
-      <EditSidebarValidation
+      <EditorInfo title="Diperbarui" content={updatedAt} />
+      <EditorInfo title="Wartawan" content={journalist} />
+      {version !== 1 && <EditorInfo title="Diredaksi Oleh" content={editor} />}
+      <EditorInfo title="Status" content={convertStatus({ value: status })} />
+      <EditorValidation
         validationData={validationData}
         onValidate={onValidate}
       />
-      <EditSidebarDropdown
+      <EditorDropdown
         title="Versi"
         isDisabled={false}
         value={versionTemp}
@@ -99,7 +94,7 @@ export default function NewsDraftEditSidebar({
 
       {isEditable && (
         <div>
-          <EditSidebarDropdown
+          <EditorDropdown
             title="Kategori"
             isDisabled={status !== "reviewing"}
             value={"Belum Ada Kategori"}
@@ -112,7 +107,7 @@ export default function NewsDraftEditSidebar({
         className="flex w-full justify-between items-center"
         onClick={onNavigateComment}
       >
-        <EditSidebarInfo title="Komentar" content="Lihat Komentar" />
+        <EditorInfo title="Komentar" content="Lihat Komentar" />
         <KeyboardArrowRight className="text-white" />
       </button>
       {isEditable && (

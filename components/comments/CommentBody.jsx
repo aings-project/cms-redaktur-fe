@@ -1,13 +1,13 @@
 import React from "react";
-import CommentItemFromOther from "./CommentItemFromOther";
-import CommentItemFromUser from "./CommentItemFromUser";
+import CommentItemOther from "./CommentItemOther";
+import CommentItemUser from "./CommentItemUser";
 import { Send } from "@mui/icons-material";
 import useRequireAuth from "../../hooks/useRequireAuth";
 import useInput from "../../hooks/useInput";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
 
-export default function CommentContainerLayout({ comments, onPostComment }) {
+export default function CommentBody({ comments, onPostComment }) {
   const isLoading = useSelector((state) => state.loading);
   const auth = useRequireAuth();
   const [content, setContent, forceSetContent] = useInput("");
@@ -39,14 +39,14 @@ export default function CommentContainerLayout({ comments, onPostComment }) {
                 {item.user_redaktur && (
                   <>
                     {item.user_redaktur.username !== auth.username && (
-                      <CommentItemFromOther
+                      <CommentItemOther
                         content={item.content}
                         dateTime={item.created_at}
                         sender={item.user_redaktur.username}
                       />
                     )}
                     {item.user_redaktur.username === auth.username && (
-                      <CommentItemFromUser
+                      <CommentItemUser
                         content={item.content}
                         dateTime={item.created_at}
                         sender={item.user_redaktur.username}
@@ -55,7 +55,7 @@ export default function CommentContainerLayout({ comments, onPostComment }) {
                   </>
                 )}
                 {item.user_wartawan && (
-                  <CommentItemFromOther
+                  <CommentItemOther
                     content={item.content}
                     dateTime={item.created_at}
                     sender={item.user_wartawan.username}

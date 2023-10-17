@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function EditSidebarInfo({ title, content }) {
+export default function EditorInfo({ title, content }) {
   return (
     <div className="mb-4 flex flex-col justify-start items-start">
       <p className="text-white text-sm font-semibold mb-1">{title}</p>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Close, Menu } from "@mui/icons-material";
-import NewsDraftEditor from "./NewsDraftEditor";
-import NewsDraftEditSidebar from "./NewsDraftEditSidebar";
+import EditorBody from "./EditorBody";
+import EditorSidebar from "./EditorSidebar";
 import { useRouter } from "next/router";
 import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
-export default function NewsDraftEditorLayout({
+export default function EditorLayout({
   auth,
   onUpdateDraft,
   isEditable,
@@ -39,7 +39,7 @@ export default function NewsDraftEditorLayout({
             <Menu />
           </button>
         </div>
-        <NewsDraftEditor
+        <EditorBody
           title={title}
           content={content}
           isEditable={isEditable}
@@ -67,7 +67,7 @@ export default function NewsDraftEditorLayout({
               <Close className="text-white" />
             </button>
           </div>
-          <NewsDraftEditSidebar
+          <EditorSidebar
             auth={auth}
             updatedAt={dateTimeFormatter(newsDraft.draft_berita.created_at)}
             journalist={newsDraft.draft_berita.user_wartawan.username}

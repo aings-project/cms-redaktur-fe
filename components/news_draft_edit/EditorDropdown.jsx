@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function EditSidebarDropdown({
+export default function EditorDropdown({
   title,
   items,
   isDisabled,

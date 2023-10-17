@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ValidateModal from "./ValidateModal";
 import ValidationResult from "./ValidationResultModal";
-import NewsDraftEditorLayout from "./NewsDraftEditorLayout";
+import EditorLayout from "./EditorLayout";
 
 export default function EditLayoutWrapper({
   newsDraft,
@@ -16,7 +16,7 @@ export default function EditLayoutWrapper({
 }) {
   return (
     <div className="relative">
-      <NewsDraftEditorLayout
+      <EditorLayout
         auth={auth}
         onUpdateDraft={onUpdateDraft}
         isEditable={isEditable}

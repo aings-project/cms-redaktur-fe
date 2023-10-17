@@ -1,7 +1,7 @@
 import React from "react";
 import SecondaryButton from "../shared/SecondaryButton";
 
-export default function EditSidebarValidation({ validationData, onValidate }) {
+export default function EditorValidation({ validationData, onValidate }) {
   const isValidated = validationData.length > 0;
 
   const withData = isValidated

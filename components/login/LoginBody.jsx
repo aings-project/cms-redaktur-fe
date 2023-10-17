@@ -3,7 +3,7 @@ import useInput from "../../hooks/useInput";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
 
-export default function LoginInput({ login }) {
+export default function LoginBody({ login }) {
   const [email, onEmailChange] = useInput("");
   const [password, onPasswordChange] = useInput("");
   const isLoading = useSelector((state) => state.loading);

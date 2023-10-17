@@ -2,7 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import Editor from "../shared/Editor";
 
-export default function NewsDraftEditor({
+export default function EditorBody({
   content,
   onChange,
   isEditable,

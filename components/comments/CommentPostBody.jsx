@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-export default function CommentPostLayout({ title, content, dateTime }) {
+export default function CommentPostBody({ title, content, dateTime }) {
   const router = useRouter();
 
   return (
