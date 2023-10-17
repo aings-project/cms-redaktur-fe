@@ -3,10 +3,8 @@ import { Close, Menu } from "@mui/icons-material";
 import EditorBody from "./EditorBody";
 import EditorSidebar from "./EditorSidebar";
 import { useRouter } from "next/router";
-import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
 export default function EditorLayout({
-  auth,
   onUpdateDraft,
   isEditable,
   newsDraft,
@@ -68,7 +66,6 @@ export default function EditorLayout({
             </button>
           </div>
           <EditorSidebar
-            validationData={validationData}
             markdown={content}
             onUpdateDraft={(status) => {
               onUpdateDraft({

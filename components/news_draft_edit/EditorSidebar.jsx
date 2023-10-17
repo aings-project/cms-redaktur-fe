@@ -10,11 +10,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
-export default function EditorSidebar({
-  validationData,
-  onValidate,
-  onUpdateDraft,
-}) {
+export default function EditorSidebar({ onValidate, onUpdateDraft }) {
   const router = useRouter();
   const auth = useRequireAuth();
   const newsDraft = useSelector((state) => state.newsDraftDetail);
@@ -81,10 +77,7 @@ export default function EditorSidebar({
       <EditorInfo title="Wartawan" content={journalist} />
       {version !== 1 && <EditorInfo title="Diredaksi Oleh" content={editor} />}
       <EditorInfo title="Status" content={convertStatus({ value: status })} />
-      <EditorValidation
-        validationData={validationData}
-        onValidate={onValidate}
-      />
+      <EditorValidation onValidate={onValidate} />
       <EditorDropdown
         title="Versi"
         isDisabled={false}

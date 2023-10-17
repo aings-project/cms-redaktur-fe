@@ -5,7 +5,6 @@ import EditorLayout from "./EditorLayout";
 
 export default function EditLayoutWrapper({
   newsDraft,
-  auth,
   onValidate,
   onUpdateDraft,
   isEditable,
@@ -17,7 +16,6 @@ export default function EditLayoutWrapper({
   return (
     <div className="relative">
       <EditorLayout
-        auth={auth}
         onUpdateDraft={onUpdateDraft}
         isEditable={isEditable}
         newsDraft={newsDraft}

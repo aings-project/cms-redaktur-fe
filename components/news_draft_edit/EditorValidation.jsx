@@ -1,7 +1,10 @@
 import React from "react";
 import SecondaryButton from "../shared/SecondaryButton";
+import { useSelector } from "react-redux";
 
-export default function EditorValidation({ validationData, onValidate }) {
+export default function EditorValidation({ onValidate }) {
+  const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const validationData = newsDraft.validation_result;
   const isValidated = validationData.length > 0;
 
   const withData = isValidated

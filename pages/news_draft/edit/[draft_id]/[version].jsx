@@ -71,7 +71,6 @@ export default function EditNewsDraft() {
     <EditLayoutWrapper
       newsDraft={newsDraft}
       onValidate={(value) => onValidate(value)}
-      auth={auth}
       onUpdateDraft={onUpdateDraft}
       setShowValidationModal={setShowValidationModal}
       setShowValidationResult={setShowValidationResult}
