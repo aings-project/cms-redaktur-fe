@@ -6,10 +6,6 @@ export default function ValidationResult({
   onRevalidate,
   validationData,
 }) {
-  const withData = validationData.validation_type === "with_data";
-  const isValid = validationData.result.type === "Valid";
-  const description = validationData.result.describe;
-
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50">
@@ -27,15 +23,9 @@ export default function ValidationResult({
           </div>
           <div className="p-6">
             <p className="font-semibold">Hasil Validasi: </p>
-            <p>{validationData.result.type}</p>
+            <p>{validationData.status}</p>
             <p className="font-semibold mt-4">Keterangan: </p>
-            {withData && (
-              <div>
-                {!isValid && <p>{description.contra[0]}</p>}
-                {isValid && <p>{description.entailed[0]}</p>}
-              </div>
-            )}
-            {!withData && <p>{description}</p>}
+            <p>{validationData.description}</p>
 
             <div className="mt-6 flex justify-center">
               <button

@@ -8,13 +8,12 @@ export default function EditorLayout({
   onUpdateDraft,
   isEditable,
   newsDraft,
-  validationData,
   showValidationModal,
   showValidationResult,
 }) {
   const router = useRouter();
-  const [content, setContent] = useState(newsDraft.draft_berita.content);
-  const [title, setTitle] = useState(newsDraft.draft_berita.title);
+  const [content, setContent] = useState(newsDraft.content);
+  const [title, setTitle] = useState(newsDraft.title);
   const [hideNavbar, setHideNavbar] = useState(true);
 
   const handleToggle = () => {
@@ -22,8 +21,8 @@ export default function EditorLayout({
   };
 
   useEffect(() => {
-    setContent(newsDraft.draft_berita.content);
-    setTitle(newsDraft.draft_berita.title);
+    setContent(newsDraft.content);
+    setTitle(newsDraft.title);
   }, [newsDraft]);
 
   return (
@@ -69,14 +68,14 @@ export default function EditorLayout({
             markdown={content}
             onUpdateDraft={(status) => {
               onUpdateDraft({
-                id: newsDraft.draft_berita.id,
+                id: newsDraft.id,
                 status,
                 content,
                 title,
               });
             }}
             onValidate={() => {
-              if (validationData.length > 0) {
+              if (newsDraft.validation) {
                 showValidationResult(true);
               } else {
                 showValidationModal(true);

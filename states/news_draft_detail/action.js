@@ -1,3 +1,4 @@
+import NewsDraftModels from "../../models/NewsDraftModel";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
 
@@ -26,10 +27,11 @@ function asyncReceiveNewsDraftDetail({ draft_id, version }) {
     dispatch(clearNewsDraftDetailActionCreator());
 
     try {
-      const newsDraft = await api.getDetailNewsDraft({
+      const response = await api.getDetailNewsDraft({
         draft_id,
         version,
       });
+      const newsDraft = NewsDraftModels(response);
       dispatch(receiveNewsDraftDetailActionCreator({ newsDraft }));
     } catch (error) {
       toast.error(error.message, {

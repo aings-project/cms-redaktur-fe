@@ -4,16 +4,8 @@ import { useSelector } from "react-redux";
 
 export default function EditorValidation({ onValidate }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
-  const validationData = newsDraft.validation_result;
-  const isValidated = validationData.length > 0;
-
-  const withData = isValidated
-    ? validationData[0].validation_type === "with_data"
-    : false;
-  const isValid = isValidated
-    ? validationData[0].result.type === "Valid"
-    : false;
-  const description = isValidated ? validationData[0].result.describe : "";
+  const validationData = newsDraft.validation;
+  const isValidated = validationData;
 
   return (
     <div>
@@ -22,28 +14,12 @@ export default function EditorValidation({ onValidate }) {
         {isValidated && (
           <div>
             <p className="text-white text-sm font-normal">
-              {validationData[0].result.type}
+              {validationData.status}
             </p>
             <p className="text-white text-sm font-semibold mt-2">Alasan</p>
-            {withData && (
-              <div>
-                {!isValid && (
-                  <p className="text-white text-sm font-normal mt-2">
-                    {description.contra[0]}
-                  </p>
-                )}
-                {isValid && (
-                  <p className="text-white text-sm font-normal mt-2">
-                    {description.entailed[0]}
-                  </p>
-                )}
-              </div>
-            )}
-            {!withData && (
-              <p className="text-white text-sm font-normal mt-2">
-                {description}
-              </p>
-            )}
+            <p className="text-white text-sm font-normal mt-2">
+              {validationData.description}
+            </p>
           </div>
         )}
         {!isValidated && (

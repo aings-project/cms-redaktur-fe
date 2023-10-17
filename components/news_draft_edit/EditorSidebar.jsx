@@ -14,12 +14,12 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
   const router = useRouter();
   const auth = useRequireAuth();
   const newsDraft = useSelector((state) => state.newsDraftDetail);
-  const updatedAt = dateTimeFormatter(newsDraft.draft_berita.created_at);
-  const journalist = newsDraft.draft_berita.user_wartawan.username;
-  const editor = newsDraft.draft_berita.user_redaktur.username;
-  const status = newsDraft.draft_berita.status;
-  const version = newsDraft.draft_berita.version;
-  const maxVersion = newsDraft.total_version;
+  const updatedAt = dateTimeFormatter(newsDraft.dateTime);
+  const journalist = newsDraft.wartawan;
+  const editor = newsDraft.editor;
+  const status = newsDraft.status;
+  const version = newsDraft.version;
+  const maxVersion = newsDraft.maxVersion;
   const isEditable = version === maxVersion;
 
   const [versionTemp, setVersionTemp] = useState("1");
@@ -84,9 +84,7 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
         value={versionTemp}
         onChange={(value) => {
           setVersionTemp(value);
-          router.push(
-            `/news_draft/edit/${newsDraft.draft_berita.draft_id}/${value}`
-          );
+          router.push(`/news_draft/edit/${newsDraft.draft_id}/${value}`);
         }}
         items={numbersArray}
       />
@@ -106,7 +104,7 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
         className="flex w-full justify-between items-center"
         onClick={() => {
           router.push(
-            `/comments/${newsDraft.draft_berita.draft_id}/${version}/${newsDraft.draft_berita.id}`
+            `/comments/${newsDraft.draft_id}/${version}/${newsDraft.id}`
           );
         }}
       >
