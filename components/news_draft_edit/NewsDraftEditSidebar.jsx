@@ -112,7 +112,7 @@ export default function NewsDraftEditSidebar({
         className="flex w-full justify-between items-center"
         onClick={onNavigateComment}
       >
-        <EditSidebarInfo title="Komentar" content="2 Komentar" />
+        <EditSidebarInfo title="Komentar" content="Lihat Komentar" />
         <KeyboardArrowRight className="text-white" />
       </button>
       {isEditable && (

@@ -24,8 +24,16 @@ export default function EditSidebarValidation({ validationData, onValidate }) {
             <p className="text-white text-sm font-semibold mt-2">Alasan</p>
             {withData && (
               <div>
-                {!isValid && <p>{description.contra[0]}</p>}
-                {isValid && <p>{description.entailed[0]}</p>}
+                {!isValid && (
+                  <p className="text-white text-sm font-normal mt-2">
+                    {description.contra[0]}
+                  </p>
+                )}
+                {isValid && (
+                  <p className="text-white text-sm font-normal mt-2">
+                    {description.entailed[0]}
+                  </p>
+                )}
               </div>
             )}
             {!withData && (

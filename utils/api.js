@@ -212,6 +212,54 @@ const api = (() => {
     return responseJson;
   }
 
+  async function getCommentList({ page = "1", limit = "20", id } = {}) {
+    const response = await fetchWithAuth(
+      `${BASE_URL}/v1/comments/${id}?page=${page}&limit=${limit}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const responseJson = await response.json();
+
+    const { error } = responseJson;
+
+    if (error) {
+      const { message } = error;
+      throw new Error(message);
+    }
+
+    return responseJson;
+  }
+
+  async function postComment({ id_redaktur, content, id }) {
+    const body = {
+      content,
+      id_redaktur,
+    };
+    const response = await fetchWithAuth(`${BASE_URL}/v1/comments/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    const responseJson = await response.json();
+
+    const { error } = responseJson;
+
+    if (error) {
+      const { message } = error;
+      throw new Error(message);
+    }
+
+    return responseJson;
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -222,6 +270,8 @@ const api = (() => {
     updateNewsDraft,
     validateNewsDraft,
     getAllActivities,
+    getCommentList,
+    postComment,
   };
 })();
 

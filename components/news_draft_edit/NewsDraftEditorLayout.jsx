@@ -31,7 +31,7 @@ export default function NewsDraftEditorLayout({
   return (
     <div className="flex bg-neutral-50 h-[calc(100dvh)] overflow-y-auto">
       <div className="p-6 w-full flex flex-col max-w-screen-lg mx-auto bg-white">
-        <div className="flex justify-between fixed md:relative z-20 top-0 left-0 right-0 px-6 py-3 md:px-0 md:py-0 md:mb-6 bg-white shadow-md md:shadow-none">
+        <div className="flex justify-between fixed md:relative z-10 top-0 left-0 right-0 px-6 py-3 md:px-0 md:py-0 md:mb-6 bg-white shadow-md md:shadow-none">
           <button className="w-fit flex" onClick={() => router.push("/")}>
             <p className="text-black text-3xl font-extrabold">AINGS</p>
           </button>
@@ -56,7 +56,7 @@ export default function NewsDraftEditorLayout({
           hideNavbar
             ? "translate-x-full md:translate-x-0"
             : "translate-x-0 flex sm:w-2/3 shadow-lg"
-        } md:flex w-full md:max-w-xs md:z-30 fixed left-0 md:static`}
+        } md:flex w-full md:max-w-xs md:z-30 fixed right-0 md:static`}
       >
         <div className="h-[calc(100dvh)] w-full bg-slate-800 overflow-y-auto">
           <div className="md:hidden flex pt-6 px-6">
@@ -81,7 +81,7 @@ export default function NewsDraftEditorLayout({
             }}
             onNavigateComment={() => {
               router.push(
-                `/comments/${newsDraft.draft_berita.draft_id}/${newsDraft.draft_berita.version}`
+                `/comments/${newsDraft.draft_berita.draft_id}/${newsDraft.draft_berita.version}/${newsDraft.draft_berita.id}`
               );
             }}
             maxVersion={newsDraft.total_version}

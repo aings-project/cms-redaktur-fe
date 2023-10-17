@@ -1,14 +1,12 @@
 import React from "react";
+import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
-export default function CommentItemFromOther() {
+export default function CommentItemFromOther({ sender, content, dateTime }) {
   return (
-    <div className="bg-slate-100 p-5 rounded-e-2xl rounded-bl-xl mt-4 w-fit max-w-md flex flex-col mr-8">
-      <p className="font-semibold">alikurniawan</p>
-      <p className="mb-2 text-sm">11 Desember 2021 19:34 WIB</p>
-      <p>
-        Menurut saya artikel ini terlalu tendensius, mohon diperbaiki. Bagian
-        protes tersebut bisa diganti dengan meminta diskusi
-      </p>
+    <div className="bg-slate-100 p-5 rounded-e-2xl rounded-bl-xl mt-4 md:w-fit md:max-w-md w-full flex flex-col md:mr-8">
+      <p className="font-semibold">{sender}</p>
+      <p className="mb-2 text-sm">{dateTimeFormatter(dateTime)}</p>
+      <p>{content}</p>
     </div>
   );
 }
