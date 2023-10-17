@@ -114,7 +114,12 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
         <KeyboardArrowRight className="text-white" />
       </button>
       {isEditable && (
-        <button className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 hover:cursor-not-allowed bg-slate-800">
+        <button
+          className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-slate-800"
+          onClick={() => {
+            onUpdateDraft("rejected");
+          }}
+        >
           <p className="text-center font-semibold my-auto text-red-400">
             Tolak Berita
           </p>
