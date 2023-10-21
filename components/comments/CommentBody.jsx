@@ -1,6 +1,5 @@
 import React from "react";
-import CommentItemOther from "./CommentItemOther";
-import CommentItemUser from "./CommentItemUser";
+import CommentItem from "./CommentItem";
 import { Send } from "@mui/icons-material";
 import useRequireAuth from "../../hooks/useRequireAuth";
 import useInput from "../../hooks/useInput";
@@ -15,6 +14,29 @@ export default function CommentBody({ comments, onPostComment }) {
     <div className="bg-white md:bg-slate-800 w-full md:min-w-0 md:w-3/5 lg:max-w-xl px-6 md:px-4 mx-auto md:h-full flex flex-col">
       <div className="flex flex-col md:h-full">
         <p className="font-semibold text-xl md:hidden">Komentar</p>
+        {isLoading && <ReactLoading type="spin" height={24} width={24} />}
+        <div className="overflow-y-auto pb-4 lg:overflow-y-auto flex flex-col-reverse pr-4">
+          {comments.map((item, index) => {
+            return (
+              <>
+                {item.user_redaktur && (
+                  <CommentItem
+                    content={item.content}
+                    dateTime={item.created_at}
+                    sender={item.user_redaktur.username}
+                  />
+                )}
+                {item.user_wartawan && (
+                  <CommentItem
+                    content={item.content}
+                    dateTime={item.created_at}
+                    sender={item.user_wartawan.username}
+                  />
+                )}
+              </>
+            );
+          })}
+        </div>
         <div className="mt-2 w-full bg-neutral-100 rounded-md border-2 border-neutral-300 flex items-center pr-4 mb-4">
           <input
             placeholder="Berikan komentar..."
@@ -30,40 +52,6 @@ export default function CommentBody({ comments, onPostComment }) {
           >
             <Send />
           </button>
-        </div>
-        {isLoading && <ReactLoading type="spin" height={24} width={24} />}
-        <div className="overflow-y-auto pb-4 lg:overflow-y-auto">
-          {comments.map((item, index) => {
-            return (
-              <>
-                {item.user_redaktur && (
-                  <>
-                    {item.user_redaktur.username !== auth.username && (
-                      <CommentItemOther
-                        content={item.content}
-                        dateTime={item.created_at}
-                        sender={item.user_redaktur.username}
-                      />
-                    )}
-                    {item.user_redaktur.username === auth.username && (
-                      <CommentItemUser
-                        content={item.content}
-                        dateTime={item.created_at}
-                        sender={item.user_redaktur.username}
-                      />
-                    )}
-                  </>
-                )}
-                {item.user_wartawan && (
-                  <CommentItemOther
-                    content={item.content}
-                    dateTime={item.created_at}
-                    sender={item.user_wartawan.username}
-                  />
-                )}
-              </>
-            );
-          })}
         </div>
       </div>
     </div>

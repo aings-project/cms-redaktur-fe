@@ -24,9 +24,7 @@ export default function dateTimeFormatter(inputDateTime) {
   const monthName = months[date.getUTCMonth()];
   const year = date.getUTCFullYear();
   const hour = date.getUTCHours();
-  const minute = date.getUTCMinutes();
+  const minute = (date.getUTCMinutes() < 10 ? "0" : "") + date.getUTCMinutes();
 
-  const formattedDateTime = `${dayName}, ${dayOfMonth} ${monthName} ${year} ${hour}:${minute}`;
-
-  return formattedDateTime;
+  return `${dayName}, ${dayOfMonth} ${monthName} ${year} ${hour}:${minute}`;
 }
