@@ -40,7 +40,11 @@ export default function CommentBody({ onPostComment, id }) {
     <div className="bg-white md:bg-slate-800 w-full md:min-w-0 md:w-3/5 lg:max-w-xl px-6 md:px-4 mx-auto md:h-full flex flex-col">
       <div className="flex flex-col md:h-full">
         <p className="font-semibold text-xl md:hidden">Komentar</p>
-        {isLoading && <ReactLoading type="spin" height={24} width={24} />}
+        {isLoading && (
+          <div className="p-2 w-full flex justify-center">
+            <ReactLoading type="spin" height={24} width={24} />
+          </div>
+        )}
         {commentList.length > 0 && (
           <div className="overflow-y-auto pb-4 lg:overflow-y-auto flex flex-col-reverse pr-4">
             {commentList.map((item, index) => {
@@ -69,7 +73,7 @@ export default function CommentBody({ onPostComment, id }) {
                   onLoadMoreComments();
                 }}
               >
-                <p className="text-white">Muat Komentar Lama</p>
+                <p className="text-white pt-2">Muat Komentar Lama</p>
               </button>
             )}
           </div>
