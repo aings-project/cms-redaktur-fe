@@ -6,11 +6,11 @@ const ActionType = {
   RECEIVE_COMMENT_LIST: "RECEIVE_COMMENT_LIST",
 };
 
-function receiveCommentListActionCreator({ CommentListData }) {
+function receiveCommentListActionCreator({ commentData }) {
   return {
     type: ActionType.RECEIVE_COMMENT_LIST,
     payload: {
-      CommentListData,
+      commentData,
     },
   };
 }
@@ -19,10 +19,10 @@ function asyncReceiveCommentList({ page = "1", id } = {}) {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {
-      const CommentListData = await api.getCommentList({ id, page });
+      const commentData = await api.getCommentList({ id, page });
       dispatch(
         receiveCommentListActionCreator({
-          CommentListData: CommentListData.comments,
+          commentData,
         })
       );
     } catch (error) {
@@ -39,10 +39,10 @@ function asyncPostCommentList({ content, id_redaktur, id } = {}) {
     dispatch(setIsLoading(true));
     try {
       await api.postComment({ id_redaktur, content, id });
-      const CommentListData = await api.getCommentList({ id });
+      const commentData = await api.getCommentList({ id });
       dispatch(
         receiveCommentListActionCreator({
-          CommentListData: CommentListData.comments,
+          commentData,
         })
       );
     } catch (error) {

@@ -1,11 +1,11 @@
 import { ActionType } from "./action";
 
-function commentListReducer(CommentListData = [], action = {}) {
+function commentListReducer(commentData = [], action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_COMMENT_LIST:
-      return action.payload.CommentListData;
+      return action.payload.commentData;
     default:
-      return CommentListData;
+      return commentData;
   }
 }
 

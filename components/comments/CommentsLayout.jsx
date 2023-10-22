@@ -3,7 +3,7 @@ import CommentBody from "./CommentBody";
 import CommentPostBody from "./CommentPostBody";
 import dateTimeFormatter from "../../utils/dateTimeFormatter";
 
-export default function CommentsLayout({ newsDraft, comments, onPostComment }) {
+export default function CommentsLayout({ newsDraft, onPostComment, id }) {
   return (
     <div className="flex bg-neutral-50 h-[calc(100dvh)] overflow-y-auto">
       <div className="flex flex-wrap md:flex-nowrap w-full">
@@ -12,7 +12,7 @@ export default function CommentsLayout({ newsDraft, comments, onPostComment }) {
           content={newsDraft.content}
           dateTime={dateTimeFormatter(newsDraft.dateTime)}
         />
-        <CommentBody comments={comments} onPostComment={onPostComment} />
+        <CommentBody onPostComment={onPostComment} id={id} />
       </div>
     </div>
   );

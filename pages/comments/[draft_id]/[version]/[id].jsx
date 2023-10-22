@@ -32,7 +32,7 @@ export default function Comments() {
       asyncPostCommentList({
         content,
         id_redaktur: auth.id,
-        id: newsDraft.draft_berita.id,
+        id: newsDraft.id,
       })
     );
   };
@@ -43,9 +43,9 @@ export default function Comments() {
 
   return (
     <CommentsLayout
-      comments={comments}
       newsDraft={newsDraft}
       onPostComment={onPostComment}
+      id={id}
     />
   );
 }
