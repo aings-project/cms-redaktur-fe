@@ -1,17 +1,23 @@
 function activityActionParserShort(value) {
   switch (value) {
     case "reviewing":
-      return "disunting";
+      return "Menyunting draf berjudul";
     case "reviewed":
-      return "sedang diulas oleh wartawan";
+      return "Menunggu konfirmasi wartawan untuk berita";
     case "new":
-      return "ditambahkan oleh wartawan";
+      return "Menambahkan berita berjudul";
     case "approved":
-      return "sudah disetujui oleh wartawan";
+      return "Menyetujui berita";
     case "published":
-      return "telah dipublikasikan";
+      return "Mempublikasikan berita";
     case "rejected":
-      return "ditolak oleh redaktur";
+      return "Menolak berita";
+    case "with_data":
+      return "Melakukan validasi untuk berita";
+    case "without_data":
+      return "Melakukan validasi untuk berita";
+    case "comment":
+      return "Mengomentari";
     default:
       return value;
   }
@@ -20,17 +26,23 @@ function activityActionParserShort(value) {
 function activityActionParserLong(value) {
   switch (value) {
     case "reviewing":
-      return "Melakukan Perubahan";
+      return "Mengubah berita";
     case "reviewed":
       return "Meminta Persetujuan Wartawan";
     case "new":
-      return "Baru Ditambahkan oleh Wartawan";
+      return "Menambahkan berita";
     case "approved":
-      return "Disetujui oleh Wartawan";
+      return "Menyetujui berita";
     case "published":
       return "Dipublikasikan";
     case "rejected":
-      return "Ditolak oleh Redaktur";
+      return "Menolak berita";
+    case "with_data":
+      return "Melakukan validasi";
+    case "without_data":
+      return "Melakukan validasi";
+    case "comment":
+      return "Mengomentari";
     default:
       return value;
   }

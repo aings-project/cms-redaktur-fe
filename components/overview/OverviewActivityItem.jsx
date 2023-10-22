@@ -24,7 +24,7 @@ export default function OverviewActivityItem({
         <p className="font-semibold">{name}</p>
         <p className="mb-2 text-sm">{dateTimeFormatter(time)}</p>
         <p>
-          {title} {activityActionParserShort(action)}
+          {activityActionParserShort(action)} {title}
         </p>
       </button>
       <div className="h-0.5 bg-slate-400 mx-4" />
