@@ -212,7 +212,7 @@ const api = (() => {
     return responseJson;
   }
 
-  async function getCommentList({ page = "1", limit = "5", id } = {}) {
+  async function getCommentList({ page = "1", limit = "10", id } = {}) {
     const response = await fetchWithAuth(
       `${BASE_URL}/v1/comments/${id}?page=${page}&limit=${limit}`,
       {

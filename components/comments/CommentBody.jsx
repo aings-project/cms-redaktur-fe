@@ -73,7 +73,7 @@ export default function CommentBody({ onPostComment, id }) {
                   onLoadMoreComments();
                 }}
               >
-                <p className="text-white pt-2">Muat Komentar Lama</p>
+                <p className="md:text-white pt-2">Muat Komentar Lama</p>
               </button>
             )}
           </div>
