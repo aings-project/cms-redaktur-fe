@@ -1,9 +1,21 @@
 import React from "react";
 import { AccountCircle, DateRange, MoreVert } from "@mui/icons-material";
 
-export default function NewsDraftItem({ title, author, dateTime, onClick }) {
+export default function NewsDraftItem({
+  title,
+  author,
+  dateTime,
+  onClick,
+  index,
+}) {
   return (
-    <div className="flex items-center hover:bg-slate-100 px-4 lg:px-6">
+    <div
+      className={`flex items-center ${
+        index % 2 === 1
+          ? "bg-white hover:bg-sky-100"
+          : "bg-sky-50 hover:bg-sky-100"
+      }  px-4 lg:px-6`}
+    >
       <button className="w-full flex flex-col" onClick={onClick}>
         <div className="py-4 hover:cursor-pointer">
           <p className="text-black text-base font-semibold mb-2 text-left">

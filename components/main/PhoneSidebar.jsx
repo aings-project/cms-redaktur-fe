@@ -50,8 +50,8 @@ export default function PhoneSidebar({
         onClick={() => router.push("/overview")}
       />
       <PhoneSidebarMenu
-        icon={<DraftsIcon className="w-6 h-6 text-white" />}
-        text={"Draf Berita"}
+        icon={<NewspaperIcon className="w-6 h-6 text-white" />}
+        text={"Berita"}
         isSelected={activePage === "draf_berita"}
         onClick={() => router.push("/news_draft")}
       />

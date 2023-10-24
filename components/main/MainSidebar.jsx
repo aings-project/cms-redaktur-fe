@@ -3,15 +3,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
-import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MainSidebarMenu from "./MainSidebarMenu";
-import {
-  Delete,
-  History,
-  LocalActivity,
-  MenuRounded,
-} from "@mui/icons-material";
+import { History, MenuRounded } from "@mui/icons-material";
 import { useRouter } from "next/router";
 
 export default function MainSidebar({ activePage, auth, onSignOut }) {
@@ -46,8 +40,8 @@ export default function MainSidebar({ activePage, auth, onSignOut }) {
         onClick={() => router.push("/overview")}
       />
       <MainSidebarMenu
-        icon={<DraftsIcon className="w-6 h-6 text-white" />}
-        text={"Draf Berita"}
+        icon={<NewspaperIcon className="w-6 h-6 text-white" />}
+        text={"Berita"}
         isSelected={activePage === "draf_berita"}
         onClick={() => router.push("/news_draft")}
       />

@@ -27,7 +27,7 @@ export default function MainLayout({ content, activePage, pageTitle }) {
   };
 
   return (
-    <div className="relative w-full ">
+    <div className="relative w-full">
       <div className="sm:hidden fixed top-0 left-0 right-0 z-20 w-full px-4 py-3 flex bg-white shadow-sm">
         <button className="px-2" onClick={handleToggle}>
           <Menu />
@@ -41,13 +41,17 @@ export default function MainLayout({ content, activePage, pageTitle }) {
         onSignOut={onSignOut}
         onHide={handleToggle}
       />
-      <div className={`flex ${hideNavbar ? "" : "blur-sm"} sm:blur-none`}>
+      <div
+        className={`flex ${
+          hideNavbar ? "" : "blur-sm"
+        } sm:blur-none h-[calc(100dvh)] overflow-hidden`}
+      >
         <MainSidebar
           activePage={activePage}
           auth={auth}
           onSignOut={onSignOut}
         />
-        <div className="py-16 ml-6 md:ml-0 md:px-16 mt-4 flex-grow pr-6 h-full">
+        <div className="h-[calc(100dvh)] overflow-y-auto py-16 ml-6 md:ml-0 md:px-16 mt-4 flex-grow pr-6">
           {content}
         </div>
       </div>

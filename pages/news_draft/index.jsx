@@ -46,10 +46,10 @@ export default function NewsDraft() {
           onNextPage={handlePageChange}
           onPrevPage={handlePageChange}
           status={status}
-          title="Draf Berita"
+          title="Berita"
         />
       }
-      pageTitle="Draf Berita"
+      pageTitle="Berita"
     />
   );
 }
