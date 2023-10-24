@@ -9,21 +9,21 @@ export default function LoginBody({ login }) {
   const isLoading = useSelector((state) => state.loading);
 
   return (
-    <div>
-      <p className="text-black text-5xl font-extrabold text-center">AINGS</p>
-      <p className="text-center text-2xl font-semibold mt-6 mb-12">
-        Artificial Intelligence News Generator System
+    <div className="w-full h-full flex flex-col justify-center max-w-sm">
+      <p className="mb-12 text-6xl font-extrabold text-center text-sky-700 md:hidden">
+        AINGS
       </p>
-      <p className="text-black text-lg font-semibold mb-1">Email</p>
+      <p className="text-2xl font-bold mb-6 hidden md:flex">Selamat Datang</p>
+      <p className="text-black font-normal mb-1">Email</p>
       <input
-        className="border border-black rounded-md w-full h-10 mb-4 px-2"
+        className="border border-neutral-400 focus:outline-sky-500 rounded-md w-full h-10 mb-4 px-2"
         placeholder="Masukkan email"
         value={email}
         onChange={onEmailChange}
       />
-      <p className="text-black text-lg font-semibold mb-1">Kata Sandi</p>
+      <p className="text-black font-normal mb-1">Kata Sandi</p>
       <input
-        className="border border-black rounded-md w-full h-10 px-2"
+        className="border border-neutral-400 focus:outline-sky-500 rounded-md w-full h-10 px-2"
         type="password"
         placeholder="Masukkan Kata Sandi"
         value={password}
@@ -31,14 +31,14 @@ export default function LoginBody({ login }) {
       />
       <div className="flex justify-end w-full ">
         {isLoading && (
-          <div className="w-full md:w-1/2 flex justify-center mt-6 bg-slate-800 py-2 rounded-md">
+          <div className="w-full flex justify-center mt-6 bg-sky-600 py-2 rounded-md">
             <ReactLoading type="spin" height={24} width={24} />
           </div>
         )}
         {!isLoading && (
           <button
             onClick={() => login({ email, password })}
-            className="w-full md:w-1/2 h-10 mt-6 bg-slate-800 hover:bg-slate-700 text-white text-base font-semibold rounded-md"
+            className="w-full h-10 mt-6 bg-sky-600 hover:bg-sky-500 text-white text-base font-semibold rounded-md"
           >
             Login
           </button>
