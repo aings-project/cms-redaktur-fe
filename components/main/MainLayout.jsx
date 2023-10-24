@@ -27,12 +27,12 @@ export default function MainLayout({ content, activePage, pageTitle }) {
   };
 
   return (
-    <div className="relative w-full">
-      <div className="sm:hidden fixed top-0 left-0 right-0 z-20 w-full px-4 py-3 flex justify-between bg-white shadow-md">
-        <p className="px-2 text-slate-800 font-bold text-2xl">{pageTitle}</p>
+    <div className="relative w-full ">
+      <div className="sm:hidden fixed top-0 left-0 right-0 z-20 w-full px-4 py-3 flex bg-white shadow-sm">
         <button className="px-2" onClick={handleToggle}>
           <Menu />
         </button>
+        <p className="px-2 text-slate-800 font-bold text-2xl">{pageTitle}</p>
       </div>
       <PhoneSidebar
         isHidden={hideNavbar}
@@ -47,7 +47,7 @@ export default function MainLayout({ content, activePage, pageTitle }) {
           auth={auth}
           onSignOut={onSignOut}
         />
-        <div className="overflow-y-auto py-16 ml-6 md:ml-0 md:px-16 flex-grow pr-6 h-[calc(100dvh)]">
+        <div className="py-16 ml-6 md:ml-0 md:px-16 mt-4 flex-grow pr-6 h-full">
           {content}
         </div>
       </div>

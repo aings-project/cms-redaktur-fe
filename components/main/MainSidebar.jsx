@@ -21,9 +21,11 @@ export default function MainSidebar({ activePage, auth, onSignOut }) {
   }
 
   return (
-    <div className="hidden h-screen lg:min-w-[300px] bg-slate-800 py-6 sm:flex flex-col relative overflow-hidden min-w-fit">
-      <div className="md:flex px-4 mb-12 hidden">
-        <AccountCircleIcon className="w-16 h-16 text-white" />
+    <div className="hidden h-screen lg:min-w-[300px] bg-gray-700 py-4 sm:flex flex-col relative overflow-hidden min-w-fit">
+      <div className="md:flex items-center px-4 mb-12 hidden">
+        <div className="text-white bg-sky-600 px-4 py-2 text-xl rounded-md">
+          {auth.username.substring(0, 1).toUpperCase()}
+        </div>
         <div className="px-4">
           <p className="text-white text-base font-bold">{auth.username}</p>
           <p className="text-white text-sm font-normal">{auth.email}</p>
@@ -48,18 +50,6 @@ export default function MainSidebar({ activePage, auth, onSignOut }) {
         text={"Draf Berita"}
         isSelected={activePage === "draf_berita"}
         onClick={() => router.push("/news_draft")}
-      />
-      <MainSidebarMenu
-        icon={<NewspaperIcon className="w-6 h-6 text-white" />}
-        text={"Publikasi"}
-        isSelected={activePage === "publication"}
-        onClick={() => router.push("/publication")}
-      />
-      <MainSidebarMenu
-        icon={<Delete className="w-6 h-6 text-white" />}
-        text={"Draf Ditolak"}
-        isSelected={activePage === "rejected"}
-        onClick={() => router.push("/rejected")}
       />
       <MainSidebarMenu
         icon={<History className="w-6 h-6 text-white" />}
