@@ -26,17 +26,17 @@ function activityActionParserShort(value) {
 function activityActionParserLong(value) {
   switch (value) {
     case "reviewing":
-      return "Menyunting berita";
+      return "Mengubah berita";
     case "reviewed":
       return "Meminta Persetujuan Wartawan";
     case "new":
-      return "Menambahkan draf";
+      return "Menambahkan berita";
     case "approved":
       return "Menyetujui berita";
     case "published":
       return "Dipublikasikan";
     case "rejected":
-      return "Menolak draf";
+      return "Menolak berita";
     case "with_data":
       return "Melakukan validasi";
     case "without_data":
@@ -48,21 +48,4 @@ function activityActionParserLong(value) {
   }
 }
 
-function activityActionToColor(value) {
-  switch (value) {
-    case "new":
-      return "bg-teal-50";
-    case "approved":
-      return "bg-green-50";
-    case "rejected":
-      return "bg-red-50";
-    default:
-      return "";
-  }
-}
-
-export {
-  activityActionParserShort,
-  activityActionParserLong,
-  activityActionToColor,
-};
+export { activityActionParserShort, activityActionParserLong };
