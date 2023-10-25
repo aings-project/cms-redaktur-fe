@@ -9,9 +9,12 @@ import {
   rejectedStatus,
 } from "../../utils/filterData";
 
-export default function NewsDraftTabBar({ onSetActiveStatus }) {
+export default function NewsDraftTabBar({
+  onSetActiveStatus,
+  status,
+  setStatus,
+}) {
   const [activeNavMenu, setActiveNavMenu] = useState(navMenus[0]);
-  const [status, setStatus] = useState(drafStatus);
 
   const handleSelectStatus = (event) => {
     onSetActiveStatus(parseNavigationToStatus(event.target.value));
@@ -40,12 +43,15 @@ export default function NewsDraftTabBar({ onSetActiveStatus }) {
     switch (index) {
       case 0:
         setStatus(drafStatus);
+        onSetActiveStatus(parseNavigationToStatus(drafStatus[0]));
         return;
       case 1:
         setStatus(publicationStatus);
+        onSetActiveStatus(parseNavigationToStatus(publicationStatus[0]));
         return;
       case 2:
         setStatus(rejectedStatus);
+        onSetActiveStatus(parseNavigationToStatus(rejectedStatus[0]));
         return;
     }
   };

@@ -5,13 +5,11 @@ import { useRouter } from "next/router";
 import dateTimeFormatter from "../../utils/dateTimeFormatter";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
-import { reverseConvertStatus } from "../../utils/draftAttributeParser";
+import { parseNavigationToStatus } from "../../utils/draftAttributeParser";
+import { drafStatus } from "../../utils/filterData";
+import { useState } from "react";
 
-export default function NewsDraftBody({
-  activeStatus,
-  onSetActiveStatus,
-  status,
-}) {
+export default function NewsDraftBody({ onSetActiveStatus }) {
   const router = useRouter();
   const isLoading = useSelector((state) => state.loading);
   const newsDraftData = useSelector((state) => state.newsDraft);
@@ -19,18 +17,26 @@ export default function NewsDraftBody({
     ? newsDraftData.draft_berita
     : [];
 
+  const [status, setStatus] = useState(drafStatus);
+
+  const handleSelectStatus = (event) => {
+    onSetActiveStatus(parseNavigationToStatus(event.target.value));
+  };
+
   return (
     <div className="bg-white pb-6">
-      <NewsDraftTabBar onSetActiveStatus={onSetActiveStatus} status={status} />
+      <NewsDraftTabBar
+        onSetActiveStatus={onSetActiveStatus}
+        status={status}
+        setStatus={setStatus}
+      />
       <div className="bg-white flex flex-col justify-end mt-1 border">
         {/* ------- FILTER START -------- */}
         <div className="sm:flex mb-8 hidden sm:bg-white">
           <div className="flex items-center mt-4 mr-4 w-full">
             <p className="px-4 text-black font-semibold">Status: </p>
             <select
-              onChange={(e) => {
-                onSetActiveStatus(reverseConvertStatus(e.target.value));
-              }}
+              onChange={handleSelectStatus}
               className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full"
             >
               {status.map((item, index) => {
@@ -39,7 +45,7 @@ export default function NewsDraftBody({
             </select>
           </div>
           <div className="flex items-center mt-4 mr-4 w-full">
-            <p className="px-4 text-black font-semibold">Filter: </p>
+            <p className="px-4 text-black font-semibold">Kategori: </p>
             <select className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full">
               {["Semua Kategori"].map((item, index) => {
                 return <option key={index}>{item}</option>;
@@ -49,7 +55,7 @@ export default function NewsDraftBody({
         </div>
         {/* ------- FILTER END -------- */}
         {isLoading && (
-          <div className="w-full flex justify-center mt-4 sm:mt-0">
+          <div className="w-full flex justify-center my-4 sm:mt-0">
             <ReactLoading type="spin" color="#1e293b" height={24} width={24} />
           </div>
         )}
