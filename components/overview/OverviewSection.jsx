@@ -10,8 +10,8 @@ export default function OverviewSection({ newsDraftList, title }) {
   const isLoading = useSelector((state) => state.loading);
 
   return (
-    <div className="lg:mr-6 pb-6 bg-neutral-50 rounded-md border border-zinc-300 shadow-md">
-      <p className="text-white text-xl font-semibold p-4 rounded-t-md bg-slate-800">
+    <div className="lg:mr-6 pb-6 bg-white rounded-md">
+      <p className="text-sky-800 text-lg font-bold p-4 border-b-4 border-sky-800 bg-white">
         {title}
       </p>
       {isLoading && newsDraftList.length === 0 && (

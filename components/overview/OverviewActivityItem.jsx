@@ -10,24 +10,34 @@ export default function OverviewActivityItem({
   action,
   draftId,
   version,
+  index,
 }) {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="flex">
+      {action === "rejected" && <div className="bg-red-500 px-1" />}
+      {action === "new" && <div className="bg-green-500 px-1" />}
+      {action === "with_data" && <div className="bg-blue-500 px-1" />}
+      {action === "without_data" && <div className="bg-blue-500 px-1" />}
+      {action === "reviewing" && <div className="bg-amber-500 px-1" />}
+      {action === "reviewed" && <div className="bg-orange-500 px-1" />}
+      {action === "comment" && <div className="bg-slate-500 px-1" />}
+
       <button
-        className="text-left hover:bg-slate-100 p-5 w-full"
+        className={`text-left hover:bg-sky-100 p-5 w-full ${
+          index % 2 === 1 ? "bg-sky-50" : "bg-white"
+        }`}
         onClick={() => {
           router.push(`/news_draft/edit/${draftId}/${version}`);
         }}
       >
         <p className="font-semibold">{name}</p>
         <p className="mb-2 text-sm">{dateTimeFormatter(time)}</p>
-        <p>
+        <p className="line-clamp-2">
           {activityActionParserShort(action)} {title}
         </p>
       </button>
-      <div className="h-0.5 bg-slate-400 mx-4" />
     </div>
   );
 }

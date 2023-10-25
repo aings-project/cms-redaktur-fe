@@ -16,12 +16,7 @@ export default function OverviewLayout({
         <div className="grow lg:max-w-7xl lg:min-w-[332px]">
           <OverviewSection
             newsDraftList={newsDraftList}
-            title="Draft Berita Terbaru"
-          />
-          <div className="h-8" />
-          <OverviewSection
-            newsDraftList={allNewsDraftList}
-            title="Semua Draft Berita"
+            title="Terakhir Diubah"
           />
         </div>
         <OverviewActivities activityList={activityList} />

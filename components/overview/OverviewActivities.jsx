@@ -2,13 +2,15 @@ import React from "react";
 import OverviewActivityItem from "./OverviewActivityItem";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
+import { useRouter } from "next/router";
 
 export default function OverviewActivities({ activityList }) {
   const isLoading = useSelector((state) => state.loading);
+  const router = useRouter();
 
   return (
-    <div className="xl:max-w-xs w-full h-fit bg-neutral-50 border border-zinc-300 rounded-md mt-8 xl:mr-0 xl:mt-0 shadow-md">
-      <p className="text-white text-xl font-semibold p-4 bg-slate-800 rounded-t-md">
+    <div className="xl:max-w-xs w-full h-fit rounded-md mt-8 xl:mr-0 xl:mt-0">
+      <p className="text-sky-800 text-xl font-bold p-4 bg-white border-b-4 border-sky-800">
         Aktivitas Terbaru
       </p>
       {isLoading && activityList.length === 0 && (
@@ -29,9 +31,18 @@ export default function OverviewActivities({ activityList }) {
             time={item.timestamp}
             version={item.object.version}
             draftId={item.object.draft_id}
+            index={index}
           />
         );
       })}
+      {activityList.length !== 0 && !isLoading && (
+        <button
+          onClick={() => router.push("/activities")}
+          className="flex w-full justify-center pt-4 underline underline-offset-2 font-semibold text-sky-700"
+        >
+          Lihat Semua Aktivitas
+        </button>
+      )}
     </div>
   );
 }
