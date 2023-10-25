@@ -26,17 +26,17 @@ function activityActionParserShort(value) {
 function activityActionParserLong(value) {
   switch (value) {
     case "reviewing":
-      return "Mengubah berita";
+      return "Menyunting berita";
     case "reviewed":
       return "Meminta Persetujuan Wartawan";
     case "new":
-      return "Menambahkan berita";
+      return "Menambahkan draf";
     case "approved":
       return "Menyetujui berita";
     case "published":
       return "Dipublikasikan";
     case "rejected":
-      return "Menolak berita";
+      return "Menolak draf";
     case "with_data":
       return "Melakukan validasi";
     case "without_data":
