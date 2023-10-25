@@ -23,6 +23,7 @@
     "react-dom": "18.2.0",
     "react-loading": "^2.0.3",
     "react-markdown": "^8.0.7",
+    "react-minimal-pie-chart": "^8.4.0",
     "react-redux": "^8.1.2",
     "react-redux-loading-bar": "^5.0.4",
     "react-select": "^5.7.7",
