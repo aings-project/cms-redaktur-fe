@@ -13,7 +13,7 @@ export default function ActivitiesLayout({
   return (
     <div>
       <ActivitiesHeader title="Log Aktivitas" />
-      <div className="max-w-screen-2xl mx-auto bg-neutral-50">
+      <div className="max-w-screen-2xl mx-auto bg-white">
         <ActivitiesBody data={activities} />
       </div>
       <Pagination

@@ -13,9 +13,10 @@ export default function ActivitiesBody({ data }) {
 
   return (
     <div>
+      {/* ---------- START MOBILE ACTIVITIES ------------ */}
       <div className="flex-col lg:hidden shadow-md">
-        <div className="bg-slate-800 h-12 w-full rounded-t-md" />
-        <div className="rounded-b-md">
+        <div className="border-b-4 border-sky-800 w-full rounded-t-md" />
+        <div className="rounded-b-md border-2 pb-4">
           {data.map((item, index) => {
             return (
               <ActivityItem
@@ -26,6 +27,7 @@ export default function ActivitiesBody({ data }) {
                 time={item.timestamp}
                 draftId={item.object.draft_id}
                 version={item.object.version}
+                index={index}
               />
             );
           })}
@@ -41,18 +43,20 @@ export default function ActivitiesBody({ data }) {
           )}
         </div>
       </div>
-      <div className="w-full rounded-md shadow-md pb-4 lg:block hidden">
+      {/* ---------- END MOBILE ACTIVITIES ------------ */}
+      {/* ---------- START TABLE ------------ */}
+      <div className="w-full rounded-md pb-4 lg:block hidden">
         <div className="lg:flex hidden">
-          <table className="min-w-full bg-neutral-50">
+          <table className="min-w-full bg-white">
             <thead>
-              <tr className="bg-slate-800 text-white">
+              <tr className="bg-white text-sky-800 border-b-4 border-sky-800">
                 <th className="px-4 py-4 text-left">Waktu</th>
                 <th className="px-4 py-4 text-left">Judul Berita</th>
                 <th className="px-4 py-4 text-left">Nama</th>
                 <th className="px-4 py-4 text-left">Aktivitas</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="border-2">
               {data.map((item, index) => (
                 <tr
                   onClick={() => {
@@ -60,7 +64,9 @@ export default function ActivitiesBody({ data }) {
                       `/news_draft/edit/${item.object.draft_id}/${item.object.version}`
                     );
                   }}
-                  className="hover:bg-slate-200 hover:cursor-pointer"
+                  className={`${
+                    index % 2 === 1 ? "bg-sky-50" : "bg-white"
+                  } hover:bg-sky-200 hover:cursor-pointer`}
                   key={index}
                 >
                   <td className="px-4 py-3">
@@ -82,6 +88,7 @@ export default function ActivitiesBody({ data }) {
           </div>
         )}
       </div>
+      {/* ---------- END TABLE ------------ */}
     </div>
   );
 }

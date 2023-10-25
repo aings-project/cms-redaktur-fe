@@ -48,4 +48,21 @@ function activityActionParserLong(value) {
   }
 }
 
-export { activityActionParserShort, activityActionParserLong };
+function activityActionToColor(value) {
+  switch (value) {
+    case "new":
+      return "bg-teal-50";
+    case "approved":
+      return "bg-green-50";
+    case "rejected":
+      return "bg-red-50";
+    default:
+      return "";
+  }
+}
+
+export {
+  activityActionParserShort,
+  activityActionParserLong,
+  activityActionToColor,
+};

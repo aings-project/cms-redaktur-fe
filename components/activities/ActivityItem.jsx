@@ -10,13 +10,16 @@ export default function ActivityItem({
   action,
   draftId,
   version,
+  index,
 }) {
   const router = useRouter();
 
   return (
     <div>
       <button
-        className="text-left hover:bg-slate-100 p-5 w-full"
+        className={`text-left hover:bg-sky-100 p-5 w-full ${
+          index % 2 === 1 ? "bg-sky-50" : "bg-white"
+        }`}
         onClick={() => {
           router.push(`/news_draft/edit/${draftId}/${version}`);
         }}
