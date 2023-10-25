@@ -8,13 +8,16 @@ import ReactLoading from "react-loading";
 import { reverseConvertStatus } from "../../utils/draftAttributeParser";
 
 export default function NewsDraftBody({
-  listNewsDraft,
   activeStatus,
   onSetActiveStatus,
   status,
 }) {
   const router = useRouter();
   const isLoading = useSelector((state) => state.loading);
+  const newsDraftData = useSelector((state) => state.newsDraft);
+  const listNewsDraft = newsDraftData?.draft_berita
+    ? newsDraftData.draft_berita
+    : [];
 
   return (
     <div className="bg-white pb-6">

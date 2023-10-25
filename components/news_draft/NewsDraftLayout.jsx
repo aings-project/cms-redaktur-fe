@@ -16,9 +16,6 @@ export default function NewsDraftLayout({
     <div className="max-w-screen-2xl mx-auto">
       <NewsDraftHeader title={title} />
       <NewsDraftBody
-        listNewsDraft={
-          newsDraftData?.draft_berita ? newsDraftData.draft_berita : []
-        }
         activeStatus={activeStatus}
         onSetActiveStatus={onSetActiveStatus}
         status={status}

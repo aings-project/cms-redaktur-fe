@@ -38,4 +38,25 @@ function reverseConvertStatus(value) {
   }
 }
 
-export { convertStatus, reverseConvertStatus };
+function parseNavigationToStatus(value) {
+  switch (value) {
+    case "Baru":
+      return "new";
+    case "Sedang Disunting":
+      return "reviewing";
+    case "Menunggu Persetujuan":
+      return "reviewed";
+    case "Siap Publikasi":
+      return "approved";
+    case "Sudah Publikasi":
+      return "published";
+    case "Ditolak":
+      return "rejected";
+    case "Semua":
+      return null;
+    default:
+      return value;
+  }
+}
+
+export { convertStatus, reverseConvertStatus, parseNavigationToStatus };

@@ -1,62 +1,104 @@
 import React from "react";
 import NewsTabBarMenuItem from "./NewsTabBarMenuItem";
-import { FilterAltTwoTone, Menu } from "@mui/icons-material";
-import { reverseConvertStatus } from "../../utils/draftAttributeParser";
+import { parseNavigationToStatus } from "../../utils/draftAttributeParser";
+import { useState } from "react";
+import {
+  drafStatus,
+  navMenus,
+  publicationStatus,
+  rejectedStatus,
+} from "../../utils/filterData";
 
-export default function NewsDraftTabBar({ onSetActiveStatus, status }) {
-  const handleSelectChange = (event) => {
-    onSetActiveStatus(reverseConvertStatus(event.target.value));
+export default function NewsDraftTabBar({ onSetActiveStatus }) {
+  const [activeNavMenu, setActiveNavMenu] = useState(navMenus[0]);
+  const [status, setStatus] = useState(drafStatus);
+
+  const handleSelectStatus = (event) => {
+    onSetActiveStatus(parseNavigationToStatus(event.target.value));
+  };
+
+  const handleSelectNavMenu = (event) => {
+    setActiveNavMenu(event.target.value);
+    switch (event.target.value) {
+      case navMenus[0]:
+        setStatus(drafStatus);
+        onSetActiveStatus(parseNavigationToStatus(drafStatus[0]));
+        break;
+      case navMenus[1]:
+        setStatus(publicationStatus);
+        onSetActiveStatus(parseNavigationToStatus(publicationStatus[0]));
+        break;
+      case navMenus[2]:
+        setStatus(rejectedStatus);
+        onSetActiveStatus(parseNavigationToStatus(rejectedStatus[0]));
+        break;
+    }
+  };
+
+  const handleTabNavMenu = (index) => {
+    setActiveNavMenu(navMenus[index]);
+    switch (index) {
+      case 0:
+        setStatus(drafStatus);
+        return;
+      case 1:
+        setStatus(publicationStatus);
+        return;
+      case 2:
+        setStatus(rejectedStatus);
+        return;
+    }
   };
 
   return (
     <div>
       <div className="flex items-center justify-between hover:cursor-pointer bg-white flex-wrap">
         <div className="hidden sm:flex">
-          {["Draf Berita", "Publikasi Berita", "Berita Ditolak"].map(
-            (item, index) => {
-              return (
-                <NewsTabBarMenuItem
-                  key={index}
-                  title={item}
-                  isActive={index === 0}
-                  onClick={() => {}}
-                />
-              );
-            }
-          )}
+          {navMenus.map((item, index) => {
+            return (
+              <NewsTabBarMenuItem
+                key={index}
+                title={item}
+                isActive={navMenus[index] === activeNavMenu}
+                onClick={() => {
+                  handleTabNavMenu(index);
+                }}
+              />
+            );
+          })}
         </div>
         {/* ------- MOBILE START -------- */}
-        <div className="flex flex-wrap sm:hidden w-full bg-white rounded-t-md pt-3">
-          <div className="flex mr-6 mb-3">
-            <Menu className="text-sky-800 mr-1" />
-            <p className="text-sky-800">Menu</p>
-          </div>
-          <select className="text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer bg-white border border-neutral-400 focus:outline-sky-800 rounded-md w-full">
-            {["Draft Berita", "Publikasi Berita", "Berita Ditolak"].map(
-              (item, index) => {
-                return <option key={index}>{item}</option>;
-              }
-            )}
+        <div className="flex flex-wrap sm:hidden w-full bg-white rounded-t-md">
+          <p className="text-sky-800 mb-2">Filter</p>
+          <select
+            className="text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer bg-white border border-neutral-400 focus:outline-sky-800 rounded-md w-full"
+            onChange={handleSelectNavMenu}
+          >
+            {navMenus.map((item, index) => {
+              return <option key={index}>{item}</option>;
+            })}
           </select>
-          <div className="flex mr-6 mb-3 mt-4">
-            <FilterAltTwoTone className="text-sky-800 mr-1" />
-            <p className="text-sky-800">Filter</p>
-          </div>
           <div className="flex w-full">
-            <select
-              className="text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer border border-neutral-400 focus:outline-sky-800 rounded-md w-full"
-              onChange={handleSelectChange}
-            >
-              {status.map((item, index) => {
-                return <option key={index}>{item}</option>;
-              })}
-            </select>
+            <div className="flex flex-col w-full">
+              <p className="mb-2">Status</p>
+              <select
+                className="text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer border border-neutral-400 focus:outline-sky-800 rounded-md w-full"
+                onChange={handleSelectStatus}
+              >
+                {status.map((item, index) => {
+                  return <option key={index}>{item}</option>;
+                })}
+              </select>
+            </div>
             <div className="w-4" />
-            <select className="text-base font-normal px-4 mb-3 pb-1  border border-neutral-400 focus:outline-sky-800 rounded-md w-full">
-              {["Semua Kategori"].map((item, index) => {
-                return <option key={index}>{item}</option>;
-              })}
-            </select>
+            <div className="flex flex-col w-full">
+              <p className="mb-2">Kategori</p>
+              <select className="text-base font-normal px-4 mb-3 pb-1  border border-neutral-400 focus:outline-sky-800 rounded-md w-full">
+                {["Semua Kategori"].map((item, index) => {
+                  return <option key={index}>{item}</option>;
+                })}
+              </select>
+            </div>
           </div>
         </div>
         {/* ------- MOBILE END -------- */}
