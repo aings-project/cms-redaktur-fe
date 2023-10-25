@@ -1,6 +1,6 @@
 import React from "react";
 import NewsTabBarMenuItem from "./NewsTabBarMenuItem";
-import { FilterAltTwoTone } from "@mui/icons-material";
+import { FilterAltTwoTone, Menu } from "@mui/icons-material";
 import { reverseConvertStatus } from "../../utils/draftAttributeParser";
 
 export default function NewsDraftTabBar({ onSetActiveStatus, status }) {
@@ -27,7 +27,11 @@ export default function NewsDraftTabBar({ onSetActiveStatus, status }) {
         </div>
         {/* ------- MOBILE START -------- */}
         <div className="flex flex-wrap sm:hidden w-full bg-white rounded-t-md pt-3">
-          <select className="text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer bg-white border border-sky-600 focus:outline-sky-800 rounded-md w-full">
+          <div className="flex mr-6 mb-3">
+            <Menu className="text-sky-800 mr-1" />
+            <p className="text-sky-800">Menu</p>
+          </div>
+          <select className="text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer bg-white border border-neutral-400 focus:outline-sky-800 rounded-md w-full">
             {["Draft Berita", "Publikasi Berita", "Berita Ditolak"].map(
               (item, index) => {
                 return <option key={index}>{item}</option>;
@@ -40,7 +44,7 @@ export default function NewsDraftTabBar({ onSetActiveStatus, status }) {
           </div>
           <div className="flex w-full">
             <select
-              className="text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer border border-sky-600 focus:outline-sky-800 rounded-md w-full"
+              className="text-base font-normal px-4 mb-3 pb-1 flex hover:cursor-pointer border border-neutral-400 focus:outline-sky-800 rounded-md w-full"
               onChange={handleSelectChange}
             >
               {status.map((item, index) => {
@@ -48,7 +52,7 @@ export default function NewsDraftTabBar({ onSetActiveStatus, status }) {
               })}
             </select>
             <div className="w-4" />
-            <select className="text-base font-normal px-4 mb-3 pb-1  border border-sky-600 focus:outline-sky-800 rounded-md w-full">
+            <select className="text-base font-normal px-4 mb-3 pb-1  border border-neutral-400 focus:outline-sky-800 rounded-md w-full">
               {["Semua Kategori"].map((item, index) => {
                 return <option key={index}>{item}</option>;
               })}

@@ -28,7 +28,7 @@ export default function NewsDraftBody({
               onChange={(e) => {
                 onSetActiveStatus(reverseConvertStatus(e.target.value));
               }}
-              className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-sky-200 focus:outline-sky-400 w-full"
+              className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full"
             >
               {status.map((item, index) => {
                 return <option key={index}>{item}</option>;
@@ -37,7 +37,7 @@ export default function NewsDraftBody({
           </div>
           <div className="flex items-center mt-4 mr-4 w-full">
             <p className="px-4 text-black font-semibold">Filter: </p>
-            <select className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-sky-200 focus:outline-sky-400 w-full">
+            <select className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full">
               {["Semua Kategori"].map((item, index) => {
                 return <option key={index}>{item}</option>;
               })}

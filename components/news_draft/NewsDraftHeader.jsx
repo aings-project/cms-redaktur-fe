@@ -7,9 +7,12 @@ export default function NewsDraftHeader({ title }) {
       <p className="text-black text-3xl sm:text-4xl font-bold min-w-fit mr-6 mb-5 hidden sm:block">
         {title}
       </p>
-      <div className="bg-white p-2 border border-zinc-300 rounded-md h-fit w-full md:w-fit">
+      <div className="bg-white p-2 border border-sky-300 hover:border-sky-600 hover:border-2 rounded-md h-fit w-full md:w-fit">
         <div className="flex items-center justify-between">
-          <input className="p-1 w-full" placeholder="Cari Judul Berita ..." />
+          <input
+            className="p-1 w-full focus:outline-none"
+            placeholder="Cari Judul Berita ..."
+          />
           <Search />
         </div>
       </div>
