@@ -12,34 +12,38 @@ export default function Pagination({
 }) {
   return (
     <div
-      className={`justify-center mt-10 items-center ${
+      className={`justify-center sm:justify-end mt-10 items-center ${
         totalPages === 1 ? "hidden" : "flex"
       }`}
     >
       <button
         disabled={currentPages === 1}
         className={`border-2 ${
-          currentPages === 1 ? "border-slate-400" : "border-black"
-        } px-2 py-1 rounded-md`}
+          currentPages === 1 ? "border-slate-400" : "border-sky-800"
+        } px-1 py-0.5 rounded-md`}
         onClick={() => onPrev(parseInt(currentPages) - 1)}
       >
         <KeyboardArrowLeftRounded
-          className={`${currentPages === 1 ? "text-slate-400" : "text-black"}`}
+          className={`${
+            currentPages === 1 ? "text-slate-400" : "text-sky-800"
+          }`}
         />
       </button>
-      <p className="font-normal text-lg mx-4">
+      <p className="font-normal mx-4">
         Halaman {currentPages} dari {totalPages}
       </p>
       <button
         disabled={currentPages === totalPages}
         className={`border-2 ${
-          currentPages === totalPages ? "border-slate-400" : "border-black"
-        } px-2 py-1 rounded-md`}
+          currentPages === totalPages
+            ? "border-slate-400"
+            : "border-sky-800 hover:bg-sky-100"
+        } px-1 py-0.5 rounded-md`}
         onClick={() => onNext(parseInt(currentPages) + 1)}
       >
         <KeyboardArrowRightRounded
           className={`${
-            currentPages === totalPages ? "text-slate-400" : "text-black"
+            currentPages === totalPages ? "text-slate-400" : "text-sky-800"
           }`}
         />
       </button>

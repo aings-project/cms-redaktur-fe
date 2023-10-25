@@ -6,27 +6,37 @@ import ActivityItem from "./ActivityItem";
 import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import Select from "react-select";
 
 export default function ActivitiesBody({ data }) {
   const isLoading = useSelector((state) => state.loading);
   const router = useRouter();
 
+  const options = [
+    { value: "new", label: "Menambahkan Draf" },
+    { value: "rejected", label: "Menolak Draf" },
+    { value: "reviewing", label: "Menyunting Draf" },
+    { value: "with_data", label: "Melakukan Validasi" },
+    { value: "reviewed", label: "Mengirim ke Wartawan" },
+  ];
+
+  const handleFilter = (value) => {
+    const filters = [];
+    value.map((e) => filters.push(e.value));
+  };
+
   return (
     <div>
       <div className="flex items-center mt-4 mr-4 w-full mb-4">
         <p className="text-black font-semibold pr-4">Filter: </p>
-        <select className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full">
-          {[
-            "Semua Aktivitas",
-            "Menambahkan Draf",
-            "Menolak Draf",
-            "Menyunting Draf",
-            "Melakukan Validasi",
-            "Mengirim ke Wartawan",
-          ].map((item, index) => {
-            return <option key={index}>{item}</option>;
-          })}
-        </select>
+        <Select
+          isMulti
+          name="filter"
+          options={options}
+          className="w-full"
+          onChange={handleFilter}
+          placeholder="Pilih aksi..."
+        />
       </div>
       {/* ---------- START MOBILE ACTIVITIES ------------ */}
       <div className="flex-col lg:hidden shadow-md">
