@@ -5,7 +5,7 @@ const drafStatus = [
   "Sedang Disunting",
   "Menunggu Persetujuan",
 ];
-const publicationStatus = ["Siap Publikasi", "Sudah Publikasi"];
+const publicationStatus = ["Menunggu Publikasi", "Sudah Publikasi"];
 const rejectedStatus = ["Ditolak"];
 
 export { drafStatus, publicationStatus, rejectedStatus, navMenus };

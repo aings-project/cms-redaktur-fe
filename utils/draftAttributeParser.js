@@ -46,7 +46,7 @@ function parseNavigationToStatus(value) {
       return "reviewing";
     case "Menunggu Persetujuan":
       return "reviewed";
-    case "Siap Publikasi":
+    case "Menunggu Publikasi":
       return "approved";
     case "Sudah Publikasi":
       return "published";
