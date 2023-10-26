@@ -1,5 +1,5 @@
 import React from "react";
-import SecondaryButton from "../shared/SecondaryButton";
+import SecondaryButton from "../../shared/SecondaryButton";
 import { useSelector } from "react-redux";
 
 export default function EditorValidation({ onValidate }) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Close, Menu } from "@mui/icons-material";
 import EditorBody from "./EditorBody";
-import EditorSidebar from "./EditorSidebar";
+import EditorSidebar from "./sidebar/EditorSidebar";
 import { useRouter } from "next/router";
 
 export default function EditorLayout({
