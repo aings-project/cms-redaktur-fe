@@ -53,9 +53,9 @@ export default function EditorLayout({
           hideNavbar
             ? "translate-x-full md:translate-x-0"
             : "translate-x-0 flex sm:w-2/3 shadow-lg"
-        } md:flex w-full md:max-w-xs md:z-30 fixed right-0 md:static`}
+        } md:flex w-full md:max-w-sm lg:max-w-md md:z-30 fixed right-0 md:static`}
       >
-        <div className="h-[calc(100dvh)] w-full bg-slate-800 overflow-y-auto">
+        <div className="h-[calc(100dvh)] w-full bg-gray-700 overflow-y-auto">
           <div className="md:hidden flex pt-6 px-6">
             <p className="text-white text-3xl font-extrabold sm:invisible">
               AINGS
