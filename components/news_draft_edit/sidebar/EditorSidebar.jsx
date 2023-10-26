@@ -1,14 +1,5 @@
-import { AccountCircle, KeyboardArrowRight } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
-import EditorDropdown from "./EditorDropdown";
-import SecondaryButton from "../../shared/SecondaryButton";
-import { convertStatus } from "../../../utils/draftAttributeParser";
-import EditorInfo from "./EditorInfo";
-import EditorValidation from "./EditorValidation";
+import React, { useState } from "react";
 import useRequireAuth from "../../../hooks/useRequireAuth";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import dateTimeFormatter from "../../../utils/dateTimeFormatter";
 import EditorSidebarTab from "./EditorSidebarTab";
 
 export default function EditorSidebar({ onValidate, onUpdateDraft }) {
@@ -25,13 +16,15 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
       className="w-full bg-gray-700 overflow-y-auto "
     >
       <div className="flex mb-6 px-6 pt-6">
-        <AccountCircle className="w-16 h-16 text-white" />
+        <div className="text-white bg-sky-600 px-4 py-2 text-xl rounded-md">
+          {auth.username.substring(0, 1).toUpperCase()}
+        </div>
         <div className="px-4">
           <p className="text-white text-base font-bold">{auth.username}</p>
           <p className="text-white text-sm font-normal">{auth.email}</p>
         </div>
       </div>
-      <div className="flex mb-4 items-end">
+      <div className="flex items-end">
         <button
           onClick={() => {
             handleSidebarTab(true);
