@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import useRequireAuth from "../../../hooks/useRequireAuth";
 import EditorSidebarTab from "./EditorSidebarTab";
+import CommentSidebarTab from "./CommentSidebarTab";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncReceiveCommentList } from "../../../states/comments/action";
 
 export default function EditorSidebar({ onValidate, onUpdateDraft }) {
   const auth = useRequireAuth();
   const [isEditor, setIsEditor] = useState(true);
+  const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const dispatch = useDispatch();
 
   const handleSidebarTab = (value) => {
     setIsEditor(value);
+    if (!isEditor) {
+      dispatch(asyncReceiveCommentList({ id: newsDraft.id }));
+    }
   };
 
   return (
-    <section
+    <div
       id="newsDraftEditSidebar"
-      className="w-full bg-gray-700 overflow-y-auto "
+      className="w-full bg-gray-700 flex flex-col md:h-[calc(100dvh)] justify-between"
     >
       <div className="flex mb-6 px-6 pt-6">
         <div className="text-white bg-sky-600 px-4 py-2 text-xl rounded-md">
@@ -57,12 +65,15 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
         </button>
         <div className="border-b h-2 w-full" />
       </div>
-      {isEditor && (
-        <EditorSidebarTab
-          onValidate={onValidate}
-          onUpdateDraft={onUpdateDraft}
-        />
-      )}
-    </section>
+      <div className="md:h-full md:overflow-y-auto">
+        {isEditor && (
+          <EditorSidebarTab
+            onValidate={onValidate}
+            onUpdateDraft={onUpdateDraft}
+          />
+        )}
+        {!isEditor && <CommentSidebarTab id={newsDraft.id} />}
+      </div>
+    </div>
   );
 }

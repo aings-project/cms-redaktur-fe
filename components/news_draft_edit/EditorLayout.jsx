@@ -61,7 +61,7 @@ export default function EditorLayout({
             : "translate-x-0 flex sm:w-2/3 shadow-lg"
         } md:flex w-full md:max-w-sm lg:max-w-md md:z-30 fixed right-0 md:static`}
       >
-        <div className="h-[calc(100dvh)] w-full bg-gray-700 overflow-y-auto">
+        <div className="w-full bg-gray-700 h-[calc(100dvh)] overflow-y-auto md:overflow-y-clip">
           <div className="md:hidden flex pt-6 px-6">
             <p className="text-white text-3xl font-extrabold sm:invisible">
               AINGS
