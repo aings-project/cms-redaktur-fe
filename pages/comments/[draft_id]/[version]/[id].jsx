@@ -7,7 +7,6 @@ import {
   asyncPostCommentList,
   asyncReceiveCommentList,
 } from "../../../../states/comments/action";
-import CommentsLayout from "../../../../components/comments/CommentsLayout";
 
 export default function Comments() {
   const router = useRouter();
@@ -41,11 +40,5 @@ export default function Comments() {
     return <div />;
   }
 
-  return (
-    <CommentsLayout
-      newsDraft={newsDraft}
-      onPostComment={onPostComment}
-      id={id}
-    />
-  );
+  return <div />;
 }
