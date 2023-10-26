@@ -19,10 +19,10 @@ export default function ValidationAccordion({ onValidate }) {
           backgroundColor: "#374151",
         }}
       >
-        <p className="bg-gray-700 text-white font-semibold">Validasi</p>
+        <p className="bg-gray-700 px-2 text-white font-semibold">Validasi</p>
       </AccordionSummary>
       <AccordionDetails className="bg-gray-700">
-        <div className="flex flex-col bg-gray-700">
+        <div className="flex flex-col bg-gray-700 px-2">
           <div className="mb-6">
             {isValidated && (
               <div>

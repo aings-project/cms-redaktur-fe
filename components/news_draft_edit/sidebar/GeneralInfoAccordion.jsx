@@ -10,9 +10,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-export default function GeneralInfoAccordion({
-  onUpdateDraft,
-}) {
+export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
   const updatedAt = dateTimeFormatter(newsDraft.dateTime);
   const journalist = newsDraft.wartawan;
@@ -49,10 +47,12 @@ export default function GeneralInfoAccordion({
             backgroundColor: "#374151",
           }}
         >
-          <p className="bg-gray-700 text-white font-semibold">Informasi Umum</p>
+          <p className="px-2 bg-gray-700 text-white font-semibold">
+            Informasi Umum
+          </p>
         </AccordionSummary>
         <AccordionDetails className="bg-gray-700">
-          <div className="flex flex-col bg-gray-700">
+          <div className="flex flex-col bg-gray-700 px-2">
             <EditorInfo title="Diperbarui" content={updatedAt} />
             <EditorInfo title="Wartawan" content={journalist} />
             {version !== 1 && (
