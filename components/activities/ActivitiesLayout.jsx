@@ -11,7 +11,7 @@ export default function ActivitiesLayout({
   onPrevPage,
 }) {
   return (
-    <div>
+    <div className="py-16 px-8 bg-white">
       <ActivitiesHeader title="Log Aktivitas" />
       <div className="max-w-screen-2xl mx-auto bg-white">
         <ActivitiesBody data={activities} />

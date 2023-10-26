@@ -22,7 +22,7 @@ export default function EditorBody({
       {isEditable && (
         <div>
           <input
-            className="w-full bg-slate-50 text-xl font-normal mb-2 px-2 py-2 border-b-2 border-black rounded-t-md"
+            className="w-full bg-white text-2xl font-bold mb-2 px-2 py-2 border-2 border-sky-300 focus:outline-2 focus:outline-sky-700 rounded-md"
             value={title}
             onChange={(event) => {
               onTitleChange(event.target.value);
@@ -30,7 +30,7 @@ export default function EditorBody({
           />
           <Editor
             placeholder={content}
-            className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1 border"
+            className="overflow-y-auto max-w-screen-lg mx-auto w-full bg-white flex-1 border-t-4 border-t-sky-700"
             onChange={(value) => {
               onChange(value);
             }}

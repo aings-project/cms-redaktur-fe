@@ -9,7 +9,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 export default function ValidationAccordion({ onValidate }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
   const validationData = newsDraft.validation;
-  const isValidated = validationData;
 
   return (
     <Accordion>
@@ -24,7 +23,7 @@ export default function ValidationAccordion({ onValidate }) {
       <AccordionDetails className="bg-gray-700">
         <div className="flex flex-col bg-gray-700 px-2">
           <div className="mb-6">
-            {isValidated && (
+            {validationData && (
               <div>
                 <p className="text-white text-sm font-normal">
                   {validationData.status}
@@ -35,14 +34,14 @@ export default function ValidationAccordion({ onValidate }) {
                 </p>
               </div>
             )}
-            {!isValidated && (
+            {!validationData && (
               <p className="text-white text-sm font-normal text-center">
                 Berita Belum Divalidasi!
               </p>
             )}
           </div>
           <SecondaryButton
-            text={isValidated ? "Lihat Selengkapnya" : "Validasi Berita"}
+            text={validationData ? "Lihat Selengkapnya" : "Validasi Berita"}
             disabled={false}
             onClick={() => onValidate()}
           />

@@ -51,7 +51,7 @@ export default function MainLayout({ content, activePage, pageTitle }) {
           auth={auth}
           onSignOut={onSignOut}
         />
-        <div className="h-[calc(100dvh)] overflow-y-auto py-16 ml-6 md:ml-0 md:px-16 mt-4 flex-grow pr-6">
+        <div className="h-[calc(100dvh)] overflow-y-auto md:px-8 mt-4 flex-grow bg-sky-50">
           {content}
         </div>
       </div>

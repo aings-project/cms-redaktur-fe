@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Close, Menu } from "@mui/icons-material";
+import { ArrowBack, Close, Menu } from "@mui/icons-material";
 import EditorBody from "./EditorBody";
 import EditorSidebar from "./sidebar/EditorSidebar";
 import { useRouter } from "next/router";
@@ -26,12 +26,18 @@ export default function EditorLayout({
   }, [newsDraft]);
 
   return (
-    <div className="flex bg-neutral-50 h-[calc(100dvh)] overflow-y-auto">
+    <div className="flex bg-sky-50 h-[calc(100dvh)] overflow-y-auto">
       <div className="p-6 w-full flex flex-col max-w-screen-lg mx-auto bg-white">
-        <div className="flex justify-between fixed md:relative z-10 top-0 left-0 right-0 px-6 py-3 md:px-0 md:py-0 md:mb-6 bg-white shadow-md md:shadow-none">
-          <button className="w-fit flex" onClick={() => router.push("/")}>
-            <p className="text-black text-3xl font-extrabold">AINGS</p>
+        <div className="flex justify-between fixed md:relative z-10 top-0 left-0 right-0 px-6 py-3 md:px-0 md:py-0 md:mb-6 bg-white shadow-sm md:shadow-none">
+          <button
+            className="w-fit flex items-center justify-center"
+            onClick={() => router.push("/")}
+          >
+            <ArrowBack className="mr-4" />
           </button>
+          <p className="text-sky-800 text-3xl font-extrabold w-full justify-center flex">
+            AINGS
+          </p>
           <button className="md:hidden" onClick={handleToggle}>
             <Menu />
           </button>
