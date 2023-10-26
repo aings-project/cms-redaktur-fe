@@ -17,7 +17,8 @@ export default function OverviewChart({}) {
   ];
   const validationData = [
     { title: "Belum Divalidasi", color: "#94a3b8", value: 20 },
-    { title: "Sudah Divalidasi", color: "#1e3a8a", value: 44 },
+    { title: "Berita Valid", color: "#1e3a8a", value: 44 },
+    { title: "Berita Tidak Valid", color: "#e60000", value: 15 },
   ];
 
   const [rawData, setRawData] = useState(statusData);
@@ -112,7 +113,11 @@ export default function OverviewChart({}) {
             </div>
             <div className="flex mb-4 mr-4 sm:mr-0">
               <div className={`p-3 bg-[#1e3a8a] mx-2`} />
-              <p>Sudah Divalidasi ({rawData[1].value})</p>
+              <p>Berita Valid ({rawData[1].value})</p>
+            </div>
+            <div className="flex mb-4 mr-4 sm:mr-0">
+              <div className={`p-3 bg-[#e60000] mx-2`} />
+              <p>Berita Tidak Valid ({rawData[2].value})</p>
             </div>
           </div>
         )}
