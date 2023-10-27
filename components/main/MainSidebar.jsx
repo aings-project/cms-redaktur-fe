@@ -26,12 +26,9 @@ export default function MainSidebar({ activePage, auth, onSignOut }) {
         </div>
       </div>
       <div className="mb-6 md:hidden">
-        <MainSidebarMenu
-          icon={<MenuRounded className="w-6 h-6 text-white" />}
-          text={""}
-          isSelected={false}
-          onClick={() => {}}
-        />
+        <div className="text-white bg-sky-600 py-2 text-xl flex justify-center">
+          {auth.username.substring(0, 1).toUpperCase()}
+        </div>
       </div>
       <MainSidebarMenu
         icon={<QueryStatsIcon className="w-6 h-6 text-white" />}
