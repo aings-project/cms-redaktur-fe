@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CommentItem from "../../comments/CommentItem";
 import ReactLoading from "react-loading";
-import { asyncReceiveCommentList } from "../../../states/comments/action";
+import {
+  asyncPostCommentList,
+  asyncReceiveCommentList,
+} from "../../../states/comments/action";
 import { Send } from "@mui/icons-material";
 import useInput from "../../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,6 +37,17 @@ export default function CommentSidebarTab({ id }) {
       })
     );
   };
+
+  const onPostComment = (content) => {
+    dispatch(
+      asyncPostCommentList({
+        content,
+        id_redaktur: auth.id,
+        id,
+      })
+    );
+  };
+
   return (
     <div className="bg-gray-700  w-full flex flex-col">
       <div className="flex flex-col mx-4">
@@ -66,19 +80,20 @@ export default function CommentSidebarTab({ id }) {
             })}
             {!isLastPage && (
               <button
+                className="mt-2 bg-gray-600 rounded-md"
                 onClick={() => {
                   onLoadMoreComments();
                 }}
               >
-                <p className="md:text-white pt-2">Muat Komentar Lama</p>
+                <p className="text-white p-2 font-bold">Muat Komentar Lama</p>
               </button>
             )}
           </div>
         )}
         <div className="mt-2 w-full bg-neutral-100 rounded-md border-2 border-neutral-300 flex items-center pr-4 mb-4">
-          <input
+          <textarea
             placeholder="Berikan komentar..."
-            className="bg-neutral-100 p-4 w-full"
+            className="bg-neutral-100 p-4 w-full focus:outline-none"
             value={content}
             onChange={setContent}
           />

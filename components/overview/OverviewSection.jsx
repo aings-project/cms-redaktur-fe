@@ -1,7 +1,7 @@
 import React from "react";
 import OverviewNewsDraftItem from "./OverviewNewsDraftItem";
 import { useRouter } from "next/router";
-import dateTimeFormatter from "../../utils/dateTimeFormatter";
+import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
 

@@ -3,7 +3,10 @@ import useRequireAuth from "../../../hooks/useRequireAuth";
 import EditorSidebarTab from "./EditorSidebarTab";
 import CommentSidebarTab from "./CommentSidebarTab";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveCommentList } from "../../../states/comments/action";
+import {
+  asyncClearCommentList,
+  asyncReceiveCommentList,
+} from "../../../states/comments/action";
 
 export default function EditorSidebar({ onValidate, onUpdateDraft }) {
   const auth = useRequireAuth();
@@ -13,7 +16,8 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
 
   const handleSidebarTab = (value) => {
     setIsEditor(value);
-    if (!isEditor) {
+    if (!value) {
+      dispatch(asyncClearCommentList());
       dispatch(asyncReceiveCommentList({ id: newsDraft.id }));
     }
   };

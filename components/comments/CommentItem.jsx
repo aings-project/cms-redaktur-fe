@@ -1,5 +1,8 @@
 import React from "react";
-import dateTimeFormatter from "../../utils/dateTimeFormatter";
+import {
+  commentDateTimeFormatter,
+  dateTimeFormatter,
+} from "../../utils/dateTimeFormatter";
 import useRequireAuth from "../../hooks/useRequireAuth";
 
 export default function CommentItem({ sender, content, dateTime }) {
@@ -21,8 +24,8 @@ export default function CommentItem({ sender, content, dateTime }) {
         <div className="h-1 w-2" />
         <div className={`flex justify-between text-white w-full items-start`}>
           <p className="text-sm font-bold text-white ">{sender}</p>
-          <p className="text-sm text-white pr-4">
-            {dateTimeFormatter(dateTime)}
+          <p className="text-sm text-white pr-4 text-end">
+            {commentDateTimeFormatter(dateTime)}
           </p>
         </div>
       </div>

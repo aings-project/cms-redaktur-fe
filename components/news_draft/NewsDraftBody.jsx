@@ -2,7 +2,7 @@ import React from "react";
 import NewsDraftTabBar from "./NewsDraftTabBar";
 import NewsDraftItem from "./NewsDraftItem";
 import { useRouter } from "next/router";
-import dateTimeFormatter from "../../utils/dateTimeFormatter";
+import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
 import { parseNavigationToStatus } from "../../utils/draftAttributeParser";

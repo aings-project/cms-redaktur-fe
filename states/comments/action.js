@@ -34,6 +34,23 @@ function asyncReceiveCommentList({ page = "1", id } = {}) {
   };
 }
 
+function asyncClearCommentList() {
+  return async (dispatch) => {
+    const commentData = {
+      current_page: 1,
+      items_per_page: 5,
+      total_pages: 1,
+      total_items: 0,
+      comments: [],
+    };
+    dispatch(
+      receiveCommentListActionCreator({
+        commentData,
+      })
+    );
+  };
+}
+
 function asyncPostCommentList({ content, id_redaktur, id } = {}) {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
@@ -54,4 +71,9 @@ function asyncPostCommentList({ content, id_redaktur, id } = {}) {
   };
 }
 
-export { ActionType, asyncReceiveCommentList, asyncPostCommentList };
+export {
+  ActionType,
+  asyncReceiveCommentList,
+  asyncPostCommentList,
+  asyncClearCommentList,
+};

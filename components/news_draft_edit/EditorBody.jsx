@@ -22,7 +22,7 @@ export default function EditorBody({
       {isEditable && (
         <div>
           <input
-            className="w-full bg-white text-2xl font-bold mb-2 px-2 py-2 border-2 border-sky-300 focus:outline-2 focus:outline-sky-700 rounded-md"
+            className="w-full bg-white text-lg md:text-xl lg:text-2xl font-semibold lg:font-bold mb-2 px-2 py-2 border-2 border-sky-300 focus:outline-2 focus:outline-sky-700 rounded-md"
             value={title}
             onChange={(event) => {
               onTitleChange(event.target.value);

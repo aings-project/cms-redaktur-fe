@@ -1,4 +1,4 @@
-export default function dateTimeFormatter(inputDateTime) {
+function dateTimeFormatter(inputDateTime) {
   const date = new Date(inputDateTime);
 
   // Define the names of days and months in Indonesian
@@ -28,3 +28,21 @@ export default function dateTimeFormatter(inputDateTime) {
 
   return `${dayName}, ${dayOfMonth} ${monthName} ${year} ${hour}:${minute}`;
 }
+
+function commentDateTimeFormatter(inputDateTime) {
+  const date = new Date(inputDateTime);
+
+  // Define the names of days and months in Indonesian
+  const days = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
+
+  const dayName = days[date.getUTCDay()];
+  const dayOfMonth = date.getUTCDate();
+  const monthName = date.getUTCMonth();
+  const year = date.getUTCFullYear();
+  const hour = date.getUTCHours();
+  const minute = (date.getUTCMinutes() < 10 ? "0" : "") + date.getUTCMinutes();
+
+  return `${dayName}, ${dayOfMonth}/${monthName}/${year} ${hour}:${minute}`;
+}
+
+export { dateTimeFormatter, commentDateTimeFormatter };

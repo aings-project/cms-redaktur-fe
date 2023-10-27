@@ -3,7 +3,7 @@ import EditorDropdown from "./EditorDropdown";
 import EditorInfo from "./EditorInfo";
 import SecondaryButton from "../../shared/SecondaryButton";
 import { useSelector } from "react-redux";
-import dateTimeFormatter from "../../../utils/dateTimeFormatter";
+import { dateTimeFormatter } from "../../../utils/dateTimeFormatter";
 import { convertStatus } from "../../../utils/draftAttributeParser";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";

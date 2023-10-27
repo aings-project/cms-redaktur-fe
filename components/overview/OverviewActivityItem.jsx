@@ -1,5 +1,5 @@
 import React from "react";
-import dateTimeFormatter from "../../utils/dateTimeFormatter";
+import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
 import { activityActionParserShort } from "../../utils/activityActionParser";
 import { useRouter } from "next/router";
 
