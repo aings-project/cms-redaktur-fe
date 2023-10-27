@@ -12,7 +12,7 @@ export default function Pagination({
 }) {
   return (
     <div
-      className={`justify-center sm:justify-end mt-10 items-center ${
+      className={`justify-center sm:justify-end pt-6 md:pt-10 items-center bg-white ${
         totalPages === 1 ? "hidden" : "flex"
       }`}
     >

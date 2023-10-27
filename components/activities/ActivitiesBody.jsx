@@ -26,7 +26,7 @@ export default function ActivitiesBody({ data }) {
   };
 
   return (
-    <div>
+    <div className="bg-white">
       <div className="flex items-center mt-4 mr-4 w-full mb-4">
         <p className="text-black font-semibold pr-4">Filter: </p>
         <Select

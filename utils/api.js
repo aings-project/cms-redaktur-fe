@@ -189,7 +189,7 @@ const api = (() => {
     return data;
   }
 
-  async function getAllActivities({ page = "1", limit = "5" } = {}) {
+  async function getAllActivities({ page = "1", limit = "10" } = {}) {
     const response = await fetchWithAuth(
       `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}`,
       {

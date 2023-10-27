@@ -11,11 +11,9 @@ export default function ActivitiesLayout({
   onPrevPage,
 }) {
   return (
-    <div className="py-16 px-8 bg-white">
+    <div className="max-w-screen-2xl mx-auto py-16 px-8 bg-white flex flex-col">
       <ActivitiesHeader title="Log Aktivitas" />
-      <div className="max-w-screen-2xl mx-auto bg-white">
-        <ActivitiesBody data={activities} />
-      </div>
+      <ActivitiesBody data={activities} />
       <Pagination
         currentPages={currentPage}
         totalPages={totalPages}
