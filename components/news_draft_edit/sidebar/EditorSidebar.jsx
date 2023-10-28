@@ -25,15 +25,15 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
   return (
     <div
       id="newsDraftEditSidebar"
-      className="w-full bg-gray-700 flex flex-col md:h-[calc(100dvh)] justify-between"
+      className="w-full bg-white flex flex-col md:h-[calc(100dvh)] justify-between border-l-2"
     >
       <div className="flex mb-6 px-6 pt-6">
         <div className="text-white bg-sky-600 px-4 py-2 text-xl rounded-md">
           {auth.username.substring(0, 1).toUpperCase()}
         </div>
         <div className="px-4">
-          <p className="text-white text-base font-bold">{auth.username}</p>
-          <p className="text-white text-sm font-normal">{auth.email}</p>
+          <p className="text-black text-base font-bold">{auth.username}</p>
+          <p className="text-black text-sm font-normal">{auth.email}</p>
         </div>
       </div>
       <div className="flex items-end">
@@ -43,10 +43,10 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
           }}
         >
           <p
-            className={`text-white px-8 font-semibold text-base pb-2  ${
+            className={`px-8 font-semibold text-base pb-2  ${
               isEditor
-                ? "border-b-4 border-sky-400"
-                : "text-gray-200 border-white border-b pb-3"
+                ? "text-sky-700 border-b-4 border-sky-400"
+                : "text-gray-400 border-b-2 pb-3"
             } `}
           >
             Editor
@@ -58,16 +58,16 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
           }}
         >
           <p
-            className={`text-white px-8 font-semibold text-base pb-2 ${
+            className={`px-8 font-semibold text-base pb-2 ${
               isEditor
-                ? "text-gray-200 pb-3 border-white border-b"
-                : "border-b-4 border-sky-400"
+                ? "text-gray-400 pb-3 border-b-2"
+                : "text-sky-700 border-b-4 border-sky-400"
             } `}
           >
             Komentar
           </p>
         </button>
-        <div className="border-b h-2 w-full" />
+        <div className="border-b-2 h-2 w-full" />
       </div>
       <div className="md:h-full md:overflow-y-auto">
         {isEditor && (

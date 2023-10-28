@@ -42,17 +42,17 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
         }}
       >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon className="text-white" />}
+          expandIcon={<ExpandMoreIcon className="text-black" />}
           sx={{
-            backgroundColor: "#374151",
+            backgroundColor: "white",
           }}
         >
-          <p className="px-2 bg-gray-700 text-white font-semibold">
+          <p className="px-2 bg-white text-black font-semibold">
             Informasi Umum
           </p>
         </AccordionSummary>
-        <AccordionDetails className="bg-gray-700">
-          <div className="flex flex-col bg-gray-700 px-2">
+        <AccordionDetails className="bg-white">
+          <div className="flex flex-col bg-white px-2">
             <EditorInfo title="Diperbarui" content={updatedAt} />
             <EditorInfo title="Wartawan" content={journalist} />
             {version !== 1 && (
@@ -87,12 +87,12 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
             {isEditable && (
               <div>
                 <button
-                  className="bg-white h-12 flex items-center justify-center rounded-md mb-4 w-full text-sm"
+                  className="bg-sky-600 h-12 flex items-center justify-center rounded-md mb-4 w-full text-sm"
                   onClick={() => {
                     onUpdateDraft("reviewing");
                   }}
                 >
-                  <p className="text-center text-zinc-800 font-semibold my-auto">
+                  <p className="text-center text-white font-semibold my-auto">
                     {status === "Approved" || status === "reviewed"
                       ? "Sunting Ulang"
                       : "Simpan Perubahan"}
@@ -116,12 +116,12 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
             )}
             {isEditable && (
               <button
-                className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-gray-700"
+                className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-red-600"
                 onClick={() => {
                   onUpdateDraft("rejected");
                 }}
               >
-                <p className="text-center font-semibold my-auto text-red-400">
+                <p className="text-center font-semibold my-auto text-white">
                   Tolak Berita
                 </p>
               </button>

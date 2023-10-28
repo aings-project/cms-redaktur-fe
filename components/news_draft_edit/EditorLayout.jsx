@@ -26,12 +26,12 @@ export default function EditorLayout({
   }, [newsDraft]);
 
   return (
-    <div className="flex bg-sky-50 h-[calc(100dvh)] overflow-y-auto">
+    <div className="flex bg-neutral-50 h-[calc(100dvh)] overflow-y-auto">
       <div className="p-6 w-full flex flex-col max-w-screen-lg mx-auto bg-white">
         <div className="flex justify-between fixed md:relative z-10 top-0 left-0 right-0 px-6 py-3 md:px-0 md:py-0 md:mb-6 bg-white shadow-sm md:shadow-none">
           <button
             className="w-fit flex items-center justify-center"
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/news_draft")}
           >
             <ArrowBack className="mr-4" />
           </button>
@@ -61,13 +61,13 @@ export default function EditorLayout({
             : "translate-x-0 flex shadow-lg"
         } md:flex w-full md:max-w-sm lg:max-w-md md:z-30 fixed right-0 md:static`}
       >
-        <div className="w-full bg-gray-700 h-[calc(100dvh)] overflow-y-auto md:overflow-y-clip">
+        <div className="w-full bg-white h-[calc(100dvh)] overflow-y-auto md:overflow-y-clip">
           <div className="md:hidden flex pt-6 px-6">
-            <p className="text-white text-3xl font-extrabold md:invisible">
+            <p className="text-sky-700 text-3xl font-extrabold md:invisible">
               AINGS
             </p>
             <button className="flex justify-end w-full" onClick={handleToggle}>
-              <Close className="text-white" />
+              <Close className="text-black" />
             </button>
           </div>
           <EditorSidebar

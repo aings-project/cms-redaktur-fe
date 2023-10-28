@@ -13,29 +13,34 @@ export default function ValidationAccordion({ onValidate }) {
   return (
     <Accordion>
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon className="text-white" />}
+        expandIcon={<ExpandMoreIcon className="text-black" />}
         sx={{
-          backgroundColor: "#374151",
+          backgroundColor: "white",
         }}
       >
-        <p className="bg-gray-700 px-2 text-white font-semibold">Validasi</p>
+        <p className="bg-white px-2 text-black font-semibold">
+          Kebenaran Berita
+        </p>
       </AccordionSummary>
-      <AccordionDetails className="bg-gray-700">
-        <div className="flex flex-col bg-gray-700 px-2">
+      <AccordionDetails className="bg-white">
+        <div className="flex flex-col bg-white px-2">
           <div className="mb-6">
             {validationData && (
               <div>
-                <p className="text-white text-sm font-normal">
+                <p className="text-black text-sm font-semibold mb-2">Status</p>
+                <p className="text-black text-sm font-normal">
                   {validationData.status}
                 </p>
-                <p className="text-white text-sm font-semibold mt-2">Alasan</p>
-                <p className="text-white text-sm font-normal mt-2 line-clamp-2">
+                <p className="text-black text-sm font-semibold mt-2">
+                  Keterangan
+                </p>
+                <p className="text-black text-sm font-normal mt-2 line-clamp-2">
                   {validationData.description}
                 </p>
               </div>
             )}
             {!validationData && (
-              <p className="text-white text-sm font-normal text-center">
+              <p className="text-black text-sm font-normal text-center">
                 Berita Belum Divalidasi!
               </p>
             )}

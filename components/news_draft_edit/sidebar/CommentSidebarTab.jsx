@@ -49,11 +49,11 @@ export default function CommentSidebarTab({ id }) {
   };
 
   return (
-    <div className="bg-gray-700  w-full flex flex-col">
+    <div className="bg-white  w-full flex flex-col">
       <div className="flex flex-col mx-4">
         {isLoading && (
           <div className="p-2 w-full flex justify-center">
-            <ReactLoading type="spin" height={24} width={24} />
+            <ReactLoading type="spin" color="black" height={24} width={24} />
           </div>
         )}
         {commentList.length > 0 && (
@@ -80,20 +80,23 @@ export default function CommentSidebarTab({ id }) {
             })}
             {!isLastPage && (
               <button
-                className="mt-2 bg-gray-600 rounded-md"
+                className="mt-2 bg-sky-100 rounded-md"
                 onClick={() => {
                   onLoadMoreComments();
                 }}
               >
-                <p className="text-white p-2 font-bold">Muat Komentar Lama</p>
+                <p className="text-black p-2 font-bold">Muat Komentar Lama</p>
               </button>
             )}
           </div>
         )}
-        <div className="mt-2 w-full bg-neutral-100 rounded-md border-2 border-neutral-300 flex items-center pr-4 mb-4">
+        {commentList.length === 0 && (
+          <p className="text-center py-4">Belum ada komentar</p>
+        )}
+        <div className="mt-2 w-full bg-wgite rounded-md border-2 border-neutral-300 flex items-center pr-4 mb-4">
           <textarea
             placeholder="Berikan komentar..."
-            className="bg-neutral-100 p-4 w-full focus:outline-none"
+            className="bg-white p-4 w-full focus:outline-none"
             value={content}
             onChange={setContent}
           />
