@@ -9,8 +9,10 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useRouter } from "next/router";
 
 export default function GeneralInfoAccordion({ onUpdateDraft }) {
+  const router = useRouter();
   const newsDraft = useSelector((state) => state.newsDraftDetail);
   const updatedAt = dateTimeFormatter(newsDraft.dateTime);
   const journalist = newsDraft.wartawan;

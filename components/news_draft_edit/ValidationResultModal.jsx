@@ -1,5 +1,4 @@
 import React from "react";
-import Editor from "../shared/Editor";
 
 export default function ValidationResult({
   onClose,
