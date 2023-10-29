@@ -19,7 +19,7 @@ export default function ValidationAccordion({ onValidate }) {
         }}
       >
         <p className="bg-white px-2 text-black font-semibold">
-          Kebenaran Berita
+          Validasi Berita
         </p>
       </AccordionSummary>
       <AccordionDetails className="bg-white">

@@ -10,7 +10,7 @@ export default function OverviewLayout({ newsDraftList, activityList }) {
         Ikhtisar
       </p>
       <div className="flex sm:mt-10 flex-wrap xl:flex-nowrap">
-        <div className="lg:max-w-7xl lg:min-w-[332px]">
+        <div className="xl:max-w-4xl xl:w-3/5">
           <OverviewSection
             newsDraftList={newsDraftList}
             title="Terakhir Diubah"
