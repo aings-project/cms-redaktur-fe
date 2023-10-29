@@ -67,10 +67,6 @@ export default function EditNewsDraft() {
       setShowValidationResult={setShowValidationResult}
       showValidationModal={showValidationModal}
       showValidationResult={showValidationResult}
-      isEditable={
-        (newsDraft.status === "reviewing" || newsDraft.status === "new") &&
-        newsDraft.version === newsDraft.maxVersion
-      }
     />
   );
 }

@@ -1,14 +1,19 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Editor from "../shared/Editor";
+import { useSelector } from "react-redux";
 
 export default function EditorBody({
   content,
   onChange,
-  isEditable,
   title,
   onTitleChange,
 }) {
+  const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const isEditable =
+    (newsDraft.status === "reviewing" || newsDraft.status === "new") &&
+    newsDraft.version === newsDraft.maxVersion;
+
   return (
     <div className="h-screen overflow-y-auto pt-12 md:pt-0">
       {!isEditable && (

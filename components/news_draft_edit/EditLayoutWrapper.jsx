@@ -7,7 +7,6 @@ export default function EditLayoutWrapper({
   newsDraft,
   onValidate,
   onUpdateDraft,
-  isEditable,
   showValidationModal,
   showValidationResult,
   setShowValidationModal,
@@ -17,7 +16,6 @@ export default function EditLayoutWrapper({
     <div className="relative">
       <EditorLayout
         onUpdateDraft={onUpdateDraft}
-        isEditable={isEditable}
         newsDraft={newsDraft}
         showValidationModal={(value) => {
           setShowValidationModal(value);

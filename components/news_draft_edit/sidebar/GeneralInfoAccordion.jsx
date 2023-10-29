@@ -2,18 +2,21 @@ import React, { useEffect, useState } from "react";
 import EditorDropdown from "./EditorDropdown";
 import EditorInfo from "./EditorInfo";
 import SecondaryButton from "../../shared/SecondaryButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dateTimeFormatter } from "../../../utils/dateTimeFormatter";
 import { convertStatus } from "../../../utils/draftAttributeParser";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useRouter } from "next/router";
+import { asyncReceiveNewsDraftDetail } from "../../../states/news_draft_detail/action";
 
 export default function GeneralInfoAccordion({ onUpdateDraft }) {
-  const router = useRouter();
   const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const isLoading = useSelector((state) => state.loading);
+  const dispatch = useDispatch();
+  const temp = true;
+
   const updatedAt = dateTimeFormatter(newsDraft.dateTime);
   const journalist = newsDraft.wartawan;
   const editor = newsDraft.editor;
@@ -31,6 +34,16 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const handleExpanded = (value) => {
     setIsExpanded(value);
   };
+
+  const handleChangeVersion = (value) => {
+    dispatch(
+      asyncReceiveNewsDraftDetail({
+        draft_id: newsDraft.draft_id,
+        version: value,
+      })
+    );
+  };
+
   useEffect(() => {
     setVersionTemp(version);
   }, [status, version]);
@@ -70,63 +83,60 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
               value={versionTemp}
               onChange={(value) => {
                 setVersionTemp(value);
-                router.push(`/news_draft/edit/${newsDraft.draft_id}/${value}`);
+                handleChangeVersion(value);
               }}
               items={numbersArray}
             />
-
+            {temp && <div></div>}
             {isEditable && (
               <div>
-                <EditorDropdown
-                  title="Kategori"
-                  isDisabled={status !== "reviewing"}
-                  value={"Belum Ada Kategori"}
-                  onChange={() => {}}
-                  items={["Belum Ada Kategori"]}
-                />
-              </div>
-            )}
-            {isEditable && (
-              <div>
-                <button
-                  className="bg-sky-600 h-12 flex items-center justify-center rounded-md mb-4 w-full text-sm"
-                  onClick={() => {
-                    onUpdateDraft("reviewing");
-                  }}
-                >
-                  <p className="text-center text-white font-semibold my-auto">
-                    {status === "Approved" || status === "reviewed"
-                      ? "Sunting Ulang"
-                      : "Simpan Perubahan"}
-                  </p>
-                </button>
-                {status === "reviewing" && (
-                  <SecondaryButton
-                    text="Selesai Menyunting"
+                <div className="flex items-center">
+                  {status === "reviewed" && (
+                    <SecondaryButton
+                      text="Sunting Ulang"
+                      onClick={() => {
+                        onUpdateDraft("reviewing");
+                      }}
+                    />
+                  )}
+                  {(status === "reviewing" || status === "new") && (
+                    <SecondaryButton
+                      text="Simpan Perubahan"
+                      onClick={() => {
+                        onUpdateDraft("reviewing");
+                      }}
+                    />
+                  )}
+                  {(status === "reviewing" || status === "new") && (
+                    <SecondaryButton
+                      text="Kirim ke Wartawan"
+                      onClick={() => {
+                        onUpdateDraft("reviewed");
+                      }}
+                    />
+                  )}
+                  {status === "approved" && (
+                    <SecondaryButton
+                      text="Publikasikan"
+                      onClick={() => {
+                        onUpdateDraft("published");
+                      }}
+                    />
+                  )}
+                </div>
+                {status !== "rejected" && (
+                  <button
+                    className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-red-600"
                     onClick={() => {
-                      onUpdateDraft("reviewed");
+                      onUpdateDraft("rejected");
                     }}
-                  />
-                )}
-                {(status === "reviewed" || status === "Approved") && (
-                  <SecondaryButton
-                    text="Publikasikan"
-                    disabled={status === "reviewed"}
-                  />
+                  >
+                    <p className="text-center font-semibold my-auto text-white">
+                      Tolak Draf Berita
+                    </p>
+                  </button>
                 )}
               </div>
-            )}
-            {isEditable && (
-              <button
-                className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-red-600"
-                onClick={() => {
-                  onUpdateDraft("rejected");
-                }}
-              >
-                <p className="text-center font-semibold my-auto text-white">
-                  Tolak Berita
-                </p>
-              </button>
             )}
           </div>
         </AccordionDetails>

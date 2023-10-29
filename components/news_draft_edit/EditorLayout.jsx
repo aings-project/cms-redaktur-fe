@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 
 export default function EditorLayout({
   onUpdateDraft,
-  isEditable,
   newsDraft,
   showValidationModal,
   showValidationResult,
@@ -45,7 +44,6 @@ export default function EditorLayout({
         <EditorBody
           title={title}
           content={content}
-          isEditable={isEditable}
           onChange={(value) => {
             setContent(value);
           }}
