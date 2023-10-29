@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { commentDateTimeFormatter } from "../../utils/dateTimeFormatter";
 import useRequireAuth from "../../hooks/useRequireAuth";
 
 export default function CommentItem({ sender, content, dateTime }) {
   const auth = useRequireAuth();
+  const clipped = content.length > 300;
+  const [readMore, setReadMore] = useState(false);
+
+  const handleReadMore = () => {
+    setReadMore(!readMore);
+  };
+
   return (
     <div className="bg-white w-full flex flex-col mt-4 mb-2">
       <div
@@ -26,8 +33,20 @@ export default function CommentItem({ sender, content, dateTime }) {
           </p>
         </div>
       </div>
-
-      <p className={`text-black text-sm`}>{content}</p>
+      {!clipped && <p className={`text-black text-sm`}>{content}</p>}
+      {clipped && (
+        <div>
+          <p className={`text-black text-sm`}>
+            {readMore ? content : `${content.substring(0, 300)} ...`}
+          </p>
+          <button
+            className="text-sm text-sky-600 bg-sky-50"
+            onClick={handleReadMore}
+          >
+            <p>{readMore ? "Baca Lebih Sedikit" : "Baca Selengkapnya"}</p>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
