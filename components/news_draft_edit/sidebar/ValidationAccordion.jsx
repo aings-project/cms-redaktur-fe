@@ -9,6 +9,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 export default function ValidationAccordion({ onValidate }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
   const validationData = newsDraft.validation;
+  const version = newsDraft.version;
+  const maxVersion = newsDraft.maxVersion;
+  const isEditable = version === maxVersion;
 
   return (
     <Accordion>
@@ -34,7 +37,11 @@ export default function ValidationAccordion({ onValidate }) {
                 <p className="text-black text-sm font-semibold mt-2">
                   Keterangan
                 </p>
-                <p className="text-black text-sm font-normal mt-2 line-clamp-2">
+                <p
+                  className={`text-black text-sm font-normal mt-2 ${
+                    isEditable ? "line-clamp-2" : ""
+                  } `}
+                >
                   {validationData.description}
                 </p>
               </div>
@@ -45,11 +52,13 @@ export default function ValidationAccordion({ onValidate }) {
               </p>
             )}
           </div>
-          <SecondaryButton
-            text={validationData ? "Lihat Selengkapnya" : "Validasi Berita"}
-            disabled={false}
-            onClick={() => onValidate()}
-          />
+          {isEditable && (
+            <SecondaryButton
+              text={validationData ? "Lihat Selengkapnya" : "Validasi Berita"}
+              disabled={false}
+              onClick={() => onValidate()}
+            />
+          )}
         </div>
       </AccordionDetails>
     </Accordion>

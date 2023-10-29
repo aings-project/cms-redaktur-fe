@@ -3,20 +3,36 @@ import { ArrowBack, Close, Menu } from "@mui/icons-material";
 import EditorBody from "./EditorBody";
 import EditorSidebar from "./sidebar/EditorSidebar";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncUpdateNewsDraft } from "../../states/news_draft_detail/action";
 
 export default function EditorLayout({
-  onUpdateDraft,
-  newsDraft,
   showValidationModal,
   showValidationResult,
 }) {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const newsDraft = useSelector((state) => state.newsDraftDetail);
+
   const [content, setContent] = useState(newsDraft.content);
   const [title, setTitle] = useState(newsDraft.title);
   const [hideNavbar, setHideNavbar] = useState(true);
 
   const handleToggle = () => {
     setHideNavbar((prevState) => !prevState);
+  };
+
+  const onUpdateDraft = ({ id, content, title, status }) => {
+    dispatch(
+      asyncUpdateNewsDraft({
+        title,
+        content,
+        status,
+        id,
+        version: newsDraft.version,
+        draft_id: newsDraft.draft_id,
+      })
+    );
   };
 
   useEffect(() => {
@@ -53,7 +69,7 @@ export default function EditorLayout({
         />
       </div>
       <div
-        className={`z-40 transition-transform duration-300 ${
+        className={`z-20 transition-transform duration-300 ${
           hideNavbar
             ? "translate-x-full md:translate-x-0"
             : "translate-x-0 flex shadow-lg"
