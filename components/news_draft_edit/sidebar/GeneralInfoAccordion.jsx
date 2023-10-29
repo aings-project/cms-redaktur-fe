@@ -91,14 +91,15 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
             {isEditable && (
               <div>
                 <div className="flex items-center">
-                  {status === "reviewed" && (
-                    <SecondaryButton
-                      text="Sunting Ulang"
-                      onClick={() => {
-                        onUpdateDraft("reviewing");
-                      }}
-                    />
-                  )}
+                  {status === "reviewed" ||
+                    (status === "rejected" && (
+                      <SecondaryButton
+                        text="Sunting Ulang"
+                        onClick={() => {
+                          onUpdateDraft("reviewing");
+                        }}
+                      />
+                    ))}
                   {(status === "reviewing" || status === "new") && (
                     <SecondaryButton
                       text="Simpan Perubahan"
