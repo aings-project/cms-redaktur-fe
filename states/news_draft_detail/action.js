@@ -1,6 +1,7 @@
 import NewsDraftModels from "../../models/NewsDraftModel";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
+import { setIsLoading } from "../loading/action";
 
 const ActionType = {
   RECEIVE_NEWS_DRAFT_DETAIL: "RECEIVE_NEWS_DRAFT_DETAIL",
@@ -24,6 +25,7 @@ function clearNewsDraftDetailActionCreator() {
 
 function asyncReceiveNewsDraftDetail({ draft_id, version }) {
   return async (dispatch) => {
+    dispatch(setIsLoading(true));
     dispatch(clearNewsDraftDetailActionCreator());
 
     try {
@@ -33,7 +35,9 @@ function asyncReceiveNewsDraftDetail({ draft_id, version }) {
       });
       const newsDraft = NewsDraftModels(response);
       dispatch(receiveNewsDraftDetailActionCreator({ newsDraft }));
+      dispatch(setIsLoading(false));
     } catch (error) {
+      dispatch(setIsLoading(false));
       toast.error(error.message, {
         position: toast.POSITION.TOP_CENTER,
       });
@@ -47,25 +51,29 @@ function asyncUpdateNewsDraft({
   status,
   id,
   version,
-  onSuccess,
+  draft_id,
 }) {
   return async (dispatch) => {
     try {
-      const newsDraft = await api.updateNewsDraft({
+      dispatch(setIsLoading(true));
+      await api.updateNewsDraft({
         title,
         content,
         status,
         id,
       });
-      dispatch(clearNewsDraftDetailActionCreator());
-      newsDraft[`total_version`] = parseInt(version) + 1;
+      const response = await api.getDetailNewsDraft({
+        draft_id,
+        version: parseInt(version) + 1,
+      });
+      const newsDraft = NewsDraftModels(response);
       dispatch(receiveNewsDraftDetailActionCreator({ newsDraft }));
-      onSuccess(newsDraft[`total_version`]);
-
+      dispatch(setIsLoading(false));
       toast.success("Berhasil Memperbarui Berita", {
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (error) {
+      dispatch(setIsLoading(false));
       toast.error(error.message, {
         position: toast.POSITION.TOP_CENTER,
       });

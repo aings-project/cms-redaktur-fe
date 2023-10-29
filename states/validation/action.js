@@ -1,7 +1,7 @@
-import { showLoading, hideLoading } from "react-redux-loading-bar";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { setIsLoading } from "../loading/action";
+import { asyncReceiveNewsDraftDetail } from "../news_draft_detail/action";
 
 function asyncReceiveValidationData({
   draft_id,
@@ -13,12 +13,13 @@ function asyncReceiveValidationData({
     dispatch(setIsLoading(true));
 
     try {
-      const validationData = await api.validateNewsDraft({
+      await api.validateNewsDraft({
         draft_id,
         version,
         information,
       });
-      onSuccess(validationData);
+      dispatch(asyncReceiveNewsDraftDetail({ draft_id, version }));
+      onSuccess();
       toast.success("Berhasil Validasi Berita", {
         position: toast.POSITION.TOP_CENTER,
       });

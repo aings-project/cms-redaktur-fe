@@ -25,10 +25,6 @@ export default function EditNewsDraft() {
         version,
         information: value,
         onSuccess: (_) => {
-          asyncReceiveNewsDraftDetail({
-            draft_id,
-            version,
-          });
           setShowValidationModal(false);
           setShowValidationResult(true);
         },
@@ -44,12 +40,7 @@ export default function EditNewsDraft() {
         status,
         id,
         version,
-        onSuccess: (newVersion) => {
-          asyncReceiveNewsDraftDetail({
-            draft_id,
-            newVersion,
-          });
-        },
+        draft_id,
       })
     );
   };
