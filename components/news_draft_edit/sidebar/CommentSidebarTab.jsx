@@ -72,7 +72,7 @@ export default function CommentSidebarTab({ id }) {
                     <CommentItem
                       content={item.content}
                       dateTime={item.created_at}
-                      sender={item.user_wartawan.username}
+                      sender={`${item.user_wartawan.username} (wartawan)`}
                     />
                   )}
                 </>
