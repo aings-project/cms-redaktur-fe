@@ -3,7 +3,7 @@ function activityActionParserShort(value) {
     case "reviewing":
       return "Menyunting draf berjudul";
     case "reviewed":
-      return "Menunggu konfirmasi wartawan untuk berita";
+      return "Mengirim kembali ke wartawan untuk berita";
     case "new":
       return "Menambahkan berita berjudul";
     case "approved":
