@@ -2,18 +2,23 @@ import React from "react";
 import { useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 
-export default function OverviewChart({}) {
+export default function OverviewChart({ newsDraftCount }) {
   const defaultLabelStyle = {
     fontSize: "5px",
     fill: "#FFF",
   };
   const statusData = [
-    { title: "Baru", color: "#94a3b8", value: 20 },
-    { title: "Ditolak", color: "#e60000", value: 11 },
-    { title: "Disunting", color: "#f59e0b", value: 15 },
-    { title: "Menunggu Wartawan", color: "#a16207", value: 13 },
-    { title: "Menunggu Publikasi", color: "#03a9f4", value: 9 },
-    { title: "Publikasi", color: "#1e3a8a", value: 44 },
+    { title: "Belum Disunting", color: "#94a3b8", value: newsDraftCount.new },
+    {
+      title: "Sedang Disunting",
+      color: "#f59e0b",
+      value: newsDraftCount.reviewing + newsDraftCount.reviewed,
+    },
+    {
+      title: "Menunggu Publikasi",
+      color: "#1e3a8a",
+      value: newsDraftCount.approved,
+    },
   ];
   const validationData = [
     { title: "Belum Divalidasi", color: "#94a3b8", value: 20 },
@@ -22,7 +27,7 @@ export default function OverviewChart({}) {
   ];
 
   const [rawData, setRawData] = useState(statusData);
-  const [filterBy, setFilterBy] = useState("Status");
+  const [filterBy, setFilterBy] = useState("Status Draf");
   const [hovered, setHovered] = useState(-1);
 
   const data = rawData.map((entry, index) => {
@@ -37,7 +42,7 @@ export default function OverviewChart({}) {
 
   const handleSelectType = (event) => {
     setFilterBy(event.target.value);
-    if (event.target.value === "Status") {
+    if (event.target.value === "Status Draf") {
       setRawData(statusData);
     } else {
       setRawData(validationData);
@@ -55,7 +60,7 @@ export default function OverviewChart({}) {
           onChange={handleSelectType}
           className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full lg:mr-6"
         >
-          {["Status", "Validasi Berita"].map((item, index) => {
+          {["Status Draf", "Validasi Berita"].map((item, index) => {
             return <option key={index}>{item}</option>;
           })}
         </select>
@@ -77,35 +82,23 @@ export default function OverviewChart({}) {
             setHovered(-1);
           }}
         />
-        {filterBy === "Status" && (
+        {filterBy === "Status Draf" && (
           <div className="flex flex-wrap sm:flex-col sm:ml-12 mt-6">
             <div className="flex mb-4 mr-4 sm:mr-0">
               <div className={`p-3 bg-[#94a3b8] mx-2`} />
-              <p>Baru ({rawData[0].value})</p>
-            </div>
-            <div className="flex mb-4 mr-4 sm:mr-0">
-              <div className={`p-3 bg-[#e60000] mx-2`} />
-              <p>Ditolak ({rawData[1].value})</p>
+              <p>Belum Disunting ({rawData[0].value})</p>
             </div>
             <div className="flex mb-4 mr-4 sm:mr-0">
               <div className={`p-3 bg-[#f59e0b] mx-2`} />
-              <p>Disunting ({rawData[2].value})</p>
-            </div>
-            <div className="flex mb-4 mr-4 sm:mr-0">
-              <div className={`p-3 bg-[#a16207] mx-2`} />
-              <p>Menunggu Wartawan ({rawData[3].value})</p>
-            </div>
-            <div className="flex mb-4 mr-4 sm:mr-0">
-              <div className={`p-3 bg-[#03a9f4] mx-2`} />
-              <p>Menunggu Publikasi ({rawData[4].value})</p>
+              <p>Sedang Disunting ({rawData[1].value})</p>
             </div>
             <div className="flex mb-4 mr-4 sm:mr-0">
               <div className={`p-3 bg-[#1e3a8a] mx-2`} />
-              <p>Publikasi ({rawData[5].value})</p>
+              <p>Menunggu Publikasi ({rawData[2].value})</p>
             </div>
           </div>
         )}
-        {filterBy !== "Status" && (
+        {filterBy !== "Status Draf" && (
           <div className="flex flex-wrap sm:flex-col sm:ml-12 mt-6">
             <div className="flex mb-4 mr-4 sm:mr-0">
               <div className={`p-3 bg-[#94a3b8] mx-2`} />

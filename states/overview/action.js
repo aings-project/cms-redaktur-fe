@@ -1,6 +1,7 @@
 import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { setIsLoading } from "../loading/action";
+import { NewsDraftCountByStatusModel } from "../../models/NewsDraftCountByStatusModel";
 
 const ActionType = {
   RECEIVE_OVERVIEW_DATA: "RECEIVE_OVERVIEW_DATA",
@@ -24,16 +25,14 @@ function asyncReceiveOverviewData() {
         status: "new",
       });
       const activitiesData = await api.getAllActivities({ limit: 5 });
-      const readyToPublishData = await api.getAllNewsDraft({
-        limit: 5,
-        status: "",
-      });
+      const draftCount = await api.getNewsDraftCount();
+
       dispatch(
         receiveOverviewActionCreator({
           overviewData: {
-            listNewsDraft: newsDraftData.draft_berita,
+            lastEdited: newsDraftData.draft_berita,
             activityLogs: activitiesData.activity_logs,
-            listReadyPublish: readyToPublishData.draft_berita,
+            draftCount: NewsDraftCountByStatusModel(draftCount),
           },
         })
       );

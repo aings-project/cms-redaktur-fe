@@ -260,6 +260,29 @@ const api = (() => {
     return responseJson;
   }
 
+  async function getNewsDraftCount() {
+    const response = await fetchWithAuth(
+      `${BASE_URL}/v1/draft-berita/count-by-status`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const responseJson = await response.json();
+
+    const { error } = responseJson;
+
+    if (error) {
+      const { message } = error;
+      throw new Error(message);
+    }
+
+    return responseJson;
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -272,6 +295,7 @@ const api = (() => {
     getAllActivities,
     getCommentList,
     postComment,
+    getNewsDraftCount,
   };
 })();
 

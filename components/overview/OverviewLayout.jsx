@@ -3,7 +3,11 @@ import OverviewActivities from "./OverviewActivities";
 import OverviewSection from "./OverviewSection";
 import OverviewChart from "./OverviewChart";
 
-export default function OverviewLayout({ newsDraftList, activityList }) {
+export default function OverviewLayout({
+  newsDraftList,
+  activityList,
+  draftCount,
+}) {
   return (
     <div className="max-w-screen-2xl mx-auto py-16 px-6 lg:px-8 bg-white">
       <p className="text-black text-3xl sm:text-4xl font-bold mb-6 hidden sm:block">
@@ -15,7 +19,7 @@ export default function OverviewLayout({ newsDraftList, activityList }) {
             newsDraftList={newsDraftList}
             title="Terakhir Diubah"
           />
-          <OverviewChart />
+          <OverviewChart newsDraftCount={draftCount} />
         </div>
         <OverviewActivities activityList={activityList} />
       </div>
