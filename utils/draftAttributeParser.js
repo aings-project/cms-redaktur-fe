@@ -40,12 +40,16 @@ function reverseConvertStatus(value) {
 
 function parseNavigationToStatus(value) {
   switch (value) {
+    case "Semua Draf":
+      return "new,reviewing,reviewed";
     case "Baru":
       return "new";
     case "Sedang Disunting":
       return "reviewing";
     case "Menunggu Persetujuan":
       return "reviewed";
+    case "Semua Publikasi":
+      return "approved,published";
     case "Menunggu Publikasi":
       return "approved";
     case "Sudah Publikasi":
