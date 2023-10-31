@@ -17,27 +17,6 @@ function convertStatus({ value }) {
   }
 }
 
-function reverseConvertStatus(value) {
-  switch (value) {
-    case "Baru":
-      return "new";
-    case "Sedang Disunting":
-      return "reviewing";
-    case "Menunggu Persetujuan Wartawan":
-      return "reviewed";
-    case "Menunggu Publikasi":
-      return "approved";
-    case "Sudah Publikasi":
-      return "published";
-    case "Draf Ditolak":
-      return "rejected";
-    case "Semua":
-      return null;
-    default:
-      return value;
-  }
-}
-
 function parseNavigationToStatus(value) {
   switch (value) {
     case "Semua Draf":
@@ -63,4 +42,4 @@ function parseNavigationToStatus(value) {
   }
 }
 
-export { convertStatus, reverseConvertStatus, parseNavigationToStatus };
+export { convertStatus, parseNavigationToStatus };
