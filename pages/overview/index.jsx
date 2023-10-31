@@ -19,9 +19,7 @@ export default function Overview() {
       activePage="ikhtisar"
       content={
         <OverviewLayout
-          newsDraftList={
-            overviewData?.lastEdited ? overviewData.lastEdited : []
-          }
+          lastEdited={overviewData?.lastEdited ? [overviewData.lastEdited] : []}
           draftCount={
             overviewData?.draftCount
               ? overviewData.draftCount

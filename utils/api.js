@@ -283,6 +283,26 @@ const api = (() => {
     return responseJson;
   }
 
+  async function getLatestEdited() {
+    const response = await fetchWithAuth(`${BASE_URL}/v1/draft-berita/latest`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const responseJson = await response.json();
+
+    const { error } = responseJson;
+
+    if (error) {
+      const { message } = error;
+      throw new Error(message);
+    }
+
+    return responseJson;
+  }
+
   return {
     putAccessToken,
     getAccessToken,
@@ -296,6 +316,7 @@ const api = (() => {
     getCommentList,
     postComment,
     getNewsDraftCount,
+    getLatestEdited,
   };
 })();
 

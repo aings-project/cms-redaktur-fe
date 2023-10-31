@@ -20,17 +20,14 @@ function asyncReceiveOverviewData() {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {
-      const newsDraftData = await api.getAllNewsDraft({
-        limit: 5,
-        status: "new",
-      });
       const activitiesData = await api.getAllActivities({ limit: 5 });
       const draftCount = await api.getNewsDraftCount();
+      const lastEdited = await api.getLatestEdited();
 
       dispatch(
         receiveOverviewActionCreator({
           overviewData: {
-            lastEdited: newsDraftData.draft_berita,
+            lastEdited: lastEdited.draft_berita,
             activityLogs: activitiesData.activity_logs,
             draftCount: NewsDraftCountByStatusModel(draftCount),
           },
