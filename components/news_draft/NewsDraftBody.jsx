@@ -76,6 +76,7 @@ export default function NewsDraftBody({ onSetActiveStatus }) {
                   title={item.title}
                   author={item.user_wartawan.username}
                   dateTime={dateTimeFormatter(item.created_at)}
+                  status={item.status}
                   index={index}
                 />
               );

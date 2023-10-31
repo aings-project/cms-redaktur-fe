@@ -1,5 +1,5 @@
 import React from "react";
-import { AccountCircle, DateRange, MoreVert } from "@mui/icons-material";
+import { AccountCircle, DateRange } from "@mui/icons-material";
 
 export default function NewsDraftItem({
   title,
@@ -7,6 +7,7 @@ export default function NewsDraftItem({
   dateTime,
   onClick,
   index,
+  status,
 }) {
   return (
     <div
@@ -18,9 +19,17 @@ export default function NewsDraftItem({
     >
       <button className="w-full flex flex-col" onClick={onClick}>
         <div className="py-4 hover:cursor-pointer">
-          <p className="text-black text-base font-semibold mb-2 text-left">
-            {title}
-          </p>
+          <div className="flex items-center pb-2">
+            {status === "new" && (
+              <p className="bg-red-500 py-0 px-2 text-center text-white rounded-md mr-2">
+                Baru
+              </p>
+            )}
+            <p className="text-black text-base font-semibold mb-2 text-left">
+              {title}
+            </p>
+          </div>
+
           <div className="flex flex-wrap">
             <div className="flex mr-4 items-center mb-1">
               <AccountCircle className="w-4 h-4" />
