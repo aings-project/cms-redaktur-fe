@@ -20,16 +20,20 @@ export default function NewsDraft() {
   ];
 
   useEffect(() => {
-    dispatch(asyncReceiveNewsDraft());
+    dispatch(
+      asyncReceiveNewsDraft({
+        status: "new,reviewing,reviewed",
+      })
+    );
   }, [dispatch]);
 
   const handlePageChange = (page) => {
-    dispatch(
-      asyncReceiveNewsDraft({
-        page,
-        status: reverseConvertStatus(activeStatus),
-      })
-    );
+    // dispatch(
+    //   asyncReceiveNewsDraft({
+    //     page,
+    //     status: reverseConvertStatus(activeStatus),
+    //   })
+    // );
   };
 
   return (

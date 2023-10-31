@@ -91,15 +91,14 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
             {isEditable && (
               <div>
                 <div className="flex items-center">
-                  {status === "reviewed" ||
-                    (status === "rejected" && (
-                      <SecondaryButton
-                        text="Sunting Ulang"
-                        onClick={() => {
-                          onUpdateDraft("reviewing");
-                        }}
-                      />
-                    ))}
+                  {["reviewed", "rejected", "published"].includes(status) && (
+                    <SecondaryButton
+                      text="Sunting Ulang"
+                      onClick={() => {
+                        onUpdateDraft("reviewing");
+                      }}
+                    />
+                  )}
                   {(status === "reviewing" || status === "new") && (
                     <SecondaryButton
                       text="Simpan Perubahan"
@@ -125,7 +124,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                     />
                   )}
                 </div>
-                {status !== "rejected" && (
+                {status !== "rejected" && status !== "published" && (
                   <button
                     className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-red-600"
                     onClick={() => {
