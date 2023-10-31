@@ -13,6 +13,7 @@ import { asyncReceiveNewsDraftDetail } from "../../../states/news_draft_detail/a
 import useInput from "../../../hooks/useInput";
 import { asyncPostCommentList } from "../../../states/comments/action";
 import useRequireAuth from "../../../hooks/useRequireAuth";
+import NegativeButton from "../../shared/NegativeButton";
 
 export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
@@ -169,14 +170,12 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                         }}
                       />
                     )}
-                    <button
-                      className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-red-600"
+                    <NegativeButton
+                      isLoading={isLoading}
+                      text="Tolak Draf Berita"
+                      disabled={isRejected && rejection.length < 1}
                       onClick={handleRejectButton}
-                    >
-                      <p className="text-center font-semibold my-auto text-white">
-                        Tolak Draf Berita
-                      </p>
-                    </button>
+                    />
                   </div>
                 )}
               </div>
