@@ -32,6 +32,7 @@ export default function LastEditedSection({ newsDraftList, title }) {
             title={item.title}
             author={item.user_wartawan.username}
             dateTime={dateTimeFormatter(item.created_at)}
+            status={item.status}
           />
         );
       })}

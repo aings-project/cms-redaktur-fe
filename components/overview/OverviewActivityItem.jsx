@@ -18,11 +18,13 @@ export default function OverviewActivityItem({
     <div className="flex">
       {action === "rejected" && <div className="bg-red-500 px-1" />}
       {action === "new" && <div className="bg-green-500 px-1" />}
-      {action === "with_data" && <div className="bg-blue-500 px-1" />}
-      {action === "without_data" && <div className="bg-blue-500 px-1" />}
+      {action === "with_data" && <div className="bg-blue-200 px-1" />}
+      {action === "without_data" && <div className="bg-blue-200 px-1" />}
       {action === "reviewing" && <div className="bg-amber-500 px-1" />}
       {action === "reviewed" && <div className="bg-orange-500 px-1" />}
       {action === "comment" && <div className="bg-slate-500 px-1" />}
+      {action === "approved" && <div className="bg-green-700 px-1" />}
+      {action === "published" && <div className="bg-blue-500 px-1" />}
 
       <button
         className={`text-left hover:bg-sky-100 p-5 w-full ${
