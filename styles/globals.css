@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.prose {
+}
+
+.prose p {
+  margin-bottom: 1em;
+}
+
 @layer base {
   html {
     @apply scroll-smooth;

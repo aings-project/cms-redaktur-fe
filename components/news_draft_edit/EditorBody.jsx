@@ -18,8 +18,8 @@ export default function EditorBody({
     <div className="h-screen overflow-y-auto pt-12 md:pt-0">
       {!isEditable && (
         <div className="bg-white p-4 rounded-md mb-4 overflow-y-auto ">
-          <p className="text-2xl font-bold mb-2">{title}</p>
-          <ReactMarkdown className="hover:cursor-default bg-white">
+          <p className="text-2xl font-bold mb-4">{title}</p>
+          <ReactMarkdown className="hover:cursor-default bg-white prose">
             {content}
           </ReactMarkdown>
         </div>

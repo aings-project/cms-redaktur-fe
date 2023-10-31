@@ -12,6 +12,7 @@ const Editor = ({ onChange, className, placeholder }) => {
     <MDXEditor
       className={className}
       markdown={placeholder}
+      contentEditableClassName="prose"
       plugins={
         onChange && [
           toolbarPlugin({
