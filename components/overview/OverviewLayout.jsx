@@ -1,6 +1,6 @@
 import React from "react";
 import OverviewActivities from "./OverviewActivities";
-import OverviewSection from "./OverviewSection";
+import LastEditedSection from "./LastEditedSection";
 import OverviewChart from "./OverviewChart";
 
 export default function OverviewLayout({
@@ -15,7 +15,10 @@ export default function OverviewLayout({
       </p>
       <div className="flex sm:mt-10 flex-wrap xl:flex-nowrap">
         <div className="xl:max-w-4xl xl:w-3/5">
-          <OverviewSection newsDraftList={lastEdited} title="Terakhir Diubah" />
+          <LastEditedSection
+            newsDraftList={lastEdited}
+            title="Terakhir Diubah"
+          />
           <OverviewChart newsDraftCount={draftCount} />
         </div>
         <OverviewActivities activityList={activityList} />

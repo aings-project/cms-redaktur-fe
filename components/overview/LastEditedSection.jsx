@@ -5,7 +5,7 @@ import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
 
-export default function OverviewSection({ newsDraftList, title }) {
+export default function LastEditedSection({ newsDraftList, title }) {
   const router = useRouter();
   const isLoading = useSelector((state) => state.loading);
 
