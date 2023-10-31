@@ -1,25 +1,46 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
+import { statusDataPlaceholder } from "../../utils/overviewUtils";
 
 export default function OverviewChart({ newsDraftCount }) {
   const defaultLabelStyle = {
     fontSize: "5px",
     fill: "#FFF",
   };
-  const statusData = [
-    { title: "Belum Disunting", color: "#94a3b8", value: newsDraftCount.new },
-    {
-      title: "Sedang Disunting",
-      color: "#f59e0b",
-      value: newsDraftCount.reviewing + newsDraftCount.reviewed,
-    },
-    {
-      title: "Menunggu Publikasi",
-      color: "#1e3a8a",
-      value: newsDraftCount.approved,
-    },
-  ];
+
+  const [statusData, setStatusData] = useState(statusDataPlaceholder);
+
+  useEffect(() => {
+    setStatusData([
+      { title: "Belum Disunting", color: "#94a3b8", value: newsDraftCount.new },
+      {
+        title: "Sedang Disunting",
+        color: "#f59e0b",
+        value: newsDraftCount.reviewing + newsDraftCount.reviewed,
+      },
+      {
+        title: "Menunggu Publikasi",
+        color: "#1e3a8a",
+        value: newsDraftCount.approved,
+      },
+    ]);
+    setRawData([
+      { title: "Belum Disunting", color: "#94a3b8", value: newsDraftCount.new },
+      {
+        title: "Sedang Disunting",
+        color: "#f59e0b",
+        value: newsDraftCount.reviewing + newsDraftCount.reviewed,
+      },
+      {
+        title: "Menunggu Publikasi",
+        color: "#1e3a8a",
+        value: newsDraftCount.approved,
+      },
+    ]);
+  }, [newsDraftCount]);
+
   const validationData = [
     { title: "Belum Divalidasi", color: "#94a3b8", value: 20 },
     { title: "Berita Valid", color: "#1e3a8a", value: 44 },
