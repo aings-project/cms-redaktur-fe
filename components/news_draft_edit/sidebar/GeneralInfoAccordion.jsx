@@ -10,11 +10,15 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { asyncReceiveNewsDraftDetail } from "../../../states/news_draft_detail/action";
+import useInput from "../../../hooks/useInput";
+import { asyncPostCommentList } from "../../../states/comments/action";
+import useRequireAuth from "../../../hooks/useRequireAuth";
 
 export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
   const isLoading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
+  const auth = useRequireAuth();
   const temp = true;
 
   const updatedAt = dateTimeFormatter(newsDraft.dateTime);
@@ -26,10 +30,12 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const isEditable = version === maxVersion;
 
   const [versionTemp, setVersionTemp] = useState("1");
+  const [rejection, setRejection] = useInput("");
   const numbersArray = Array.from({ length: maxVersion }, (_, index) =>
     (index + 1).toString()
   );
   const [isExpanded, setIsExpanded] = useState(true);
+  const [isRejected, setIsRejected] = useState(false);
 
   const handleExpanded = (value) => {
     setIsExpanded(value);
@@ -42,6 +48,22 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
         version: value,
       })
     );
+  };
+
+  const handleRejectButton = () => {
+    if (isRejected) {
+      dispatch(
+        asyncPostCommentList({
+          content: rejection,
+          id_redaktur: auth.id,
+          id: newsDraft.id,
+        })
+      );
+      onUpdateDraft("rejected");
+      setIsRejected(false);
+      return;
+    }
+    setIsRejected(true);
   };
 
   useEffect(() => {
@@ -93,6 +115,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                 <div className="flex items-center">
                   {["reviewed", "rejected", "published"].includes(status) && (
                     <SecondaryButton
+                      isLoading={isLoading}
                       text="Sunting Ulang"
                       onClick={() => {
                         onUpdateDraft("reviewing");
@@ -101,6 +124,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                   )}
                   {(status === "reviewing" || status === "new") && (
                     <SecondaryButton
+                      isLoading={isLoading}
                       text="Simpan Perubahan"
                       onClick={() => {
                         onUpdateDraft("reviewing");
@@ -109,6 +133,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                   )}
                   {(status === "reviewing" || status === "new") && (
                     <SecondaryButton
+                      isLoading={isLoading}
                       text="Kirim ke Wartawan"
                       onClick={() => {
                         onUpdateDraft("reviewed");
@@ -117,6 +142,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                   )}
                   {status === "approved" && (
                     <SecondaryButton
+                      isLoading={isLoading}
                       text="Publikasikan"
                       onClick={() => {
                         onUpdateDraft("published");
@@ -124,17 +150,34 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                     />
                   )}
                 </div>
+                {isRejected && (
+                  <textarea
+                    value={rejection}
+                    onChange={setRejection}
+                    className="border w-full p-2 focus:outline-sky-600"
+                    placeholder="Berikan alasan penolakan berita..."
+                  />
+                )}
                 {status !== "rejected" && status !== "published" && (
-                  <button
-                    className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-red-600"
-                    onClick={() => {
-                      onUpdateDraft("rejected");
-                    }}
-                  >
-                    <p className="text-center font-semibold my-auto text-white">
-                      Tolak Draf Berita
-                    </p>
-                  </button>
+                  <div className="w-full flex">
+                    {isRejected && (
+                      <SecondaryButton
+                        isLoading={isLoading}
+                        text="Urungkan Tolak"
+                        onClick={() => {
+                          setIsRejected(false);
+                        }}
+                      />
+                    )}
+                    <button
+                      className="h-12 flex items-center justify-center rounded-md border-solid border-2 border-red-400 w-full mb-6 bg-red-600"
+                      onClick={handleRejectButton}
+                    >
+                      <p className="text-center font-semibold my-auto text-white">
+                        Tolak Draf Berita
+                      </p>
+                    </button>
+                  </div>
                 )}
               </div>
             )}
