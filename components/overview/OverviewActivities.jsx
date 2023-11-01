@@ -9,7 +9,7 @@ export default function OverviewActivities({ activityList }) {
   const router = useRouter();
 
   return (
-    <div className="xl:w-2/5 w-full h-fit rounded-md mt-8 xl:mt-0">
+    <div className="xl:w-1/2 w-full h-fit rounded-md mt-8 xl:mt-0">
       <p className="text-sky-800 text-xl font-bold p-4 bg-white border-b-4 border-sky-800">
         Aktivitas Terbaru
       </p>

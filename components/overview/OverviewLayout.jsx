@@ -14,7 +14,7 @@ export default function OverviewLayout({
         Ikhtisar
       </p>
       <div className="flex sm:mt-10 flex-wrap xl:flex-nowrap">
-        <div className="xl:max-w-4xl xl:w-3/5">
+        <div className="w-full">
           <LastEditedSection
             newsDraftList={lastEdited}
             title="Terakhir Diubah"
