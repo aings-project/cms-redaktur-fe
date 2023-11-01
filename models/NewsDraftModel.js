@@ -1,3 +1,4 @@
+import NewsDraftPromptModel from "./NewsDraftPromptModel";
 import ValidationDataModel from "./ValidationDataModel";
 
 export default function NewsDraftModels(response) {
@@ -13,5 +14,6 @@ export default function NewsDraftModels(response) {
     maxVersion: response.total_version,
     draft_id: response.draft_berita.draft_id,
     validation: ValidationDataModel(response.validation_result),
+    prompt: NewsDraftPromptModel(response.draft_berita.Prompt),
   };
 }

@@ -37,7 +37,7 @@ export default function EditLayoutWrapper() {
       />
       {showValidationModal && (
         <ValidateModal
-          promptWartawan={""}
+          promptWartawan={newsDraft.prompt}
           onClose={() => setShowValidationModal(false)}
           onValidate={(value) => {
             onValidate(value);
