@@ -8,6 +8,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function ValidationAccordion({ onValidate }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const isLoading = useSelector((state) => state.loading);
   const validationData = newsDraft.validation;
   const version = newsDraft.version;
   const maxVersion = newsDraft.maxVersion;
@@ -54,6 +55,7 @@ export default function ValidationAccordion({ onValidate }) {
           </div>
           {isEditable && (
             <SecondaryButton
+              isLoading={isLoading}
               text={validationData ? "Lihat Selengkapnya" : "Validasi Berita"}
               disabled={false}
               onClick={() => onValidate()}

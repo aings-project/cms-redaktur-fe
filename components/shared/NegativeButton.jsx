@@ -13,7 +13,7 @@ export default function NegativeButton({ text, onClick, disabled, isLoading }) {
       }`}
     >
       {isLoading && (
-        <div className="w-full flex justify-center bg-sky-600 py-2 rounded-md">
+        <div className="w-full flex justify-center bg-red-600 py-2 rounded-md">
           <ReactLoading type="spin" height={24} width={24} />
         </div>
       )}

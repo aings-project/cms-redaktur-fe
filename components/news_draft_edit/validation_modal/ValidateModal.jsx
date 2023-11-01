@@ -18,8 +18,8 @@ export default function ValidateModal({ onClose, onValidate, promptWartawan }) {
 
   return (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 mx-4">
-        <div className="bg-white max-w-screen-md w-full flex flex-col overflow-y-auto max-h-[75vh]">
+      <div className="justify-center items-center flex overflow-x-hidden fixed inset-0 z-50 mx-4">
+        <div className="bg-white max-w-screen-md w-full flex flex-col max-h-[75vh]">
           <div className="flex bg-sky-800 p-4">
             <p className="w-full flex justify-center font-bold text-xl text-white">
               Konfirmasi Validasi Berita
@@ -31,7 +31,7 @@ export default function ValidateModal({ onClose, onValidate, promptWartawan }) {
               X
             </button>
           </div>
-          <div className="pt-6 px-6">
+          <div className="pt-6 px-6 overflow-y-auto">
             <p className="w-full flex justify-center mb-4 text-center">
               Apakah Anda yakin untuk melakukan validasi otomatis?
             </p>
@@ -80,9 +80,9 @@ export default function ValidateModal({ onClose, onValidate, promptWartawan }) {
               </div>
             )}
 
-            <div className="mt-6 flex justify-center">
+            <div className="mt-4 flex justify-center">
               {isLoading && (
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center mb-4">
                   <p className="mb-4">Sedang Memproses Data... </p>
                   <ReactLoading
                     type="spin"
