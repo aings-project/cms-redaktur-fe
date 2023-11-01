@@ -113,44 +113,46 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
             {temp && <div></div>}
             {isEditable && (
               <div>
-                <div className="flex items-center">
-                  {["reviewed", "rejected", "published"].includes(status) && (
-                    <SecondaryButton
-                      isLoading={isLoading}
-                      text="Sunting Ulang"
-                      onClick={() => {
-                        onUpdateDraft("reviewing");
-                      }}
-                    />
-                  )}
-                  {(status === "reviewing" || status === "new") && (
-                    <SecondaryButton
-                      isLoading={isLoading}
-                      text="Simpan Perubahan"
-                      onClick={() => {
-                        onUpdateDraft("reviewing");
-                      }}
-                    />
-                  )}
-                  {(status === "reviewing" || status === "new") && (
-                    <SecondaryButton
-                      isLoading={isLoading}
-                      text="Kirim ke Wartawan"
-                      onClick={() => {
-                        onUpdateDraft("reviewed");
-                      }}
-                    />
-                  )}
-                  {status === "approved" && (
-                    <SecondaryButton
-                      isLoading={isLoading}
-                      text="Publikasikan"
-                      onClick={() => {
-                        onUpdateDraft("published");
-                      }}
-                    />
-                  )}
-                </div>
+                {!isRejected && (
+                  <div className="flex items-center">
+                    {["reviewed", "rejected", "published"].includes(status) && (
+                      <SecondaryButton
+                        isLoading={isLoading}
+                        text="Sunting Ulang"
+                        onClick={() => {
+                          onUpdateDraft("reviewing");
+                        }}
+                      />
+                    )}
+                    {(status === "reviewing" || status === "new") && (
+                      <SecondaryButton
+                        isLoading={isLoading}
+                        text="Simpan Perubahan"
+                        onClick={() => {
+                          onUpdateDraft("reviewing");
+                        }}
+                      />
+                    )}
+                    {(status === "reviewing" || status === "new") && (
+                      <SecondaryButton
+                        isLoading={isLoading}
+                        text="Kirim ke Wartawan"
+                        onClick={() => {
+                          onUpdateDraft("reviewed");
+                        }}
+                      />
+                    )}
+                    {status === "approved" && (
+                      <SecondaryButton
+                        isLoading={isLoading}
+                        text="Publikasikan"
+                        onClick={() => {
+                          onUpdateDraft("published");
+                        }}
+                      />
+                    )}
+                  </div>
+                )}
                 {isRejected && (
                   <textarea
                     value={rejection}
