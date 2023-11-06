@@ -29,7 +29,7 @@ export default function ValidationResult({
 
             <div className="mt-6 flex justify-center">
               <div className="w-full md:w-1/2">
-                <SecondaryButton text="Validasi" onClick={onRevalidate} />
+                <SecondaryButton text="Validasi Ulang" onClick={onRevalidate} />
               </div>
             </div>
           </div>
