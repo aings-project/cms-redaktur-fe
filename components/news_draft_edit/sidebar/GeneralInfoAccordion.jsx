@@ -14,6 +14,7 @@ import useInput from "../../../hooks/useInput";
 import { asyncPostCommentList } from "../../../states/comments/action";
 import useRequireAuth from "../../../hooks/useRequireAuth";
 import NegativeButton from "../../shared/NegativeButton";
+import ReactLoading from "react-loading";
 
 export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
@@ -111,13 +112,13 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
               items={numbersArray}
             />
             {temp && <div></div>}
-            {isEditable && (
+            {isEditable && !isLoading && (
               <div>
                 {!isRejected && (
                   <div className="flex items-center">
                     {["reviewed", "rejected", "published"].includes(status) && (
                       <SecondaryButton
-                        isLoading={isLoading}
+                        disabled={isLoading}
                         text="Sunting Ulang"
                         onClick={() => {
                           onUpdateDraft("reviewing");
@@ -126,7 +127,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                     )}
                     {(status === "reviewing" || status === "new") && (
                       <SecondaryButton
-                        isLoading={isLoading}
+                        disabled={isLoading}
                         text="Simpan Perubahan"
                         onClick={() => {
                           onUpdateDraft("reviewing");
@@ -135,7 +136,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                     )}
                     {(status === "reviewing" || status === "new") && (
                       <SecondaryButton
-                        isLoading={isLoading}
+                        disabled={isLoading}
                         text="Kirim ke Wartawan"
                         onClick={() => {
                           onUpdateDraft("reviewed");
@@ -144,7 +145,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                     )}
                     {status === "approved" && (
                       <SecondaryButton
-                        isLoading={isLoading}
+                        disabled={isLoading}
                         text="Publikasikan"
                         onClick={() => {
                           onUpdateDraft("published");
@@ -165,7 +166,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                   <div className="w-full flex">
                     {isRejected && (
                       <SecondaryButton
-                        isLoading={isLoading}
+                        disabled={isLoading}
                         text="Urungkan Tolak"
                         onClick={() => {
                           setIsRejected(false);
@@ -173,13 +174,24 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                       />
                     )}
                     <NegativeButton
-                      isLoading={isLoading}
                       text="Tolak Draf Berita"
-                      disabled={isRejected && rejection.length < 1}
+                      disabled={
+                        (isRejected && rejection.length < 1) || isLoading
+                      }
                       onClick={handleRejectButton}
                     />
                   </div>
                 )}
+              </div>
+            )}
+            {isLoading && (
+              <div className="w-full flex justify-center">
+                <ReactLoading
+                  type="bubbles"
+                  color="#0369a1"
+                  height={48}
+                  width={48}
+                />
               </div>
             )}
           </div>
