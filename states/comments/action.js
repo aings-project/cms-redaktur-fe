@@ -15,11 +15,11 @@ function receiveCommentListActionCreator({ commentData }) {
   };
 }
 
-function asyncReceiveCommentList({ page = "1", id } = {}) {
+function asyncReceiveCommentList({ page = "1", draftId } = {}) {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {
-      const commentData = await api.getCommentList({ id, page });
+      const commentData = await api.getCommentList({ draftId, page });
       dispatch(
         receiveCommentListActionCreator({
           commentData,
@@ -51,12 +51,12 @@ function asyncClearCommentList() {
   };
 }
 
-function asyncPostCommentList({ content, id_redaktur, id } = {}) {
+function asyncPostCommentList({ content, id_redaktur, draftId, id } = {}) {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {
       await api.postComment({ id_redaktur, content, id });
-      const commentData = await api.getCommentList({ id });
+      const commentData = await api.getCommentList({ draftId });
       dispatch(
         receiveCommentListActionCreator({
           commentData,

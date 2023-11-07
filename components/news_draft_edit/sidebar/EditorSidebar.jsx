@@ -18,7 +18,7 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
     setIsEditor(value);
     if (!value) {
       dispatch(asyncClearCommentList());
-      dispatch(asyncReceiveCommentList({ id: newsDraft.id }));
+      dispatch(asyncReceiveCommentList({ draftId: newsDraft.draft_id }));
     }
   };
 
@@ -76,7 +76,9 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
             onUpdateDraft={onUpdateDraft}
           />
         )}
-        {!isEditor && <CommentSidebarTab id={newsDraft.id} />}
+        {!isEditor && (
+          <CommentSidebarTab draftId={newsDraft.draft_id} id={newsDraft.id} />
+        )}
       </div>
     </div>
   );

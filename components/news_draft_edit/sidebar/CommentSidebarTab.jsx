@@ -10,9 +10,10 @@ import useInput from "../../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import useRequireAuth from "../../../hooks/useRequireAuth";
 
-export default function CommentSidebarTab({ id }) {
+export default function CommentSidebarTab() {
   const commentData = useSelector((state) => state.comments);
   const isLoading = useSelector((state) => state.loading);
+  const newsDraft = useSelector((state) => state.newsDraftDetail);
   const auth = useRequireAuth();
   const dispatch = useDispatch();
   const [content, setContent, forceSetContent] = useInput("");
@@ -33,7 +34,7 @@ export default function CommentSidebarTab({ id }) {
     dispatch(
       asyncReceiveCommentList({
         page: commentData.current_page + 1,
-        id,
+        draftId: newsDraft.draft_id,
       })
     );
   };
@@ -43,7 +44,8 @@ export default function CommentSidebarTab({ id }) {
       asyncPostCommentList({
         content,
         id_redaktur: auth.id,
-        id,
+        id: newsDraft.id,
+        draftId: newsDraft.draft_id,
       })
     );
   };
