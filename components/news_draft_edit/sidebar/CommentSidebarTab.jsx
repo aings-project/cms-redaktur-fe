@@ -61,11 +61,12 @@ export default function CommentSidebarTab() {
         {commentList.length > 0 && (
           <div className="overflow-y-auto pb-4 lg:overflow-y-auto flex flex-col-reverse">
             {commentList.map((item, index) => {
+              const content = `(versi ${item.Draft_Berita.version}) ${item.content}`;
               return (
                 <>
                   {item.user_redaktur && (
                     <CommentItem
-                      content={item.content}
+                      content={content}
                       dateTime={item.created_at}
                       sender={item.user_redaktur.username}
                     />
