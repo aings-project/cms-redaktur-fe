@@ -15,11 +15,11 @@ function receiveActivitiesActionCreator({ data }) {
   };
 }
 
-function asyncReceiveActivities({ page }) {
+function asyncReceiveActivities({ page, actions }) {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     try {
-      const data = await api.getAllActivities({ page });
+      const data = await api.getAllActivities({ page, actions });
       dispatch(receiveActivitiesActionCreator({ data }));
     } catch (error) {
       toast.error(error.message, {

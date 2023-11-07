@@ -189,16 +189,20 @@ const api = (() => {
     return data;
   }
 
-  async function getAllActivities({ page = "1", limit = "10" } = {}) {
-    const response = await fetchWithAuth(
-      `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  async function getAllActivities({
+    page = "1",
+    limit = "10",
+    actions = "",
+  } = {}) {
+    const url = actions
+      ? `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}&actions=${actions}`
+      : `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}`;
+    const response = await fetchWithAuth(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const responseJson = await response.json();
 

@@ -4,13 +4,15 @@ import { activityActionParserLong } from "../../utils/activityActionParser";
 import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
 import ActivityItem from "./ActivityItem";
 import ReactLoading from "react-loading";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Select from "react-select";
+import { asyncReceiveActivities } from "../../states/activities/action";
 
 export default function ActivitiesBody({ data }) {
   const isLoading = useSelector((state) => state.loading);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const options = [
     { value: "new", label: "Menambahkan Draf" },
@@ -23,6 +25,11 @@ export default function ActivitiesBody({ data }) {
   const handleFilter = (value) => {
     const filters = [];
     value.map((e) => filters.push(e.value));
+    dispatch(
+      asyncReceiveActivities({
+        actions: filters.toString(),
+      })
+    );
   };
 
   return (
