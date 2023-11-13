@@ -10,7 +10,7 @@ export default function LoginLayout({ login }) {
             AINGS
           </p>
           <p className="text-md lg:text-xl text-white font-semibold text-center">
-            Artificial Intelligence News Generator System
+            Automatic Indonesian News Generator System
           </p>
         </div>
         <div className="px-6 h-full flex items-center justify-center w-full md:w-1/2 max-w-lg bg-white shadow-xl py-10 rounded-md">
