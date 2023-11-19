@@ -108,21 +108,20 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
             }}
             items={numbersArray}
           />
-          {temp && <div></div>}
           {isEditable && !isLoading && (
             <div>
               {!isRejected && (
                 <div className="flex items-center">
-                  {["reviewed", "rejected", "published"].includes(status) && (
+                  {["rejected", "published"].includes(status) && (
                     <SecondaryButton
                       disabled={isLoading}
-                      text="Sunting Ulang"
+                      text="Kembalikan Ke Draf"
                       onClick={() => {
                         onUpdateDraft("reviewing");
                       }}
                     />
                   )}
-                  {(status === "reviewing" || status === "new") && (
+                  {["reviewing", "new"].includes(status) && (
                     <SecondaryButton
                       disabled={isLoading}
                       text="Simpan Perubahan"
@@ -131,10 +130,10 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                       }}
                     />
                   )}
-                  {(status === "reviewing" || status === "new") && (
+                  {["reviewing", "new"].includes(status) && (
                     <SecondaryButton
                       disabled={isLoading}
-                      text="Kirim ke Wartawan"
+                      text="Kembalikan Wartawan"
                       onClick={() => {
                         onUpdateDraft("reviewed");
                       }}
@@ -159,24 +158,28 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                   placeholder="Berikan alasan penolakan berita..."
                 />
               )}
-              {status !== "rejected" && status !== "published" && (
-                <div className="w-full flex">
-                  {isRejected && (
-                    <SecondaryButton
-                      disabled={isLoading}
-                      text="Urungkan Tolak"
-                      onClick={() => {
-                        setIsRejected(false);
-                      }}
+              {status !== "rejected" &&
+                status !== "published" &&
+                status !== "reviewed" && (
+                  <div className="w-full flex">
+                    {isRejected && (
+                      <SecondaryButton
+                        disabled={isLoading}
+                        text="Urungkan Tolak"
+                        onClick={() => {
+                          setIsRejected(false);
+                        }}
+                      />
+                    )}
+                    <NegativeButton
+                      text="Tolak Draf Berita"
+                      disabled={
+                        (isRejected && rejection.length < 1) || isLoading
+                      }
+                      onClick={handleRejectButton}
                     />
-                  )}
-                  <NegativeButton
-                    text="Tolak Draf Berita"
-                    disabled={(isRejected && rejection.length < 1) || isLoading}
-                    onClick={handleRejectButton}
-                  />
-                </div>
-              )}
+                  </div>
+                )}
             </div>
           )}
           {isLoading && (

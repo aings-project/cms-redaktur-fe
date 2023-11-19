@@ -20,6 +20,7 @@ export default function ActivitiesBody({ data }) {
     { value: "reviewing", label: "Menyunting Draf" },
     { value: "with_data", label: "Melakukan Validasi" },
     { value: "reviewed", label: "Mengirim ke Wartawan" },
+    { value: "comment", label: "Mengomentari Berita" },
   ];
 
   const handleFilter = (value) => {
