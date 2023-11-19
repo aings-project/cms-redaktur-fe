@@ -5,6 +5,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState } from "react";
 
 export default function ValidationAccordion({ onValidate }) {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
@@ -14,8 +15,18 @@ export default function ValidationAccordion({ onValidate }) {
   const maxVersion = newsDraft.maxVersion;
   const isEditable = version === maxVersion;
 
+  const [isExpanded, setIsExpanded] = useState(true);
+  const handleExpanded = (value) => {
+    setIsExpanded(value);
+  };
+
   return (
-    <Accordion>
+    <Accordion
+      expanded={isExpanded}
+      onChange={() => {
+        handleExpanded(!isExpanded);
+      }}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon className="text-black" />}
         sx={{

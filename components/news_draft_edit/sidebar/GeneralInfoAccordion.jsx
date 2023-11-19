@@ -73,130 +73,124 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
   }, [status, version]);
 
   return (
-    <div>
-      <Accordion
-        expanded={isExpanded}
-        onChange={() => {
-          handleExpanded(!isExpanded);
+    <Accordion
+      expanded={isExpanded}
+      onChange={() => {
+        handleExpanded(!isExpanded);
+      }}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon className="text-black" />}
+        sx={{
+          backgroundColor: "white",
         }}
       >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon className="text-black" />}
-          sx={{
-            backgroundColor: "white",
-          }}
-        >
-          <p className="px-2 bg-white text-black font-semibold">
-            Informasi Umum
-          </p>
-        </AccordionSummary>
-        <AccordionDetails className="bg-white">
-          <div className="flex flex-col bg-white px-2">
-            <EditorInfo title="Diperbarui" content={updatedAt} />
-            <EditorInfo title="Wartawan" content={journalist} />
-            {version !== 1 && (
-              <EditorInfo title="Diredaksi Oleh" content={editor} />
-            )}
-            <EditorInfo
-              title="Status"
-              content={convertStatus({ value: status })}
-            />
-            <EditorDropdown
-              title="Versi"
-              isDisabled={false}
-              value={versionTemp}
-              onChange={(value) => {
-                setVersionTemp(value);
-                handleChangeVersion(value);
-              }}
-              items={numbersArray}
-            />
-            {temp && <div></div>}
-            {isEditable && !isLoading && (
-              <div>
-                {!isRejected && (
-                  <div className="flex items-center">
-                    {["reviewed", "rejected", "published"].includes(status) && (
-                      <SecondaryButton
-                        disabled={isLoading}
-                        text="Sunting Ulang"
-                        onClick={() => {
-                          onUpdateDraft("reviewing");
-                        }}
-                      />
-                    )}
-                    {(status === "reviewing" || status === "new") && (
-                      <SecondaryButton
-                        disabled={isLoading}
-                        text="Simpan Perubahan"
-                        onClick={() => {
-                          onUpdateDraft("reviewing");
-                        }}
-                      />
-                    )}
-                    {(status === "reviewing" || status === "new") && (
-                      <SecondaryButton
-                        disabled={isLoading}
-                        text="Kirim ke Wartawan"
-                        onClick={() => {
-                          onUpdateDraft("reviewed");
-                        }}
-                      />
-                    )}
-                    {status === "approved" && (
-                      <SecondaryButton
-                        disabled={isLoading}
-                        text="Publikasikan"
-                        onClick={() => {
-                          onUpdateDraft("published");
-                        }}
-                      />
-                    )}
-                  </div>
-                )}
-                {isRejected && (
-                  <textarea
-                    value={rejection}
-                    onChange={setRejection}
-                    className="border w-full p-2 focus:outline-sky-600"
-                    placeholder="Berikan alasan penolakan berita..."
-                  />
-                )}
-                {status !== "rejected" && status !== "published" && (
-                  <div className="w-full flex">
-                    {isRejected && (
-                      <SecondaryButton
-                        disabled={isLoading}
-                        text="Urungkan Tolak"
-                        onClick={() => {
-                          setIsRejected(false);
-                        }}
-                      />
-                    )}
-                    <NegativeButton
-                      text="Tolak Draf Berita"
-                      disabled={
-                        (isRejected && rejection.length < 1) || isLoading
-                      }
-                      onClick={handleRejectButton}
+        <p className="px-2 bg-white text-black font-semibold">Informasi Umum</p>
+      </AccordionSummary>
+      <AccordionDetails className="bg-white">
+        <div className="flex flex-col bg-white px-2">
+          <EditorInfo title="Diperbarui" content={updatedAt} />
+          <EditorInfo title="Wartawan" content={journalist} />
+          {version !== 1 && (
+            <EditorInfo title="Diredaksi Oleh" content={editor} />
+          )}
+          <EditorInfo
+            title="Status"
+            content={convertStatus({ value: status })}
+          />
+          <EditorDropdown
+            title="Versi"
+            isDisabled={false}
+            value={versionTemp}
+            onChange={(value) => {
+              setVersionTemp(value);
+              handleChangeVersion(value);
+            }}
+            items={numbersArray}
+          />
+          {temp && <div></div>}
+          {isEditable && !isLoading && (
+            <div>
+              {!isRejected && (
+                <div className="flex items-center">
+                  {["reviewed", "rejected", "published"].includes(status) && (
+                    <SecondaryButton
+                      disabled={isLoading}
+                      text="Sunting Ulang"
+                      onClick={() => {
+                        onUpdateDraft("reviewing");
+                      }}
                     />
-                  </div>
-                )}
-              </div>
-            )}
-            {isLoading && (
-              <div className="w-full flex justify-center">
-                <ReactLoading
-                  type="bubbles"
-                  color="#0369a1"
-                  height={48}
-                  width={48}
+                  )}
+                  {(status === "reviewing" || status === "new") && (
+                    <SecondaryButton
+                      disabled={isLoading}
+                      text="Simpan Perubahan"
+                      onClick={() => {
+                        onUpdateDraft("reviewing");
+                      }}
+                    />
+                  )}
+                  {(status === "reviewing" || status === "new") && (
+                    <SecondaryButton
+                      disabled={isLoading}
+                      text="Kirim ke Wartawan"
+                      onClick={() => {
+                        onUpdateDraft("reviewed");
+                      }}
+                    />
+                  )}
+                  {status === "approved" && (
+                    <SecondaryButton
+                      disabled={isLoading}
+                      text="Publikasikan"
+                      onClick={() => {
+                        onUpdateDraft("published");
+                      }}
+                    />
+                  )}
+                </div>
+              )}
+              {isRejected && (
+                <textarea
+                  value={rejection}
+                  onChange={setRejection}
+                  className="border w-full p-2 focus:outline-sky-600"
+                  placeholder="Berikan alasan penolakan berita..."
                 />
-              </div>
-            )}
-          </div>
-        </AccordionDetails>
-      </Accordion>
-    </div>
+              )}
+              {status !== "rejected" && status !== "published" && (
+                <div className="w-full flex">
+                  {isRejected && (
+                    <SecondaryButton
+                      disabled={isLoading}
+                      text="Urungkan Tolak"
+                      onClick={() => {
+                        setIsRejected(false);
+                      }}
+                    />
+                  )}
+                  <NegativeButton
+                    text="Tolak Draf Berita"
+                    disabled={(isRejected && rejection.length < 1) || isLoading}
+                    onClick={handleRejectButton}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+          {isLoading && (
+            <div className="w-full flex justify-center">
+              <ReactLoading
+                type="bubbles"
+                color="#0369a1"
+                height={48}
+                width={48}
+              />
+            </div>
+          )}
+        </div>
+      </AccordionDetails>
+    </Accordion>
   );
 }
