@@ -21,7 +21,7 @@ export default function OverviewChart({ newsDraftCount }) {
         value: newsDraftCount.reviewing + newsDraftCount.reviewed,
       },
       {
-        title: "Menunggu Publikasi",
+        title: "Disetujui Wartawan",
         color: "#1e3a8a",
         value: newsDraftCount.approved,
       },
@@ -34,7 +34,7 @@ export default function OverviewChart({ newsDraftCount }) {
         value: newsDraftCount.reviewing + newsDraftCount.reviewed,
       },
       {
-        title: "Menunggu Publikasi",
+        title: "Disetujui Wartawan",
         color: "#1e3a8a",
         value: newsDraftCount.approved,
       },
@@ -115,7 +115,7 @@ export default function OverviewChart({ newsDraftCount }) {
             </div>
             <div className="flex mb-4 mr-4 sm:mr-0">
               <div className={`p-3 bg-[#1e3a8a] mx-2`} />
-              <p>Menunggu Publikasi ({rawData[2].value})</p>
+              <p>Disetujui Wartawan ({rawData[2].value})</p>
             </div>
           </div>
         )}

@@ -19,11 +19,18 @@ function dateTimeFormatter(inputDateTime) {
     "Desember",
   ];
 
-  const dayName = days[date.getUTCDay()];
+  let dayName = days[date.getUTCDay()];
   const dayOfMonth = date.getUTCDate();
   const monthName = months[date.getUTCMonth()];
   const year = date.getUTCFullYear();
-  const hour = date.getUTCHours();
+  let rawHour = date.getUTCHours() + 7;
+  let hour = date.getUTCHours();
+  if (rawHour > 23) {
+    rawHour -= 24;
+    dayName = dayName === "Sabtu" ? "Senin" : days[date.getUTCDay() + 1];
+  }
+  hour = rawHour;
+
   const minute = (date.getUTCMinutes() < 10 ? "0" : "") + date.getUTCMinutes();
 
   return `${dayName}, ${dayOfMonth} ${monthName} ${year} ${hour}:${minute}`;
@@ -35,11 +42,17 @@ function commentDateTimeFormatter(inputDateTime) {
   // Define the names of days and months in Indonesian
   const days = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
 
-  const dayName = days[date.getUTCDay()];
+  let dayName = days[date.getUTCDay()];
   const dayOfMonth = date.getUTCDate();
   const monthName = date.getUTCMonth();
   const year = date.getUTCFullYear();
-  const hour = date.getUTCHours();
+  let rawHour = date.getUTCHours() + 7;
+  let hour = date.getUTCHours();
+  if (rawHour > 23) {
+    rawHour -= 24;
+    dayName = dayName === "Sabtu" ? "Senin" : days[date.getUTCDay() + 1];
+  }
+  hour = rawHour;
   const minute = (date.getUTCMinutes() < 10 ? "0" : "") + date.getUTCMinutes();
 
   return `${dayName}, ${dayOfMonth}/${monthName}/${year} ${hour}:${minute}`;

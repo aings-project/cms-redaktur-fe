@@ -6,7 +6,7 @@ const statusDataPlaceholder = [
     value: 0,
   },
   {
-    title: "Menunggu Publikasi",
+    title: "Disetujui Wartawan",
     color: "#1e3a8a",
     value: 0,
   },

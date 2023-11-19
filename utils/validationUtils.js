@@ -7,7 +7,7 @@ function parseValidationDataInput({ what, when, where }) {
     text = `${text}Tempat: ${where}. `;
   }
   if (when) {
-    text = `${text}Waktu: ${when}.`;
+    return `${text}Waktu: ${when}.`;
   }
 
   return text;

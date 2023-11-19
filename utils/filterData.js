@@ -3,11 +3,11 @@ const drafStatus = [
   "Semua Draf",
   "Baru",
   "Sedang Disunting",
-  "Menunggu Persetujuan",
+  "Dikembalikan Ke Wartawan",
 ];
 const publicationStatus = [
   "Semua Publikasi",
-  "Menunggu Publikasi",
+  "Disetujui Wartawan",
   "Sudah Publikasi",
 ];
 const rejectedStatus = ["Ditolak"];
