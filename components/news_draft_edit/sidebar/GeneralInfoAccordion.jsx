@@ -21,7 +21,6 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const isLoading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   const auth = useRequireAuth();
-  const temp = true;
 
   const updatedAt = dateTimeFormatter(newsDraft.dateTime);
   const journalist = newsDraft.wartawan;
@@ -30,6 +29,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const version = newsDraft.version;
   const maxVersion = newsDraft.maxVersion;
   const isEditable = version === maxVersion;
+  const isRejectable = !["rejected", "published", "reviewed"].includes(status);
 
   const [versionTemp, setVersionTemp] = useState("1");
   const [rejection, setRejection] = useInput("");
@@ -37,7 +37,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
     (index + 1).toString()
   );
   const [isExpanded, setIsExpanded] = useState(true);
-  const [isRejected, setIsRejected] = useState(false);
+  const [isReturned, setIsReturned] = useState(false);
 
   const handleExpanded = (value) => {
     setIsExpanded(value);
@@ -53,7 +53,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
   };
 
   const handleRejectButton = () => {
-    if (isRejected) {
+    if (isReturned) {
       dispatch(
         asyncPostCommentList({
           content: rejection,
@@ -62,10 +62,10 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
         })
       );
       onUpdateDraft("rejected");
-      setIsRejected(false);
+      setIsReturned(false);
       return;
     }
-    setIsRejected(true);
+    setIsReturned(true);
   };
 
   useEffect(() => {
@@ -110,7 +110,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
           />
           {isEditable && !isLoading && (
             <div>
-              {!isRejected && (
+              {!isReturned && (
                 <div className="flex items-center">
                   {["rejected", "published"].includes(status) && (
                     <SecondaryButton
@@ -139,47 +139,43 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                       }}
                     />
                   )}
-                  {status === "approved" && (
-                    <SecondaryButton
-                      disabled={isLoading}
-                      text="Publikasikan"
-                      onClick={() => {
-                        onUpdateDraft("published");
-                      }}
-                    />
-                  )}
                 </div>
               )}
-              {isRejected && (
+              {!isReturned && ["reviewing", "new"].includes(status) && (
+                <SecondaryButton
+                  disabled={isLoading}
+                  text="Publikasikan"
+                  onClick={() => {
+                    onUpdateDraft("published");
+                  }}
+                />
+              )}
+              {isReturned && (
                 <textarea
                   value={rejection}
                   onChange={setRejection}
                   className="border w-full p-2 focus:outline-sky-600"
-                  placeholder="Berikan alasan penolakan berita..."
+                  placeholder="Berikan alasan..."
                 />
               )}
-              {status !== "rejected" &&
-                status !== "published" &&
-                status !== "reviewed" && (
-                  <div className="w-full flex">
-                    {isRejected && (
-                      <SecondaryButton
-                        disabled={isLoading}
-                        text="Urungkan Tolak"
-                        onClick={() => {
-                          setIsRejected(false);
-                        }}
-                      />
-                    )}
-                    <NegativeButton
-                      text="Tolak Draf Berita"
-                      disabled={
-                        (isRejected && rejection.length < 1) || isLoading
-                      }
-                      onClick={handleRejectButton}
+              {isRejectable && (
+                <div className="w-full flex">
+                  {isReturned && (
+                    <SecondaryButton
+                      disabled={isLoading}
+                      text="Urungkan Tolak"
+                      onClick={() => {
+                        setIsReturned(false);
+                      }}
                     />
-                  </div>
-                )}
+                  )}
+                  <NegativeButton
+                    text="Tolak Draf Berita"
+                    disabled={(isReturned && rejection.length < 1) || isLoading}
+                    onClick={handleRejectButton}
+                  />
+                </div>
+              )}
             </div>
           )}
           {isLoading && (
