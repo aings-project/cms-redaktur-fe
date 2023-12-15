@@ -44,14 +44,6 @@ export default function NewsDraftBody({ onSetActiveStatus }) {
               })}
             </select>
           </div>
-          <div className="flex items-center mt-4 mr-4 w-full">
-            <p className="px-4 text-black font-semibold">Kategori: </p>
-            <select className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full">
-              {["Semua Kategori"].map((item, index) => {
-                return <option key={index}>{item}</option>;
-              })}
-            </select>
-          </div>
         </div>
         {/* ------- FILTER END -------- */}
         {isLoading && (

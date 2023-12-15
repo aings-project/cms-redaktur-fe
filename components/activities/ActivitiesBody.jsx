@@ -8,20 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Select from "react-select";
 import { asyncReceiveActivities } from "../../states/activities/action";
+import { activitiesFilter } from "../../utils/filterData";
+import ActivitiesBodyMobile from "./ActivitiesBodyMobile";
 
 export default function ActivitiesBody({ data }) {
   const isLoading = useSelector((state) => state.loading);
   const router = useRouter();
   const dispatch = useDispatch();
-
-  const options = [
-    { value: "new", label: "Menambahkan Draf" },
-    { value: "rejected", label: "Menolak Draf" },
-    { value: "reviewing", label: "Menyunting Draf" },
-    { value: "with_data", label: "Melakukan Validasi" },
-    { value: "reviewed", label: "Mengirim ke Wartawan" },
-    { value: "comment", label: "Mengomentari Berita" },
-  ];
 
   const handleFilter = (value) => {
     const filters = [];
@@ -40,44 +33,16 @@ export default function ActivitiesBody({ data }) {
         <Select
           isMulti
           name="filter"
-          options={options}
+          options={activitiesFilter}
           className="w-full"
           onChange={handleFilter}
           placeholder="Pilih aksi..."
         />
       </div>
-      {/* ---------- START MOBILE ACTIVITIES ------------ */}
       <div className="flex-col lg:hidden shadow-md">
         <div className="border-b-4 border-sky-800 w-full rounded-t-md" />
-        <div className="rounded-b-md border-2 pb-4">
-          {data.map((item, index) => {
-            return (
-              <ActivityItem
-                key={index}
-                name={item.subject}
-                action={item.action}
-                title={item.title}
-                time={item.timestamp}
-                draftId={item.object.draft_id}
-                version={item.object.version}
-                index={index}
-              />
-            );
-          })}
-          {isLoading && (
-            <div className="w-full flex justify-center mt-4 lg:mt-0">
-              <ReactLoading
-                type="spin"
-                color="#1e293b"
-                height={24}
-                width={24}
-              />
-            </div>
-          )}
-        </div>
+        <ActivitiesBodyMobile />
       </div>
-      {/* ---------- END MOBILE ACTIVITIES ------------ */}
-      {/* ---------- START TABLE ------------ */}
       <div className="w-full rounded-md pb-4 lg:block hidden">
         <div className="lg:flex hidden">
           <table className="min-w-full bg-white">
@@ -121,7 +86,6 @@ export default function ActivitiesBody({ data }) {
           </div>
         )}
       </div>
-      {/* ---------- END TABLE ------------ */}
     </div>
   );
 }

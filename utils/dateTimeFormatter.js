@@ -1,7 +1,6 @@
 function dateTimeFormatter(inputDateTime) {
   const date = new Date(inputDateTime);
 
-  // Define the names of days and months in Indonesian
   const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 
   const months = [

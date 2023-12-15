@@ -96,15 +96,6 @@ export default function NewsDraftTabBar({
                 })}
               </select>
             </div>
-            <div className="w-4" />
-            <div className="flex flex-col w-full">
-              <p className="mb-2">Kategori</p>
-              <select className="text-base font-normal px-4 mb-3 pb-1  border border-neutral-400 focus:outline-sky-800 rounded-md w-full">
-                {["Semua Kategori"].map((item, index) => {
-                  return <option key={index}>{item}</option>;
-                })}
-              </select>
-            </div>
           </div>
         </div>
         {/* ------- MOBILE END -------- */}
