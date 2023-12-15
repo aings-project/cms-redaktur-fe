@@ -6,8 +6,6 @@ function convertStatus({ value }) {
       return "Dikembalikan Kepada Wartawan";
     case "new":
       return "Baru";
-    case "approved":
-      return "Disetujui Wartawan";
     case "published":
       return "Sudah Publikasi";
     case "rejected":
@@ -27,10 +25,6 @@ function parseNavigationToStatus(value) {
       return "reviewing";
     case "Dikembalikan Ke Wartawan":
       return "reviewed";
-    case "Semua Publikasi":
-      return "approved,published";
-    case "Disetujui Wartawan":
-      return "approved";
     case "Sudah Publikasi":
       return "published";
     case "Ditolak":

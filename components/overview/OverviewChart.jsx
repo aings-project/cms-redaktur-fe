@@ -20,11 +20,6 @@ export default function OverviewChart({ newsDraftCount }) {
         color: "#f59e0b",
         value: newsDraftCount.reviewing + newsDraftCount.reviewed,
       },
-      {
-        title: "Disetujui Wartawan",
-        color: "#1e3a8a",
-        value: newsDraftCount.approved,
-      },
     ]);
     setRawData([
       { title: "Belum Disunting", color: "#94a3b8", value: newsDraftCount.new },
@@ -32,11 +27,6 @@ export default function OverviewChart({ newsDraftCount }) {
         title: "Sedang Disunting",
         color: "#f59e0b",
         value: newsDraftCount.reviewing + newsDraftCount.reviewed,
-      },
-      {
-        title: "Disetujui Wartawan",
-        color: "#1e3a8a",
-        value: newsDraftCount.approved,
       },
     ]);
   }, [newsDraftCount]);
@@ -112,10 +102,6 @@ export default function OverviewChart({ newsDraftCount }) {
             <div className="flex mb-4 mr-4 sm:mr-0">
               <div className={`p-3 bg-[#f59e0b] mx-2`} />
               <p>Sedang Disunting ({rawData[1].value})</p>
-            </div>
-            <div className="flex mb-4 mr-4 sm:mr-0">
-              <div className={`p-3 bg-[#1e3a8a] mx-2`} />
-              <p>Disetujui Wartawan ({rawData[2].value})</p>
             </div>
           </div>
         )}

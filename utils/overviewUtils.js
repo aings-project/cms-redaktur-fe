@@ -5,11 +5,6 @@ const statusDataPlaceholder = [
     color: "#f59e0b",
     value: 0,
   },
-  {
-    title: "Disetujui Wartawan",
-    color: "#1e3a8a",
-    value: 0,
-  },
 ];
 
 export { statusDataPlaceholder };

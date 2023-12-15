@@ -3,7 +3,7 @@ import ActivityItem from "./ActivityItem";
 import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
 
-export default function ActivitiesBodyMobile(data) {
+export default function ActivitiesBodyMobile({ data }) {
   const isLoading = useSelector((state) => state.loading);
 
   return (

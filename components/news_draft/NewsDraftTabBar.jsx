@@ -13,9 +13,9 @@ export default function NewsDraftTabBar({
   onSetActiveStatus,
   status,
   setStatus,
+  activeNavMenu,
+  setActiveNavMenu,
 }) {
-  const [activeNavMenu, setActiveNavMenu] = useState(navMenus[0]);
-
   const handleSelectStatus = (event) => {
     onSetActiveStatus(parseNavigationToStatus(event.target.value));
   };

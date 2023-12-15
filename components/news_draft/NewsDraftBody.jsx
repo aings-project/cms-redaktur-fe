@@ -6,7 +6,7 @@ import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
 import { parseNavigationToStatus } from "../../utils/draftAttributeParser";
-import { drafStatus } from "../../utils/filterData";
+import { drafStatus, navMenus } from "../../utils/filterData";
 import { useState } from "react";
 
 export default function NewsDraftBody({ onSetActiveStatus }) {
@@ -18,6 +18,7 @@ export default function NewsDraftBody({ onSetActiveStatus }) {
     : [];
 
   const [status, setStatus] = useState(drafStatus);
+  const [activeNavMenu, setActiveNavMenu] = useState(navMenus[0]);
 
   const handleSelectStatus = (event) => {
     onSetActiveStatus(parseNavigationToStatus(event.target.value));
@@ -29,22 +30,27 @@ export default function NewsDraftBody({ onSetActiveStatus }) {
         onSetActiveStatus={onSetActiveStatus}
         status={status}
         setStatus={setStatus}
+        activeNavMenu={activeNavMenu}
+        setActiveNavMenu={setActiveNavMenu}
       />
       <div className="bg-white flex flex-col justify-end mt-1 border">
         {/* ------- FILTER START -------- */}
-        <div className="sm:flex mb-8 hidden sm:bg-white">
-          <div className="flex items-center mt-4 mr-4 w-full">
-            <p className="px-4 text-black font-semibold">Status: </p>
-            <select
-              onChange={handleSelectStatus}
-              className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full"
-            >
-              {status.map((item, index) => {
-                return <option key={index}>{item}</option>;
-              })}
-            </select>
+
+        {activeNavMenu === "Draf Berita" && (
+          <div className="sm:flex mb-8 hidden sm:bg-white">
+            <div className="flex items-center mt-4 mr-4 w-full">
+              <p className="px-4 text-black font-semibold">Status: </p>
+              <select
+                onChange={handleSelectStatus}
+                className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full"
+              >
+                {status.map((item, index) => {
+                  return <option key={index}>{item}</option>;
+                })}
+              </select>
+            </div>
           </div>
-        </div>
+        )}
         {/* ------- FILTER END -------- */}
         {isLoading && (
           <div className="w-full flex justify-center my-4 sm:mt-0">

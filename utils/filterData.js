@@ -5,11 +5,7 @@ const drafStatus = [
   "Sedang Disunting",
   "Dikembalikan Ke Wartawan",
 ];
-const publicationStatus = [
-  "Semua Publikasi",
-  "Disetujui Wartawan",
-  "Sudah Publikasi",
-];
+const publicationStatus = ["Sudah Publikasi"];
 
 const activitiesFilter = [
   { value: "new", label: "Menambahkan Draf" },

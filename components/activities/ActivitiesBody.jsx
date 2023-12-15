@@ -41,7 +41,7 @@ export default function ActivitiesBody({ data }) {
       </div>
       <div className="flex-col lg:hidden shadow-md">
         <div className="border-b-4 border-sky-800 w-full rounded-t-md" />
-        <ActivitiesBodyMobile />
+        <ActivitiesBodyMobile data={data} />
       </div>
       <div className="w-full rounded-md pb-4 lg:block hidden">
         <div className="lg:flex hidden">
