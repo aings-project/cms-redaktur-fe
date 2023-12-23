@@ -1,7 +1,18 @@
 import React from "react";
 import { Search } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchQuery } from "../../states/search_query/action";
+import { asyncReceiveNewsDraft } from "../../states/news_draft/action";
 
 export default function NewsDraftHeader({ title }) {
+  const query = useSelector((state) => state.searchQuery);
+  const dispatch = useDispatch();
+
+  function handleValueChange({ target }) {
+    dispatch(setSearchQuery({ title: target.value }));
+    dispatch(asyncReceiveNewsDraft({ title: target.value }));
+  }
+
   return (
     <div className="flex justify-between mb-5 lg:mb-0 flex-wrap">
       <p className="text-black text-3xl sm:text-4xl font-bold min-w-fit mr-6 mb-5 hidden sm:block">
@@ -12,6 +23,8 @@ export default function NewsDraftHeader({ title }) {
           <input
             className="p-1 w-full focus:outline-none"
             placeholder="Cari Judul Berita ..."
+            value={query}
+            onChange={handleValueChange}
           />
           <Search />
         </div>

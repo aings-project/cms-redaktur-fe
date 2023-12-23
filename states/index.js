@@ -8,6 +8,7 @@ import { loadingBarReducer } from "react-redux-loading-bar";
 import loadingReducer from "./loading/reducer";
 import activitiesReducer from "./activities/reducer";
 import commentListReducer from "./comments/reducer";
+import searchQueryReducer from "./search_query/reducer";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     loading: loadingReducer,
     activities: activitiesReducer,
     comments: commentListReducer,
+    searchQuery: searchQueryReducer,
   },
 });
 

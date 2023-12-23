@@ -64,11 +64,16 @@ const api = (() => {
     return user;
   }
 
-  async function getAllNewsDraft({ status, page = "1", limit = "10" } = {}) {
+  async function getAllNewsDraft({
+    status,
+    page = "1",
+    limit = "10",
+    title,
+  } = {}) {
     const response = await fetchWithAuth(
       `${BASE_URL}/v1/draft-berita?page=${page}&limit=${limit}${
         status ? `&status=${status}` : ""
-      }`,
+      }${title ? `&title=${title}` : ""}`,
       {
         method: "GET",
         headers: {

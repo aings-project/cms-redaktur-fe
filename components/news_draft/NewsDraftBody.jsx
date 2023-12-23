@@ -13,6 +13,7 @@ export default function NewsDraftBody({ onSetActiveStatus }) {
   const router = useRouter();
   const isLoading = useSelector((state) => state.loading);
   const newsDraftData = useSelector((state) => state.newsDraft);
+  const query = useSelector((state) => state.searchQuery);
   const listNewsDraft = newsDraftData?.draft_berita
     ? newsDraftData.draft_berita
     : [];
@@ -60,7 +61,11 @@ export default function NewsDraftBody({ onSetActiveStatus }) {
         {!isLoading && (
           <div className="shadow-sm rounded-md pb-6">
             {listNewsDraft.length === 0 && (
-              <p className="pt-4 px-6">Tidak ada berita</p>
+              <p className="pt-4 px-6">
+                {query
+                  ? `Tidak ada berita dengan judul "${query}"`
+                  : "Tidak ada berita"}
+              </p>
             )}
             {listNewsDraft.map((item, index) => {
               return (

@@ -7,14 +7,16 @@ import MainLayout from "../../components/main/MainLayout";
 export default function NewsDraft() {
   const dispatch = useDispatch();
   const newsDraftData = useSelector((state) => state.newsDraft);
+  const query = useSelector((state) => state.searchQuery);
 
   useEffect(() => {
     dispatch(
       asyncReceiveNewsDraft({
         status: "new,reviewing,reviewed",
+        title: query,
       })
     );
-  }, [dispatch]);
+  }, [dispatch, query]);
 
   return (
     <MainLayout
