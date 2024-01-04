@@ -104,6 +104,7 @@ export default function CommentSidebarTab() {
             onChange={setContent}
           />
           <button
+            className="CommentSendButton"
             onClick={() => {
               onPostComment(content);
               forceSetContent("");

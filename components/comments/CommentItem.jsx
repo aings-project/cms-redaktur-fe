@@ -12,7 +12,7 @@ export default function CommentItem({ sender, content, dateTime }) {
   };
 
   return (
-    <div className="bg-white w-full flex flex-col mt-4 mb-2">
+    <div className="CommentItem bg-white w-full flex flex-col mt-4 mb-2">
       <div
         className={`flex w-full items-center mb-2 ${
           auth.username === sender ? "bg-sky-50" : ""
