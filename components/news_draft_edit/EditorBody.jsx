@@ -28,7 +28,7 @@ export default function EditorBody({
         <div>
           <p className="font-semibold">Judul Berita</p>
           <input
-            className="w-full bg-white text-lg md:text-xl lg:text-2xl font-semibold lg:font-bold mb-2 px-2 pt-2 border-none focus:outline-none rounded-md"
+            className="EditorBodyTitleInput w-full bg-white text-lg md:text-xl lg:text-2xl font-semibold lg:font-bold mb-2 px-2 pt-2 border-none focus:outline-none rounded-md"
             value={title}
             onChange={(event) => {
               onTitleChange(event.target.value);
