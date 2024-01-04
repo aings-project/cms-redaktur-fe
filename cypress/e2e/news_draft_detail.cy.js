@@ -5,6 +5,7 @@
  *   - User can change news version
  *   - User can send news to reporter
  *   - User can reject news
+ *   - User can publish news
  *   - User can send news back to draft
  */
 
@@ -134,5 +135,108 @@ describe("News Draft Spec", () => {
 
     cy.get('input[value="abcd"]').should("be.visible");
     cy.get("p").contains("defg").should("be.visible");
+  });
+
+  it("User can send news to reporter", () => {
+    cy.intercept(
+      "POST",
+      "https://redaktur-backend.et.r.appspot.com/v1/draft-berita/*"
+    ).as("save");
+
+    cy.get("p").contains("Judul Berita").should("be.visible");
+    cy.get("p").contains("AINGS").should("be.visible");
+
+    cy.get("button").contains("Kembalikan Wartawan").click();
+
+    cy.wait("@save");
+
+    cy.get("p").contains("Dikembalikan Kepada Wartawan").should("be.visible");
+  });
+
+  it("User can send publish news", () => {
+    cy.intercept(
+      "POST",
+      "https://redaktur-backend.et.r.appspot.com/v1/draft-berita/*"
+    ).as("save");
+
+    cy.get("p").contains("Judul Berita").should("be.visible");
+    cy.get("p").contains("AINGS").should("be.visible");
+
+    cy.get("button").contains("Publikasikan").click();
+
+    cy.wait("@save");
+
+    cy.get("p").contains("Sudah Publikasi").should("be.visible");
+  });
+
+  it("User can reject news", () => {
+    cy.intercept(
+      "POST",
+      "https://redaktur-backend.et.r.appspot.com/v1/draft-berita/*"
+    ).as("save");
+
+    cy.get("p").contains("Judul Berita").should("be.visible");
+    cy.get("p").contains("AINGS").should("be.visible");
+
+    cy.get("button").contains("Tolak Draf Berita").click();
+    cy.get("textarea").type("test abcd");
+    cy.get("button").contains("Tolak Draf Berita").click();
+
+    cy.wait("@save");
+
+    cy.get("p").contains("Draf Ditolak").should("be.visible");
+  });
+
+  it("User can send news back to draft", () => {
+    cy.intercept(
+      "POST",
+      "https://redaktur-backend.et.r.appspot.com/v1/draft-berita/*"
+    ).as("save");
+
+    cy.get("p").contains("Judul Berita").should("be.visible");
+    cy.get("p").contains("AINGS").should("be.visible");
+
+    cy.get("button").contains("Publikasikan").click();
+
+    cy.wait("@save");
+
+    cy.get("p").contains("Sudah Publikasi").should("be.visible");
+
+    cy.get("button").contains("Kembalikan Ke Draf").click();
+
+    cy.wait("@save");
+
+    cy.get("p").contains("Sedang Disunting").should("be.visible");
+  });
+
+  it("User can change version", () => {
+    cy.intercept(
+      "GET",
+      "https://redaktur-backend.et.r.appspot.com/v1/draft-berita/*"
+    ).as("detail");
+
+    cy.get("p").contains("Judul Berita").should("be.visible");
+    cy.get("p").contains("AINGS").should("be.visible");
+
+    cy.get("select").filter(":visible").select("12");
+
+    cy.wait("@detail");
+
+    cy.get("p").contains("Sedang Disunting").should("be.visible");
+
+    cy.get("button").contains("Kembalikan Ke Draf").should("not.exist");
+    cy.get("button").contains("Publikasikan").should("not.exist");
+    cy.get("button").contains("Simpan Perubahan").should("not.exist");
+    cy.get("button").contains("Tolak Draf Berita").should("not.exist");
+    cy.get("p")
+      .contains(
+        "Penanganan Kasus Penyakit Cacar Monyet di Indonesia di Tahun 2023 Harus Lebih Masif"
+      )
+      .should("be.visible");
+    cy.get("p")
+      .contains(
+        "Penyakit cacar monyet menjadi perhatian serius di Indonesia pada tahun 2023"
+      )
+      .should("be.visible");
   });
 });
