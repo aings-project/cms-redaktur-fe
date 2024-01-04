@@ -54,7 +54,7 @@ export default function NewsDraftBody({ onSetActiveStatus }) {
         )}
         {/* ------- FILTER END -------- */}
         {isLoading && (
-          <div className="w-full flex justify-center my-4 sm:mt-0">
+          <div className="NewsDraftBodyLoading w-full flex justify-center my-4 sm:mt-0">
             <ReactLoading type="spin" color="#1e293b" height={24} width={24} />
           </div>
         )}

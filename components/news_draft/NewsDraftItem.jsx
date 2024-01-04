@@ -12,7 +12,7 @@ export default function NewsDraftItem({
 }) {
   return (
     <div
-      className={`flex items-center ${
+      className={`NewsDraftItem flex items-center ${
         index % 2 === 1
           ? "bg-white hover:bg-sky-100"
           : "bg-sky-50 hover:bg-sky-100"
