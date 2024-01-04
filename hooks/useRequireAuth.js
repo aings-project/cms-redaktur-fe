@@ -1,16 +1,22 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { asyncPreloadProcess } from "../states/preload/action";
 
 export default function useRequireAuth() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const preload = useSelector((state) => state.preload);
 
   useEffect(() => {
     if (!auth) {
-      router.push("/login");
+      dispatch(asyncPreloadProcess());
+      if (!preload && !auth) {
+        router.push("/login");
+      }
     }
-  }, [auth, router]);
+  }, [auth, router, dispatch, preload]);
 
   return auth;
 }
