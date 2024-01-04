@@ -15,7 +15,7 @@ export default function ActivityItem({
   const router = useRouter();
 
   return (
-    <div className="flex">
+    <div className="ActivityItem flex">
       {action === "rejected" && <div className="bg-red-500 px-1" />}
       {action === "new" && <div className="bg-green-500 px-1" />}
       {action === "with_data" && <div className="bg-blue-200 px-1" />}
