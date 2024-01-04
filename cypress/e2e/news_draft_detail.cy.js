@@ -8,47 +8,10 @@
  *   - User can send news back to draft
  */
 
-import api from "../../utils/api";
 import {
   originalDesc,
   originalTitle,
 } from "../utils/news_draft_detail_test_util";
-
-// async function fetchWithAuth(url, options = {}) {
-//   return fetch(url, {
-//     ...options,
-//     headers: {
-//       ...options.headers,
-//       Authorization: `Bearer ${options.token}`,
-//     },
-//   });
-// }
-
-// async function updateNewsDraft({ title, content, status, id, token }) {
-//   const response = await fetchWithAuth(`${BASE_URL}/v1/draft-berita/${id}`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       title,
-//       content,
-//       status,
-//     }),
-//     token,
-//   });
-
-//   const responseJson = await response.json();
-
-//   const { error } = responseJson;
-
-//   if (error) {
-//     const { message } = error;
-//     throw new Error(message);
-//   }
-
-//   return responseJson;
-// }
 
 describe("News Draft Spec", () => {
   beforeEach("Login page", () => {
