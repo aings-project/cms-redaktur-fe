@@ -13,12 +13,14 @@ export default function EditNewsDraft() {
   const newsDraft = useSelector((state) => state.newsDraftDetail);
 
   useEffect(() => {
-    dispatch(
-      asyncReceiveNewsDraftDetail({
-        draft_id,
-        version,
-      })
-    );
+    if (draft_id) {
+      dispatch(
+        asyncReceiveNewsDraftDetail({
+          draft_id,
+          version,
+        })
+      );
+    }
   }, [dispatch, draft_id, version]);
 
   if (!newsDraft) {
