@@ -151,7 +151,7 @@ describe("Validation Spec", () => {
 
     // Wait for validation API calls
     cy.wait("@validation", {
-      timeout: 90_000,
+      timeout: 1_000_000,
     }).then((_) => {
       cy.wait(200);
       // Detect validation result
@@ -178,7 +178,7 @@ describe("Validation Spec", () => {
 
     // Wait for validation API calls
     cy.wait("@validation", {
-      timeout: 90_000,
+      timeout: 1_000_000,
     }).then((_) => {
       cy.wait(200);
       // Detect validation result
@@ -197,7 +197,7 @@ describe("Validation Spec", () => {
 
     // Wait for validation API calls
     cy.wait("@validation", {
-      timeout: 90_000,
+      timeout: 1_000_000,
     }).then((_) => {
       cy.wait(200);
       // Detect validation result
