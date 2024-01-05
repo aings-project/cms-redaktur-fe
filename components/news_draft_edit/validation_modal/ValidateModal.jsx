@@ -72,7 +72,7 @@ export default function ValidateModal({ onClose, onValidate, promptWartawan }) {
                   type="checkbox"
                   checked={isChecked}
                   onChange={handleCheckboxChange}
-                  className="mr-4"
+                  className="ValidationDataCheckbox mr-4"
                 />
                 <p className="font-semibold">
                   Tambahkan data pendukung validasi

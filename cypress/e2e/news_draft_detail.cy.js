@@ -15,7 +15,7 @@ import {
 } from "../utils/news_draft_detail_test_util";
 
 describe("News Draft Spec", () => {
-  beforeEach("Login page", () => {
+  beforeEach("Login and Prepare News Data", () => {
     cy.request({
       method: "POST",
       url: `https://redaktur-backend.et.r.appspot.com/v1/auth/login/email`,
