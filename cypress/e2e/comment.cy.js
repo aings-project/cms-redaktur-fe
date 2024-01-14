@@ -59,6 +59,6 @@ describe("Commentary Spec", () => {
     cy.get("textarea").type(`test comment ${now}`);
     cy.get(".CommentSendButton").click();
 
-    cy.get("p").contains(`test comment ${now}`).click();
+    cy.get("p").contains(`test comment ${now}`).should("be.visible");
   });
 });
