@@ -79,6 +79,19 @@ export default function ValidateModal({ onClose, onValidate, promptWartawan }) {
                 </p>
               </div>
             )}
+            <div className="flex items-center mt-4 w-full">
+              <p className="px-4 text-black font-semibold">Model: </p>
+              <select
+                onChange={() => {}}
+                className="text-black text-base font-semibold px-4 py-2 bg-white border-2 rounded-md border-neutral-200 focus:outline-sky-400 w-full"
+              >
+                {["GPT 3.5", "Falcon", "LLM 1", "LLM 2 (Rekomendasi)"].map(
+                  (item, index) => {
+                    return <option key={index}>{item}</option>;
+                  }
+                )}
+              </select>
+            </div>
 
             <div className="mt-4 flex justify-center">
               {isLoading && (
