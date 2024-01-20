@@ -1,5 +1,5 @@
 import React from "react";
-import ActivityItem from "./ActivityItem";
+import ActivityItemCard from "./ActivityItemCard";
 import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ export default function ActivitiesBodyMobile({ data }) {
     <div className="rounded-b-md border-2 pb-4">
       {data.map((item, index) => {
         return (
-          <ActivityItem
+          <ActivityItemCard
             key={index}
             name={item.subject}
             action={item.action}

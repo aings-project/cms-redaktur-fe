@@ -1,13 +1,18 @@
-const navMenus = ["Draf Berita", "Publikasi Berita", "Berita Ditolak"];
+type ActivityFilter = {
+  value: string,
+  label: string
+}
+
+const navMenus: string[] = ["Draf Berita", "Publikasi Berita", "Berita Ditolak"];
 const drafStatus = [
   "Semua Draf",
   "Baru",
   "Sedang Disunting",
   "Dikembalikan Ke Wartawan",
 ];
-const publicationStatus = ["Sudah Publikasi"];
+const publicationStatus: string[] = ["Sudah Publikasi"];
 
-const activitiesFilter = [
+const activitiesFilter: ActivityFilter[] = [
   { value: "new", label: "Menambahkan Draf" },
   { value: "rejected", label: "Menolak Draf" },
   { value: "reviewing", label: "Menyunting Draf" },
@@ -15,7 +20,7 @@ const activitiesFilter = [
   { value: "reviewed", label: "Mengirim ke Wartawan" },
   { value: "comment", label: "Mengomentari Berita" },
 ];
-const rejectedStatus = ["Ditolak"];
+const rejectedStatus: string[] = ["Ditolak"];
 
 export {
   drafStatus,

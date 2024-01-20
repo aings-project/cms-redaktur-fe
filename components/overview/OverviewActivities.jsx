@@ -1,5 +1,5 @@
 import React from "react";
-import OverviewActivityItem from "./OverviewActivityItem";
+import OverviewActivityItemCard from "./OverviewActivityItemCard";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
 import { useRouter } from "next/router";
@@ -23,7 +23,7 @@ export default function OverviewActivities({ activityList }) {
       )}
       {activityList.map((item, index) => {
         return (
-          <OverviewActivityItem
+          <OverviewActivityItemCard
             key={index}
             name={item.subject}
             action={item.action}

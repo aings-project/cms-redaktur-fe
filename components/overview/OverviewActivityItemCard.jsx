@@ -3,7 +3,7 @@ import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
 import { activityActionParserShort } from "../../utils/activityActionParser";
 import { useRouter } from "next/router";
 
-export default function OverviewActivityItem({
+export default function OverviewActivityItemCard({
   name,
   time,
   title,
@@ -15,7 +15,7 @@ export default function OverviewActivityItem({
   const router = useRouter();
 
   return (
-    <div className="OverviewActivityItem flex">
+    <div className="OverviewActivityItemCard flex">
       {action === "rejected" && <div className="bg-red-500 px-1" />}
       {action === "new" && <div className="bg-green-500 px-1" />}
       {action === "with_data" && <div className="bg-blue-200 px-1" />}

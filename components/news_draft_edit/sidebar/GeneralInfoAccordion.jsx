@@ -96,7 +96,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
           )}
           <EditorInfo
             title="Status"
-            content={convertStatus({ value: status })}
+            content={convertStatus(status)}
           />
           <EditorDropdown
             title="Versi"

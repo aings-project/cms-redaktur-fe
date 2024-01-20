@@ -29,7 +29,7 @@ describe("Commentary Spec", () => {
       .filter(":visible")
       .contains("Log Aktivitas")
       .should("be.visible");
-    cy.get(".ActivityItem").should("be.visible");
+    cy.get(".ActivityItemCard").should("be.visible");
   });
 
   it("User can navigate to Detail News Draft Page from activity", () => {
@@ -39,8 +39,8 @@ describe("Commentary Spec", () => {
     ).as("all");
     cy.get("button").filter(":visible").contains("Aktivitas").click();
 
-    cy.get(".ActivityItem").should("be.visible");
-    cy.get(".ActivityItem").first().click();
+    cy.get(".ActivityItemCard").should("be.visible");
+    cy.get(".ActivityItemCard").first().click();
 
     cy.get("p").contains("Judul Berita");
   });
@@ -54,7 +54,7 @@ describe("Commentary Spec", () => {
 
     cy.get("input").filter(":visible").type("Menambahkan Draf{enter}");
 
-    cy.get(".ActivityItem").each(($el, _, __) => {
+    cy.get(".ActivityItemCard").each(($el, _, __) => {
       cy.wrap($el).contains("Menambahkan berita");
     });
   });

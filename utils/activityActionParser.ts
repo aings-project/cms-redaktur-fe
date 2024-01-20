@@ -1,4 +1,4 @@
-function activityActionParserShort(value) {
+function activityActionParserShort(value: string) {
   switch (value) {
     case "reviewing":
       return "Menyunting draf berjudul";
@@ -23,7 +23,7 @@ function activityActionParserShort(value) {
   }
 }
 
-function activityActionParserLong(value) {
+function activityActionParserLong(value: string) {
   switch (value) {
     case "reviewing":
       return "Mengubah berita";

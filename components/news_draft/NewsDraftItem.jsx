@@ -60,7 +60,7 @@ export default function NewsDraftItem({
                 <div className="p-2 rounded-full bg-red-700 mr-1" />
               )}
               <p className="text-black text-xs font-normal ml-1">
-                {convertStatus({ value: status })}
+                {convertStatus(status)}
               </p>
             </div>
           </div>

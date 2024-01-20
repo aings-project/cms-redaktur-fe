@@ -1,4 +1,4 @@
-function dateTimeFormatter(inputDateTime) {
+function dateTimeFormatter(inputDateTime: string): string {
   const date = new Date(inputDateTime);
 
   const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
@@ -35,7 +35,7 @@ function dateTimeFormatter(inputDateTime) {
   return `${dayName}, ${dayOfMonth} ${monthName} ${year} ${hour}:${minute}`;
 }
 
-function commentDateTimeFormatter(inputDateTime) {
+function commentDateTimeFormatter(inputDateTime: string): string {
   const date = new Date(inputDateTime);
 
   // Define the names of days and months in Indonesian

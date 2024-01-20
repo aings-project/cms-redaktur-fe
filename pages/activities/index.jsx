@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "../../components/main/MainLayout";
-import { convertStatus } from "../../utils/draftAttributeParser";
 import ActivitiesLayout from "../../components/activities/ActivitiesLayout";
 import { asyncReceiveActivities } from "../../states/activities/action";
 

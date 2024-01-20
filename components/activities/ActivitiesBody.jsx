@@ -2,7 +2,7 @@ import React from "react";
 
 import { activityActionParserLong } from "../../utils/activityActionParser";
 import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
-import ActivityItem from "./ActivityItem";
+import ActivityItemCard from "./ActivityItemCard";
 import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";

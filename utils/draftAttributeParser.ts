@@ -1,4 +1,4 @@
-function convertStatus({ value }) {
+function convertStatus( value: string): string {
   switch (value) {
     case "reviewing":
       return "Sedang Disunting";
@@ -15,7 +15,7 @@ function convertStatus({ value }) {
   }
 }
 
-function parseNavigationToStatus(value) {
+function parseNavigationToStatus(value: string): string | null {
   switch (value) {
     case "Semua Draf":
       return "new,reviewing,reviewed";

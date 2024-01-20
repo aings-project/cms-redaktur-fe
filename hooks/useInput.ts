@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function useInput(defaultValue = "") {
+function useInput(defaultValue: string = "") {
   const [value, setValue] = useState(defaultValue);
 
   function handleValueChange({ target }) {

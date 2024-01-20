@@ -3,7 +3,17 @@ import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
 import { activityActionParserShort } from "../../utils/activityActionParser";
 import { useRouter } from "next/router";
 
-export default function ActivityItem({
+type ActivityItem = {
+  name: string,
+  time: string,
+  title: string,
+  action: string,
+  draftId: number,
+  version: number,
+  index: number,
+};
+
+export default function ActivityItemCard({
   name,
   time,
   title,
@@ -11,11 +21,11 @@ export default function ActivityItem({
   draftId,
   version,
   index,
-}) {
+}: ActivityItem) {
   const router = useRouter();
 
   return (
-    <div className="ActivityItem flex">
+    <div className="ActivityItemCard flex">
       {action === "rejected" && <div className="bg-red-500 px-1" />}
       {action === "new" && <div className="bg-green-500 px-1" />}
       {action === "with_data" && <div className="bg-blue-200 px-1" />}

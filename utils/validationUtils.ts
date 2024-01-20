@@ -1,5 +1,11 @@
-function parseValidationDataInput({ what, when, where }) {
-  let text = "";
+type ValidationInput = {
+  what: string,
+  when: string,
+  where: string,
+}
+
+function parseValidationDataInput({ what, when, where }: ValidationInput): string {
+  let text: string = "";
   if (what) {
     text = `${text}Kejadian: ${what}. `;
   }
