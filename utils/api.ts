@@ -1,3 +1,5 @@
+import { ActivityLogResponse } from "../states/activities/action";
+
 const api = (() => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -9,7 +11,7 @@ const api = (() => {
     return localStorage.getItem("accessToken");
   }
 
-  async function fetchWithAuth(url, options = {}) {
+  async function fetchWithAuth(url, options: any = {}) {
     return fetch(url, {
       ...options,
       headers: {
@@ -65,10 +67,10 @@ const api = (() => {
   }
 
   async function getAllNewsDraft({
-    status,
+    status = null,
     page = "1",
     limit = "10",
-    title,
+    title = null,
   } = {}) {
     const response = await fetchWithAuth(
       `${BASE_URL}/v1/draft-berita?page=${page}&limit=${limit}${
@@ -198,7 +200,7 @@ const api = (() => {
     page = "1",
     limit = "10",
     actions = "",
-  } = {}) {
+  } = {}) : Promise<ActivityLogResponse> {
     const url = actions
       ? `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}&actions=${actions}`
       : `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}`;
@@ -221,7 +223,7 @@ const api = (() => {
     return responseJson;
   }
 
-  async function getCommentList({ page = "1", limit = "5", draftId } = {}) {
+  async function getCommentList({ page = "1", limit = "5", draftId = null } = {}) {
     const response = await fetchWithAuth(
       `${BASE_URL}/v1/comments/${draftId}?page=${page}&limit=${limit}`,
       {
