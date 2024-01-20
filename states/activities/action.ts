@@ -4,7 +4,7 @@ import { setIsLoading } from "../loading/action";
 import { Dispatch } from "react";
 
 enum ActivityActionType {
-  RECEIVE_ACTIVITIES
+  RECEIVE_ACTIVITIES = 'RECEIVE_ACTIVITIES'
 }
 
 type ActivityLog = {
@@ -39,7 +39,7 @@ function receiveActivitiesActionCreator({ data }: { data: ActivityLogResponse}):
   return {
     type: ActivityActionType.RECEIVE_ACTIVITIES,
     payload: {
-      data,
+      data: data || null,
     },
   };
 }

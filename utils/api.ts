@@ -1,4 +1,5 @@
 import { ActivityLogResponse } from "../states/activities/action";
+import { LoginData, UserData } from "../states/auth/action";
 
 const api = (() => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -21,7 +22,7 @@ const api = (() => {
     });
   }
 
-  async function login({ email, password }) {
+  async function login({ email, password }) : Promise<string> {
     const response = await fetch(`${BASE_URL}/v1/auth/login/email`, {
       method: "POST",
       headers: {
@@ -49,7 +50,7 @@ const api = (() => {
     return token;
   }
 
-  async function getOwnProfile() {
+  async function getOwnProfile() : Promise<UserData> {
     const response = await fetchWithAuth(`${BASE_URL}/v1/auth/user`);
 
     const responseJson = await response.json();
