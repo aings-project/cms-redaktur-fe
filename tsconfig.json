@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "hooks/useRequireAuth.js"  ],
+, "hooks/useRequireAuth.js", "components/news_draft_edit/sidebar/CommentSidebarTab.jsx"  ],
   "exclude": [
     "node_modules"
   ]

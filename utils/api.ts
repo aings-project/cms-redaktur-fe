@@ -1,5 +1,6 @@
 import { ActivityLogResponse } from "../states/activities/action";
 import { LoginData, UserData } from "../states/auth/action";
+import { CommentResponse } from "../states/comments/action";
 
 const api = (() => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -224,7 +225,7 @@ const api = (() => {
     return responseJson;
   }
 
-  async function getCommentList({ page = "1", limit = "5", draftId = null } = {}) {
+  async function getCommentList({ page = "1", limit = "5", draftId = null } = {}) : Promise<CommentResponse> {
     const response = await fetchWithAuth(
       `${BASE_URL}/v1/comments/${draftId}?page=${page}&limit=${limit}`,
       {
