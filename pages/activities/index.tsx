@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "../../components/main/MainLayout";
 import ActivitiesLayout from "../../components/activities/ActivitiesLayout";
 import { asyncReceiveActivities } from "../../states/activities/action";
+import { RootState } from "../../states";
 
 export default function Activities() {
-  const dispatch = useDispatch();
-  const activities = useSelector((state) => state.activities);
+  const dispatch : Dispatch<any> = useDispatch();
+  const activities = useSelector((state: RootState) => state.activities);
 
   useEffect(() => {
     dispatch(asyncReceiveActivities({ page: 1 }));

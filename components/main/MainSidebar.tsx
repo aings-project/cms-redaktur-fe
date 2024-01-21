@@ -1,40 +1,20 @@
 import React from "react";
-import PhoneSidebarMenu from "../../components/main/PhoneSidebarMenu";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
-import DraftsIcon from "@mui/icons-material/Drafts";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
-import CommentIcon from "@mui/icons-material/Comment";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Close, Delete, History } from "@mui/icons-material";
+import MainSidebarMenu from "./MainSidebarMenu";
+import { History } from "@mui/icons-material";
 import { useRouter } from "next/router";
 
-export default function PhoneSidebar({
-  isHidden,
-  activePage,
-  auth,
-  onSignOut,
-  onHide,
-}) {
+export default function MainSidebar({ activePage, auth, onSignOut }) {
   const router = useRouter();
+  if (!auth) {
+    return <div />;
+  }
 
   return (
-    <div
-      className={`h-[calc(100dvh)] z-20 bg-gray-700 w-full absolute top-0 left-0 sm:hidden shadow-lg transition-transform duration-300 ${
-        isHidden ? "-translate-x-full" : "translate-x-0"
-      }`}
-    >
-      <div className="flex px-4 py-6 items-center justify-between">
-        <p className="text-white text-3xl font-extrabold">AINGS</p>
-        <button
-          onClick={() => {
-            onHide();
-          }}
-        >
-          <Close className="text-white hover:cursor-pointer" />
-        </button>
-      </div>
-
-      <div className="flex items-center px-4 mb-12">
+    <div className="hidden h-screen lg:min-w-[300px] bg-gray-700 py-4 sm:flex flex-col relative overflow-hidden min-w-fit">
+      <div className="md:flex items-center px-4 mb-12 hidden">
         <div className="text-white bg-sky-600 px-4 py-2 text-xl rounded-md">
           {auth.username.substring(0, 1).toUpperCase()}
         </div>
@@ -43,30 +23,37 @@ export default function PhoneSidebar({
           <p className="text-white text-sm font-normal">{auth.email}</p>
         </div>
       </div>
-      <PhoneSidebarMenu
+      <div className="mb-6 md:hidden">
+        <div className="text-white bg-sky-600 py-2 text-xl flex justify-center">
+          {auth.username.substring(0, 1).toUpperCase()}
+        </div>
+      </div>
+      <MainSidebarMenu
         icon={<QueryStatsIcon className="w-6 h-6 text-white" />}
         text={"Ikhtisar"}
         isSelected={activePage === "ikhtisar"}
         onClick={() => router.push("/overview")}
       />
-      <PhoneSidebarMenu
+      <MainSidebarMenu
         icon={<NewspaperIcon className="w-6 h-6 text-white" />}
         text={"Berita"}
         isSelected={activePage === "draf_berita"}
         onClick={() => router.push("/news_draft")}
       />
-      <PhoneSidebarMenu
+      <MainSidebarMenu
         icon={<History className="w-6 h-6 text-white" />}
         text={"Aktivitas"}
         isSelected={activePage === "activities"}
         onClick={() => router.push("/activities")}
       />
-      <PhoneSidebarMenu
-        onClick={onSignOut}
-        icon={<LogoutIcon className="w-6 h-6 text-red-500" />}
-        text={"Keluar"}
-        isSelected={false}
-      />
+      <div className="mt-auto">
+        <MainSidebarMenu
+          onClick={onSignOut}
+          icon={<LogoutIcon className="w-6 h-6 text-white" />}
+          text={"Keluar"}
+          isSelected={false}
+        />
+      </div>
     </div>
   );
 }

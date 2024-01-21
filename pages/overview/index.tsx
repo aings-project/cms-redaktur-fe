@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, useEffect } from "react";
 import OverviewLayout from "../../components/overview/OverviewLayout";
 import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "../../components/main/MainLayout";
 import { asyncReceiveOverviewData } from "../../states/overview/action";
 import { PlaceholderNewsDraftCountByStatusModel } from "../../models/NewsDraftCountByStatusModel";
+import { RootState } from "../../states";
 
 export default function Overview() {
-  const dispatch = useDispatch();
+  const dispatch : Dispatch<any> = useDispatch();
 
-  const overviewData = useSelector((state) => state.overview);
+  const overviewData = useSelector((state: RootState) => state.overview);
 
   useEffect(() => {
     dispatch(asyncReceiveOverviewData());

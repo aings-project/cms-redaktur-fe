@@ -3,9 +3,10 @@ import OverviewActivityItemCard from "./OverviewActivityItemCard";
 import { useSelector } from "react-redux";
 import ReactLoading from "react-loading";
 import { useRouter } from "next/router";
+import { RootState } from "../../states";
 
 export default function OverviewActivities({ activityList }) {
-  const isLoading = useSelector((state) => state.loading);
+  const isLoading : boolean = useSelector((state: RootState) => state.loading);
   const router = useRouter();
 
   return (

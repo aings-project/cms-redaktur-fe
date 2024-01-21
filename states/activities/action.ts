@@ -44,7 +44,7 @@ function receiveActivitiesActionCreator({ data }: { data: ActivityLogResponse}):
   };
 }
 
-function asyncReceiveActivities({ page, actions }) {
+function asyncReceiveActivities({ page, actions } : {page?: number, actions?: any}) {
   return async (dispatch: Dispatch<any>) => {
     dispatch(setIsLoading(true));
     try {

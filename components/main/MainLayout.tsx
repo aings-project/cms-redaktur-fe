@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import MainSidebar from "../../components/main/MainSidebar";
+import React, { Dispatch, useState } from "react";
+import MainSidebar from "./MainSidebar";
 import useRequireAuth from "../../hooks/useRequireAuth";
 import { Menu } from "@mui/icons-material";
-import PhoneSidebar from "../../components/main/PhoneSidebar";
+import PhoneSidebar from "./PhoneSidebar";
 import { useDispatch } from "react-redux";
 import { asyncUnsetAuthUser } from "../../states/auth/action";
 import { useRouter } from "next/router";
@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 export default function MainLayout({ content, activePage, pageTitle }) {
   const auth = useRequireAuth();
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch : Dispatch<any> = useDispatch();
   const [hideNavbar, setHideNavbar] = useState(true);
 
   const onSignOut = () => {

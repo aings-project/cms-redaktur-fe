@@ -1,8 +1,7 @@
-import React from "react";
+import React, { Dispatch } from "react";
 
 import { activityActionParserLong } from "../../utils/activityActionParser";
 import { dateTimeFormatter } from "../../utils/dateTimeFormatter";
-import ActivityItemCard from "./ActivityItemCard";
 import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -10,11 +9,12 @@ import Select from "react-select";
 import { asyncReceiveActivities } from "../../states/activities/action";
 import { activitiesFilter } from "../../utils/filterData";
 import ActivitiesBodyMobile from "./ActivitiesBodyMobile";
+import { RootState } from "../../states";
 
 export default function ActivitiesBody({ data }) {
-  const isLoading = useSelector((state) => state.loading);
+  const isLoading : boolean = useSelector((state: RootState) => state.loading);
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch : Dispatch<any> = useDispatch();
 
   const handleFilter = (value) => {
     const filters = [];
