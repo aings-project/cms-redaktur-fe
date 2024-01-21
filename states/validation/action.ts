@@ -2,6 +2,7 @@ import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { setIsLoading } from "../loading/action";
 import { asyncReceiveNewsDraftDetail } from "../news_draft_detail/action";
+import { Dispatch } from "react";
 
 function asyncReceiveValidationData({
   draft_id,
@@ -9,7 +10,7 @@ function asyncReceiveValidationData({
   information,
   onSuccess,
 }) {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch<any>) => {
     dispatch(setIsLoading(true));
 
     try {
