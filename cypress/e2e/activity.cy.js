@@ -5,7 +5,7 @@
  *   - User can filter log activities
  */
 
-describe("Commentary Spec", () => {
+describe("Activity Spec", () => {
   beforeEach("Login", () => {
     cy.visit("http://localhost:3000/");
 
