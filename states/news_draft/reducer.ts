@@ -1,6 +1,6 @@
-import { NewsDraftActionType, NewsDraftActionCreator, NewsDraftResponse } from "./action";
+import { NewsDraftActionType, NewsDraftActionCreator, ListNewsDraftResponse } from "./action";
 
-function newsDraftReducer(newsDraftData : NewsDraftResponse | null = null, action : NewsDraftActionCreator ) : NewsDraftResponse | null {
+function newsDraftReducer(newsDraftData : ListNewsDraftResponse | null = null, action : NewsDraftActionCreator ) : ListNewsDraftResponse | null {
   switch (action.type) {
     case NewsDraftActionType.RECEIVE_NEWS_DRAFT:
       return action.payload.data;

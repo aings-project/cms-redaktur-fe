@@ -23,13 +23,13 @@ export default function ValidationResult({
           </div>
           <div className="pt-6 px-6">
             <p className="font-semibold">Hasil Validasi: </p>
-            <p>{validationData.status}</p>
+            <p>{validationData.result.type}</p>
             <p className="font-semibold mt-4">Keterangan: </p>
-            <p>{validationData.description}</p>
+            <p>{validationData.result.describe}</p>
 
             <div className="mt-6 flex justify-center">
               <div className="w-full md:w-1/2">
-                <SecondaryButton text="Validasi Ulang" onClick={onRevalidate} />
+                <SecondaryButton isLoading={false} disabled={false} text="Validasi Ulang" onClick={onRevalidate} />
               </div>
             </div>
           </div>

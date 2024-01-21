@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import useRequireAuth from "../../../hooks/useRequireAuth";
 import EditorSidebarTab from "./EditorSidebarTab";
 import CommentSidebarTab from "./CommentSidebarTab";
@@ -7,18 +7,29 @@ import {
   asyncClearCommentList,
   asyncReceiveCommentList,
 } from "../../../states/comments/action";
+import { NewsDraftResponse } from "../../../states/news_draft_detail/action";
 
-export default function EditorSidebar({ onValidate, onUpdateDraft }) {
+type EditorSidebarType = {
+  onValidate: any,
+  onUpdateDraft: any,
+  newsDraft: NewsDraftResponse,
+}
+
+export default function EditorSidebar({
+  onValidate,
+  onUpdateDraft,
+  newsDraft,
+} : EditorSidebarType) {
   const auth = useRequireAuth();
   const [isEditor, setIsEditor] = useState(true);
-  const newsDraft = useSelector((state) => state.newsDraftDetail);
-  const dispatch = useDispatch();
+  const dispatch : Dispatch<any> = useDispatch();
+  const draft = newsDraft.draft_berita;
 
   const handleSidebarTab = (value) => {
     setIsEditor(value);
     if (!value) {
       dispatch(asyncClearCommentList());
-      dispatch(asyncReceiveCommentList({ draftId: newsDraft.draft_id }));
+      dispatch(asyncReceiveCommentList({ draftId: draft.draft_id }));
     }
   };
 
@@ -74,10 +85,14 @@ export default function EditorSidebar({ onValidate, onUpdateDraft }) {
           <EditorSidebarTab
             onValidate={onValidate}
             onUpdateDraft={onUpdateDraft}
+            newsDraft={newsDraft}
           />
         )}
         {!isEditor && (
-          <CommentSidebarTab draftId={newsDraft.draft_id} id={newsDraft.id} />
+          <CommentSidebarTab
+            id={draft.id}
+            draft_id={draft.draft_id}
+          />
         )}
       </div>
     </div>

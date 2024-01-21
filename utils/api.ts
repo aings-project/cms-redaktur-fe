@@ -199,10 +199,10 @@ const api = (() => {
   }
 
   async function getAllActivities({
-    page = "1",
-    limit = "10",
+    page = 1,
+    limit = 10,
     actions = "",
-  } = {}) : Promise<ActivityLogResponse> {
+  } : {page?: number, limit?: number, actions?: string}) : Promise<ActivityLogResponse> {
     const url = actions
       ? `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}&actions=${actions}`
       : `${BASE_URL}/v1/activity-logs?page=${page}&limit=${limit}`;
@@ -225,7 +225,7 @@ const api = (() => {
     return responseJson;
   }
 
-  async function getCommentList({ page = "1", limit = "5", draftId = null } = {}) : Promise<CommentResponse> {
+  async function getCommentList({ page = 1, limit = 5, draftId = null } = {}) : Promise<CommentResponse> {
     const response = await fetchWithAuth(
       `${BASE_URL}/v1/comments/${draftId}?page=${page}&limit=${limit}`,
       {

@@ -4,18 +4,27 @@ import EditorBody from "./EditorBody";
 import EditorSidebar from "./sidebar/EditorSidebar";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncUpdateNewsDraft } from "../../states/news_draft_detail/action";
+import { NewsDraftResponse, asyncUpdateNewsDraft } from "../../states/news_draft_detail/action";
+import { RootState } from "../../states";
+import { Dispatch } from "@reduxjs/toolkit";
+
+type EditorLayoutProps = {
+  newsDraft: NewsDraftResponse,
+  showValidationModal: any,
+  showValidationResult: any,
+}
 
 export default function EditorLayout({
+  newsDraft,
   showValidationModal,
   showValidationResult,
-}) {
+} : EditorLayoutProps) {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const dispatch : Dispatch<any> = useDispatch();
+  const draft = newsDraft.draft_berita;
 
-  const [content, setContent] = useState(newsDraft.content);
-  const [title, setTitle] = useState(newsDraft.title);
+  const [content, setContent] = useState(draft.content ?? "");
+  const [title, setTitle] = useState(draft.title);
   const [hideNavbar, setHideNavbar] = useState(true);
 
   const handleToggle = () => {
@@ -29,16 +38,16 @@ export default function EditorLayout({
         content,
         status,
         id,
-        version: newsDraft.version,
-        draft_id: newsDraft.draft_id,
+        version: draft.version,
+        draft_id: draft.draft_id,
       })
     );
   };
 
   useEffect(() => {
-    setContent(newsDraft.content);
-    setTitle(newsDraft.title);
-  }, [newsDraft]);
+    setContent(draft.content);
+    setTitle(draft.title);
+  }, [draft]);
 
   return (
     <div className="flex bg-neutral-50 h-[calc(100dvh)] overflow-y-auto">
@@ -58,6 +67,7 @@ export default function EditorLayout({
           </button>
         </div>
         <EditorBody
+          newsDraft={newsDraft}
           title={title}
           content={content}
           onChange={(value) => {
@@ -85,17 +95,17 @@ export default function EditorLayout({
             </button>
           </div>
           <EditorSidebar
-            markdown={content}
-            onUpdateDraft={(status) => {
+            newsDraft={newsDraft}
+            onUpdateDraft={(status: string) => {
               onUpdateDraft({
-                id: newsDraft.id,
+                id: draft.id,
                 status,
                 content,
                 title,
               });
             }}
             onValidate={() => {
-              if (newsDraft.validation) {
+              if (newsDraft.validation_result) {
                 showValidationResult(true);
               } else {
                 showValidationModal(true);

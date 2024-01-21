@@ -1,18 +1,27 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Editor from "../shared/Editor";
-import { useSelector } from "react-redux";
+import { NewsDraftResponse } from "../../states/news_draft_detail/action";
+
+type EditorBodyType = {
+  content: string,
+  onChange: any,
+  title: string,
+  onTitleChange: any,
+  newsDraft: NewsDraftResponse,
+}
 
 export default function EditorBody({
   content,
   onChange,
   title,
   onTitleChange,
-}) {
-  const newsDraft = useSelector((state) => state.newsDraftDetail);
+  newsDraft,
+} : EditorBodyType) {
+  const draft = newsDraft.draft_berita;
   const isEditable =
-    (newsDraft.status === "reviewing" || newsDraft.status === "new") &&
-    newsDraft.version === newsDraft.maxVersion;
+    (draft.status === "reviewing" || draft.status === "new") &&
+    draft.version === newsDraft.total_version;
 
   return (
     <div className="h-screen overflow-y-auto pt-12 md:pt-0">

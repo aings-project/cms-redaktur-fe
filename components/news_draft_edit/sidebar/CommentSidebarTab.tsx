@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import CommentItem from "../../comments/CommentItem";
 import ReactLoading from "react-loading";
 import {
+  CommentResponse,
   asyncPostCommentList,
   asyncReceiveCommentList,
 } from "../../../states/comments/action";
@@ -9,13 +10,19 @@ import { Send } from "@mui/icons-material";
 import useInput from "../../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import useRequireAuth from "../../../hooks/useRequireAuth";
+import { RootState } from "../../../states";
+import { NewsDraftResponse } from "../../../states/news_draft_detail/action";
 
-export default function CommentSidebarTab() {
-  const commentData = useSelector((state) => state.comments);
-  const isLoading = useSelector((state) => state.loading);
-  const newsDraft = useSelector((state) => state.newsDraftDetail);
+type CommentSidebarTabType = {
+  id: number,
+  draft_id: number
+}
+
+export default function CommentSidebarTab({ id, draft_id } : CommentSidebarTabType) {
+  const commentData : CommentResponse = useSelector((state: RootState) => state.comments);
+  const isLoading = useSelector((state: RootState) => state.loading);
   const auth = useRequireAuth();
-  const dispatch = useDispatch();
+  const dispatch : Dispatch<any> = useDispatch();
   const [content, setContent, forceSetContent] = useInput("");
   const [commentList, setCommentList] = useState([]);
 
@@ -34,7 +41,7 @@ export default function CommentSidebarTab() {
     dispatch(
       asyncReceiveCommentList({
         page: commentData.current_page + 1,
-        draftId: newsDraft.draft_id,
+        draftId: draft_id,
       })
     );
   };
@@ -44,8 +51,8 @@ export default function CommentSidebarTab() {
       asyncPostCommentList({
         content,
         id_redaktur: auth.id,
-        id: newsDraft.id,
-        draftId: newsDraft.draft_id,
+        id,
+        draftId: draft_id,
       })
     );
   };

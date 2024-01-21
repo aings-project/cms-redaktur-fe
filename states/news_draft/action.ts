@@ -4,31 +4,27 @@ import { setIsLoading } from "../loading/action";
 import { Dispatch } from "react";
 import { UserData } from "../auth/action";
 
-type NewsDraft = {
+type NewsDraftItem = {
   id: number;
   draft_id: number;
   version: number;
   title: string;
-  category: string | null;
+  category: string;
   created_at: string;
   status: string;
   published_at: string | null;
   user_redaktur: UserData | null;
-  user_wartawan: UserData | null;
-  content: string;
-  Prompt: {
-    id: number;
-    content: string;
-    created_at: string;
-    draft_id: number;
-  } | null;
+  user_wartawan: UserData;
 };
 
-type NewsDraftResponse = {
-  draft_berita: NewsDraft;
-  validation_result: any | null; // Change 'any' to a specific type if validation_result has a predictable structure
-  total_version: number;
+type ListNewsDraftResponse = {
+  current_page: number;
+  items_per_page: number;
+  total_pages: number;
+  total_items: number;
+  draft_berita: NewsDraftItem[];
 };
+
 
 enum NewsDraftActionType {
   RECEIVE_NEWS_DRAFT = "RECEIVE_NEWS_DRAFT",
@@ -37,7 +33,7 @@ enum NewsDraftActionType {
 type NewsDraftActionCreator = {
   type: NewsDraftActionType,
   payload: {
-    data: NewsDraftResponse
+    data: ListNewsDraftResponse | null
   }
 }
 
@@ -54,7 +50,7 @@ function asyncReceiveNewsDraft({ status = null, page = "1", title = null } = {})
   return async (dispatch: Dispatch<any>) => {
     dispatch(setIsLoading(true));
     try {
-      const newsDraftData : NewsDraftResponse = await api.getAllNewsDraft({ status, page, title });
+      const newsDraftData : ListNewsDraftResponse = await api.getAllNewsDraft({ status, page, title });
       dispatch(receiveNewsDraftActionCreator({ newsDraftData }));
     } catch (error) {
       toast.error(error.message, {
@@ -69,5 +65,5 @@ export { NewsDraftActionType, asyncReceiveNewsDraft };
 
 export type {
   NewsDraftActionCreator,
-  NewsDraftResponse
+  ListNewsDraftResponse
 }

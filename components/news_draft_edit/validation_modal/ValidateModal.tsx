@@ -4,13 +4,14 @@ import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
 import { parseValidationDataInput } from "../../../utils/validationUtils";
 import SecondaryButton from "../../shared/SecondaryButton";
+import { RootState } from "../../../states";
 
 export default function ValidateModal({ onClose, onValidate, promptWartawan }) {
   const [isChecked, setIsChecked] = useState(false);
   const [what, setWhat] = useInput("");
   const [when, setWhen] = useInput("");
   const [where, setWhere] = useInput("");
-  const isLoading = useSelector((state) => state.loading);
+  const isLoading : boolean = useSelector((state: RootState) => state.loading);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -95,6 +96,8 @@ export default function ValidateModal({ onClose, onValidate, promptWartawan }) {
               {!isLoading && (
                 <div className="w-full md:w-1/2 sm:mt-8">
                   <SecondaryButton
+                    disabled={false}
+                    isLoading={isLoading}
                     text="Validasi"
                     onClick={() => {
                       const information = parseValidationDataInput({

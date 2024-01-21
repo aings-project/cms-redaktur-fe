@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect } from "react";
 import NewsDraftLayout from "../../components/news_draft/NewsDraftLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveNewsDraft } from "../../states/news_draft/action";
+import { ListNewsDraftResponse, asyncReceiveNewsDraft } from "../../states/news_draft/action";
 import MainLayout from "../../components/main/MainLayout";
+import { RootState } from "../../states";
 
 export default function NewsDraft() {
-  const dispatch = useDispatch();
-  const newsDraftData = useSelector((state) => state.newsDraft);
-  const query = useSelector((state) => state.searchQuery);
+  const dispatch : Dispatch<any> = useDispatch();
+  const newsDraftData: ListNewsDraftResponse | null = useSelector(
+    (state: RootState) => state.newsDraft
+  );
+  const query = useSelector((state: RootState) => state.searchQuery);
 
   useEffect(() => {
     dispatch(

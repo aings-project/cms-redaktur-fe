@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 import EditorDropdown from "./EditorDropdown";
 import EditorInfo from "./EditorInfo";
 import SecondaryButton from "../../shared/SecondaryButton";
@@ -9,29 +9,36 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { asyncReceiveNewsDraftDetail } from "../../../states/news_draft_detail/action";
+import { NewsDraft, NewsDraftResponse, asyncReceiveNewsDraftDetail } from "../../../states/news_draft_detail/action";
 import useInput from "../../../hooks/useInput";
 import { asyncPostCommentList } from "../../../states/comments/action";
 import useRequireAuth from "../../../hooks/useRequireAuth";
 import NegativeButton from "../../shared/NegativeButton";
 import ReactLoading from "react-loading";
+import { RootState } from "../../../states";
+import { Dispatch } from "@reduxjs/toolkit";
 
-export default function GeneralInfoAccordion({ onUpdateDraft }) {
-  const newsDraft = useSelector((state) => state.newsDraftDetail);
-  const isLoading = useSelector((state) => state.loading);
-  const dispatch = useDispatch();
+type GeneralInfoAccordionType = {
+  newsDraft: NewsDraftResponse,
+  onUpdateDraft: any,
+}
+
+export default function GeneralInfoAccordion({ onUpdateDraft, newsDraft } : GeneralInfoAccordionType) {
+  const isLoading : boolean | null = useSelector((state: RootState) => state.loading);
+  const dispatch : Dispatch<any> = useDispatch();
   const auth = useRequireAuth();
+  const draft = newsDraft.draft_berita;
 
-  const updatedAt = dateTimeFormatter(newsDraft.dateTime);
-  const journalist = newsDraft.wartawan;
-  const editor = newsDraft.editor;
-  const status = newsDraft.status;
-  const version = newsDraft.version;
-  const maxVersion = newsDraft.maxVersion;
-  const isEditable = version === maxVersion;
+  const updatedAt : string = dateTimeFormatter(draft.created_at);
+  const journalist : string = draft.user_wartawan.username;
+  const editor : string = draft.user_redaktur?.username || "";
+  const status : string = draft.status;
+  const version : number = draft.version;
+  const maxVersion : number = newsDraft.total_version;
+  const isEditable : boolean = version === maxVersion;
   const isRejectable = !["rejected", "published", "reviewed"].includes(status);
 
-  const [versionTemp, setVersionTemp] = useState("1");
+  const [versionTemp, setVersionTemp] = useState(1);
   const [rejection, setRejection] = useInput("");
   const numbersArray = Array.from({ length: maxVersion }, (_, index) =>
     (index + 1).toString()
@@ -46,7 +53,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
   const handleChangeVersion = (value) => {
     dispatch(
       asyncReceiveNewsDraftDetail({
-        draft_id: newsDraft.draft_id,
+        draft_id: draft.draft_id,
         version: value,
       })
     );
@@ -58,7 +65,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
         asyncPostCommentList({
           content: rejection,
           id_redaktur: auth.id,
-          id: newsDraft.id,
+          id: draft.id,
         })
       );
       onUpdateDraft("rejected");
@@ -94,10 +101,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
           {version !== 1 && (
             <EditorInfo title="Diredaksi Oleh" content={editor} />
           )}
-          <EditorInfo
-            title="Status"
-            content={convertStatus(status)}
-          />
+          <EditorInfo title="Status" content={convertStatus(status)} />
           <EditorDropdown
             title="Versi"
             isDisabled={false}
@@ -114,6 +118,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                 <div className="flex items-center">
                   {["rejected", "published"].includes(status) && (
                     <SecondaryButton
+                      isLoading={isLoading}
                       disabled={isLoading}
                       text="Kembalikan Ke Draf"
                       onClick={() => {
@@ -123,6 +128,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                   )}
                   {["reviewing", "new"].includes(status) && (
                     <SecondaryButton
+                      isLoading={isLoading}
                       disabled={isLoading}
                       text="Simpan Perubahan"
                       onClick={() => {
@@ -132,6 +138,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                   )}
                   {["reviewing", "new"].includes(status) && (
                     <SecondaryButton
+                      isLoading={isLoading}
                       disabled={isLoading}
                       text="Kembalikan Wartawan"
                       onClick={() => {
@@ -143,6 +150,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
               )}
               {!isReturned && ["reviewing", "new"].includes(status) && (
                 <SecondaryButton
+                  isLoading={isLoading}
                   disabled={isLoading}
                   text="Publikasikan"
                   onClick={() => {
@@ -162,6 +170,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                 <div className="w-full flex">
                   {isReturned && (
                     <SecondaryButton
+                      isLoading={isLoading}
                       disabled={isLoading}
                       text="Urungkan Tolak"
                       onClick={() => {
@@ -170,6 +179,7 @@ export default function GeneralInfoAccordion({ onUpdateDraft }) {
                     />
                   )}
                   <NegativeButton
+                    isLoading={isLoading}
                     text="Tolak Draf Berita"
                     disabled={(isReturned && rejection.length < 1) || isLoading}
                     onClick={handleRejectButton}

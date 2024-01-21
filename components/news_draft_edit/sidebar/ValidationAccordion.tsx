@@ -6,17 +6,24 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
+import { RootState } from "../../../states";
+import { NewsDraftResponse } from "../../../states/news_draft_detail/action";
 
-export default function ValidationAccordion({ onValidate }) {
-  const newsDraft = useSelector((state) => state.newsDraftDetail);
-  const isLoading = useSelector((state) => state.loading);
-  const validationData = newsDraft.validation;
-  const version = newsDraft.version;
-  const maxVersion = newsDraft.maxVersion;
+type ValidationAccordionType = {
+  onValidate: any,
+  newsDraft: NewsDraftResponse,
+}
+
+export default function ValidationAccordion({ onValidate, newsDraft } : ValidationAccordionType) {
+  const isLoading : boolean = useSelector((state: RootState) => state.loading);
+
+  const validationData = newsDraft.validation_result;
+  const version = newsDraft.draft_berita.version;
+  const maxVersion = newsDraft.total_version;
   const isEditable = version === maxVersion;
 
-  const [isExpanded, setIsExpanded] = useState(true);
-  const handleExpanded = (value) => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  const handleExpanded = (value: boolean) => {
     setIsExpanded(value);
   };
 
@@ -44,7 +51,7 @@ export default function ValidationAccordion({ onValidate }) {
               <div>
                 <p className="text-black text-sm font-semibold mb-2">Status</p>
                 <p className="text-black text-sm font-normal">
-                  {validationData.status}
+                  {validationData.result.type}
                 </p>
                 <p className="text-black text-sm font-semibold mt-2">
                   Keterangan
@@ -54,7 +61,7 @@ export default function ValidationAccordion({ onValidate }) {
                     isEditable ? "line-clamp-2" : ""
                   } `}
                 >
-                  {validationData.description}
+                  {validationData.result.describe}
                 </p>
               </div>
             )}

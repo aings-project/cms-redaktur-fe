@@ -45,7 +45,7 @@ function receiveCommentListActionCreator({ commentData }) : CommentActionCreator
   };
 }
 
-function asyncReceiveCommentList({ page = "1", draftId = null } = {}) {
+function asyncReceiveCommentList({ page = 1, draftId = null } = {}) {
   return async (dispatch: Dispatch<any>) => {
     dispatch(setIsLoading(true));
     try {

@@ -1,23 +1,26 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, useEffect } from "react";
 import useRequireAuth from "../../../../hooks/useRequireAuth";
 import EditLayoutWrapper from "../../../../components/news_draft_edit/EditLayoutWrapper";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncReceiveNewsDraftDetail } from "../../../../states/news_draft_detail/action";
+import { NewsDraftResponse, asyncReceiveNewsDraftDetail } from "../../../../states/news_draft_detail/action";
+import { RootState } from "../../../../states";
 
 export default function EditNewsDraft() {
-  const auth = useRequireAuth();
+  useRequireAuth();
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch : Dispatch<any> = useDispatch();
   const { draft_id, version } = router.query;
-  const newsDraft = useSelector((state) => state.newsDraftDetail);
+  const newsDraft : NewsDraftResponse | null = useSelector((state: RootState) => state.newsDraftDetail);
 
   useEffect(() => {
     if (draft_id) {
+      const id : number = +draft_id;
+      const ver : number = +version;
       dispatch(
         asyncReceiveNewsDraftDetail({
-          draft_id,
-          version,
+          draft_id: id,
+          version: ver,
         })
       );
     }
@@ -27,5 +30,5 @@ export default function EditNewsDraft() {
     return <div />;
   }
 
-  return <EditLayoutWrapper />;
+  return <EditLayoutWrapper newsDraft={newsDraft} />;
 }
